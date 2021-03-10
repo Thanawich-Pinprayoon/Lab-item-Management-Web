@@ -39,10 +39,12 @@ hr{
     margin-top: 30px;
     display: flex;
     justify-content: space-evenly;
+    min-width: 1080px;
 }
 .lab{
     background: #FBA4A4;
-    width: 35%;
+    min-width: 450px;
+    width: 40%;
     margin: 10px;
     border-radius: 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -68,8 +70,9 @@ hr{
     object-fit: cover;
     
 }
+
 .item-list{
-    width: 80%;
+    min-width: 40%;
     background: #FFDFC8;
     margin: 10px;
     border-radius: 10px;
@@ -79,13 +82,29 @@ hr{
     padding: 30px 5%;
 
 }
+.itemlist-top{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
 .list-text{
     font-size: 30px;
 }
-.cards-list{
 
-    height: 60vh;
-    overflow: auto;
+.add-btn{
+    width: 150px;
+    height: 50px; 
+    font-size: 20px;
+    border-radius: 5px;
+    background-color: #BCF4B3;
+    border: none;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.cards-list{
+    height: 55vh;
+    padding-right: 10px;
+    overflow: hidden auto;
 }
 .item-card{
     width: 95%;
@@ -107,8 +126,8 @@ hr{
 
 }
 .item-img{
-    width: 15%;
-    height: 70%;
+    width: 100px;
+    height: 100px;
     border-radius: 10px;
     border: gray thin;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -144,4 +163,33 @@ hr{
     position: relative;
     
 }
-   
+
+.itemlist-bottom{
+    padding-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    
+    
+}
+  
+.confirm-btn{
+    width: 100px;
+    height: 40px; 
+    font-size: 20px;
+    border-radius: 10px;
+    background-color: #BCF4B3;
+    border: none;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-inline: 20px;
+}
+.cancel-btn{
+    width: 100px;
+    height: 40px; 
+    font-size: 20px;
+    border-radius: 10px;
+    background-color: #FB9B9B;
+    border: none;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  
+}
