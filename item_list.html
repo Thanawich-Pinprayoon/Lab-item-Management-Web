@@ -2,10 +2,12 @@
 <html>
 
 <head>
+  <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {
+    /* body {
       margin: 0;
     }
 
@@ -22,8 +24,8 @@
 
     li {
       float: left;
-    }
-
+    } */
+/* 
     li a,
     li h2 {
       display: block;
@@ -47,16 +49,27 @@
 
     .right {
       float: right;
-    }
+    } */
 
-    .container {
+    /* .container {
       padding: 50px;
+    } */
+    h1{
+      font-weight: normal;
+      font-size: 30px;
     }
+    h3{
 
+      font-size: 24px;
+    }
+    p{
+      font-size: 16px;
+    }
     .container.card {
       padding: 20px;
       overflow: auto;
       max-height: 300px;
+      margin: 20px 0;
     }
 
     .container.card .title {
@@ -209,14 +222,14 @@
       background: #b30000;
     }
 
-    * {
+    /* * {
       font-family: 'Roboto', sans-serif;
-    }
+    } */
   </style>
 </head>
 
 <body>
-
+  <!-- 
   <ul>
     <li>
       <h2>CE Lab Tool u</h2>
@@ -227,9 +240,22 @@
       <li><a href="#">Items</a></li>
       <li><a href="#">Fang</a></li>
     </div>
-  </ul>
+  </ul> -->
+  <nav>
+    <div class="navbar">
+      <div class="brand"> CE Tool Management</div>
+      <div class="nav-list">
+        <ul>
+          <li>Home</li>
+          <li>Items</li>
+          <li>User</li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-  <div class="container">
+  <!-- <div class="container"> -->
+  <div class="content">
     <h1>รายการอุปกรณ์ค้างคืน</h1>
     <hr>
     <div class="light-orange card container">
@@ -494,6 +520,7 @@
       </div>
     </div>
   </div>
+</div>
 
 </body>
 
