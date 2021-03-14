@@ -3,7 +3,8 @@
     margin: 0;
     font-family: 'Roboto',sans-serif;
 }
-.navbar{
+/*nav*/
+nav{
     width: 100%;
     height: 70px;
     background-color: #FF7D7D;
@@ -12,184 +13,54 @@
     left: 0;
     display: flex;
     align-items: center;
+    justify-content: center;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-
-.logo{
+.navbar{
+    width: 100%;
+    max-width: 1600px;
+    min-width:480px;
+    display: flex;
+    justify-content: space-between;
+}
+.brand{
     color: white;
     font-size: 40px;
     justify-content: flex-start;
-    padding: 0 5%;
    
 }
-.content{
-    padding:120px 5% 0px 5%;
-    /* background-color: yellow; */
-    font-size: 30px;
+.nav-list{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
 }
+.nav-list ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-evenly;
+}
+.nav-list ul li{
+    margin: 0 20px;
+    color: white;
+    font-size: 20px;
+
+}
+
+/*content*/
+.content{
+    padding:120px 0 0 0;
+    width: 100%;
+    max-width: 1600px;
+    margin: auto;
+    background-color: yellow;
+    font-size: 30px;
+    /* overflow: auto; */
+
+}
+
 hr{
     
     border: 1px solid #000000;
 }
 
-.container{
-    height: 75vh;
-    /* background-color: yellowgreen; */
-    margin-top: 30px;
-    display: flex;
-    justify-content: space-evenly;
-    min-width: 1080px;
-}
-.lab{
-    background: #FBA4A4;
-    min-width: 450px;
-    width: 40%;
-    margin: 10px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    display: flex;
-    flex-direction: column;
-}
-.lab-text{
-    margin: 20px 10%;
-    
-}
-.lab-name{
-    font-size: 30px;
-}
-.lab-description{
-    font-size: 20px;
-
-}
-.lab-img{
-    border-radius: 10px;
-    width: 80%;
-    height: 60%;
-    margin: 30px auto;
-    object-fit: cover;
-    
-}
-
-.item-list{
-    min-width: 40%;
-    background: #FFDFC8;
-    margin: 10px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    display: flex;
-    flex-direction: column;
-    padding: 30px 5%;
-
-}
-.itemlist-top{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-.list-text{
-    font-size: 30px;
-}
-
-.add-btn{
-    width: 150px;
-    height: 50px; 
-    font-size: 20px;
-    border-radius: 5px;
-    background-color: #BCF4B3;
-    border: none;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-.cards-list{
-    height: 55vh;
-    padding-right: 10px;
-    overflow: hidden auto;
-}
-.item-card{
-    width: 95%;
-    height: 180px;
-    background-color: white;
-    border-radius: 10px;
-    margin: 20px 0px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    padding: 0px 20px;
-
-}
-.left-item{
-    display: flex;
-    justify-content: flex-start;
-    padding: 0px 20px;
-
-}
-.item-img{
-    width: 100px;
-    height: 100px;
-    border-radius: 10px;
-    border: gray thin;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    object-fit: cover;
-
-}
-.item-text{
-    margin: 0px 50px;
-    height: 70%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-
-}
-.item-name{
-    font-size: 24px;
-}
-.item-number{
-    font-size: 16px;
-    color:gray;
-}
-.item-description{
-    font-size: 20px;
-}
-.book-btn{
-    width: 100px;
-    height: 40px; 
-    font-size: 20px;
-    border-radius: 10px;
-    background-color: #BCF4B3;
-    border: none;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    position: relative;
-    
-}
-
-.itemlist-bottom{
-    padding-top: 20px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    
-    
-}
-  
-.confirm-btn{
-    width: 100px;
-    height: 40px; 
-    font-size: 20px;
-    border-radius: 10px;
-    background-color: #BCF4B3;
-    border: none;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    margin-inline: 20px;
-}
-.cancel-btn{
-    width: 100px;
-    height: 40px; 
-    font-size: 20px;
-    border-radius: 10px;
-    background-color: #FB9B9B;
-    border: none;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  
-}
