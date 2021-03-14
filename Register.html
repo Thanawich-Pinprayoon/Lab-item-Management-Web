@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="Register.css" />
+</head>
+
+<body>
+    <div class="container1">
+        <p class="header">Username</p>
+        <input class="input-text" type="text"></input>
+        <p class="header">Password</p>
+        <input class="input-text" type="password"  id="myInput"></input>
+        <input type="checkbox" onclick="myFunction()">
+
+        <script>
+            function myFunction() {
+                var x = document.getElementById("myInput");
+                if (x.type === "password") {
+                    x.type = "text";
+                } else {
+                    x.type = "password";
+                }
+            }
+        </script>
+
+        <br><br>
+
+        <input type="checkbox" id="Remember" name="Remember" value="Remember"></input>
+
+        <label for="Remember">จดจำผู้ใช้งาน</label>
+        
+
+        <br><br><br>
+        
+        <button class="button-log">Login</button>
+        <br><br>
+        <button class="button-sign">Sign up</button>
+        
+
+    </div>
+</body>
+
+</html>

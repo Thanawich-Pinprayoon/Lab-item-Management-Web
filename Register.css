@@ -1,0 +1,32 @@
+.container1{
+    background-color: rgb(240, 166, 29);
+    border: black;
+    height: 400px;
+    width: 30%;
+    padding-left: 5%;
+    padding-top: 2%;
+    
+}
+
+.header{
+    font-size: 24px;
+}
+
+.button-sign{
+    width: 80px;
+    height: 30px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.button-log{
+    width: 80px;
+    height: 30px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.input-text{
+    height: 20px;
+    cursor: pointer;
+}
