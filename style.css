@@ -2,7 +2,33 @@
     padding: 0;
     margin: 0;
     font-family: 'Roboto',sans-serif;
+    
 }
+*::-webkit-scrollbar {
+    width: 10px;
+    border-color: #FF7D7D;
+    
+  }
+
+  /* Track */
+*::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  }
+
+  /* Handle */
+*::-webkit-scrollbar-thumb {
+    background: orange;
+    border-radius: 10px;
+    margin: 2px;
+  }
+
+  /* Handle on hover */
+*::-webkit-scrollbar-thumb:hover {
+    background: #b30000;
+  }
 /*nav*/
 nav{
     width: 100%;
@@ -62,4 +88,5 @@ hr{
     
     border: 1px solid #000000;
 }
+
 
