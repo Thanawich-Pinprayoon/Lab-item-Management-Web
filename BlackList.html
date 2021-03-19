@@ -1,15 +1,19 @@
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=1440px,height= 900px, initial-scale=1.0"
-    />
-    <title>CE Lab Tool u</title>
-  </head>
-  <body>
-    <div class="header">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+  <title>CE Lab Tool u</title>
+</head>
+
+<body>
+  <!-- <div class="header">
       <p class="header-text">CE Lab Tool U</p>
       <div class="header-nav-bar">
         <ul>
@@ -20,20 +24,35 @@
         </ul>
       </div>
       <div class="header-bg"></div>
+    </div> -->
+  <nav>
+    <div class="navbar">
+      <div class="brand"> CE Tool Management</div>
+      <div class="nav-list">
+        <ul>
+          <li>Home</li>
+          <li>Items</li>
+          <li>User</li>
+        </ul>
+      </div>
     </div>
-    <!-- header -->
+  </nav>
+  <!-- header -->
+  <div class="content">
     <div class="main">
-      <h2 class="main-txt">Black list</h2>
-      <hr class="main-txt-end-line" />
+      <p class="main-txt">Black list</p>
+      <hr>
       <div class="info-box">
-        <button class="blacklist">Add to Blacklist</button>
-        <div class="sort-box">
-          <p class="sort-text">Sort by</p>
-          <select class="sort-by-select" name="sort-by" id="sort-by">
-            <option value="UserName">User name</option>
-          </select>
+        <div class="top-right">
+          <button class="blacklist">Add to Blacklist</button>
+          <div class="sort-box">
+            <p class="sort-text">Sort by</p>
+            <select class="sort-by-select" name="sort-by" id="sort-by">
+              <option value="UserName">User name</option>
+            </select>
+          </div>
         </div>
-        <hr class="line-head" />
+        <hr style="margin: 0 10px;">
         <div class="blacklist-container">
           <div class="bl-user-box">
             <p class="username">ouoam</p>
@@ -42,30 +61,19 @@
         </div>
         <div class="bl-popup">
           <h2 class="popup-head">Add to blacklist</h2>
-          <hr class="line-head" />
-          <input
-            type="text"
-            name="username"
-            id="bl-add-username"
-            value="username"
-            class="bl-inp-username"
-          />
+          <hr style="margin: 10px;"/>
+          <input type="text" name="username" id="bl-add-username" value="username" class="bl-inp-username" />
           <button class="bl-add-cancel">Cancel</button>
           <button class="bl-add-confirm">Confirm</button>
         </div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
 <style>
-  body {
-    height: 900px;
-    width: 1440px;
-    /* left: 2670px;
-    top: -407px; */
-    border-radius: 0px;
-  }
-  .header .header-text {
+  /* .header .header-text {
     position: absolute;
     width: 417px;
     height: 63px;
@@ -79,10 +87,12 @@
     line-height: 56px;
     color: #ffffff;
   }
+
   .header-nav-bar {
     float: right;
     top: 8px;
   }
+
   ul {
     list-style-type: none;
     margin: 0;
@@ -105,7 +115,8 @@
 
   li a:hover {
     background-color: #111;
-  }
+  } */
+  /* 
   .header-bg {
     position: absolute;
     width: 100%;
@@ -115,11 +126,13 @@
     background: #ff7d7d;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     z-index: -200;
-  }
-  .main {
+  } */
+
+  /* .main {
     background: #fbfbfb;
-  }
-  .main-txt {
+  } */
+
+  /* .main-txt {
     position: absolute;
     width: 232px;
     height: 50px;
@@ -133,8 +146,9 @@
     line-height: 42px;
 
     color: #000000;
-  }
-  .main-txt-end-line {
+  } */
+
+  /* .main-txt-end-line {
     position: absolute;
     width: 1315px;
     height: 0px;
@@ -142,68 +156,92 @@
     top: 167px;
 
     border: 1px solid #000000;
-  }
+  } */
+
   .info-box {
-    position: absolute;
-    width: 1317px;
-    height: 690px;
-    left: 65px;
-    top: 200px;
+    /* position: absolute; */
+    width: 100%;
+    height: 75vh;
+    /* left: 65px;
+    top: 200px; */
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
 
     background: #ffdfc8;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
   }
+  .top-right{
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px;
+  }
+
   .blacklist {
-    position: absolute;
+    /* position: absolute;
     margin-top: 10px;
     right: 22%;
     font-family: Roboto;
     font-style: normal;
-    font-weight: normal;
+    font-weight: normal; */
     font-size: 18px;
     width: 150px;
     height: 30px;
 
     color: #000000;
   }
+  .sort-box{
+    display: flex;
+    flex-direction: row;
+    margin: 0 50px;
+
+  }
+
   .sort-box p {
-    position: absolute;
+    /* position: absolute;
     margin-top: 15px;
     right: 15%;
 
     font-family: Roboto;
     font-style: normal;
-    font-weight: normal;
+    font-weight: normal; */
+    margin: 0 20px;
     font-size: 18px;
   }
+
   .sort-by-select {
-    position: absolute;
+    /* position: absolute;
     margin-top: 13px;
     right: 5%;
     width: 115px;
 
     font-family: Roboto;
     font-style: normal;
-    font-weight: normal;
+    font-weight: normal; */
     font-size: 18px;
   }
-  .line-head {
+
+  /* .line-head {
     position: absolute;
     margin-left: 5%;
     margin-right: 5%;
     margin-top: 45px;
     width: 90%;
     border: 1px solid #292929;
-  }
+  } */
+
   .blacklist-container {
     background-color: rgb(167, 173, 255);
-    width: 90%;
+    width: 95%;
     height: 85%;
-    margin-left: 5%;
-    margin-top: 5%;
+    margin: auto;
+
+    padding: 20px;
+
     overflow: auto;
   }
+
   .bl-user-box {
     position: relative;
     width: 10%;
@@ -212,15 +250,17 @@
     margin-left: 1%;
     border-radius: 10px;
   }
+
   .username {
     position: relative;
-    font-family: Roboto;
+    /* font-family: Roboto;
     font-style: normal;
-    font-weight: normal;
+    font-weight: normal; */
     font-size: 18px;
     margin-left: 10%;
     padding: 3% 0;
   }
+
   .bl-delete {
     position: absolute;
     right: 5%;
@@ -230,6 +270,7 @@
     color: #fbfbfb;
     outline: none;
   }
+
   .bl-popup {
     position: fixed;
     top: 50%;
@@ -243,10 +284,13 @@
 
     border-radius: 10px;
   }
+
   .popup-head {
-    position: absolute;
-    left: 5%;
+    font-size: 24px;
+    margin: 10px;
+   
   }
+
   .bl-inp-username {
     position: absolute;
     top: 50%;
@@ -259,6 +303,7 @@
     font-weight: normal;
     font-size: 18px;
   }
+
   .bl-add-confirm {
     position: absolute;
     bottom: 5%;
@@ -271,6 +316,7 @@
     background-color: rgb(51, 133, 55);
     color: #fbfbfb;
   }
+
   .bl-add-cancel {
     position: absolute;
     bottom: 5%;
