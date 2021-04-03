@@ -6,6 +6,17 @@
 </head>
 
 <body>
+    <nav>
+        <div class="navbar">
+            <div class="brand"> CE Tool Management</div>
+            <div class="nav-list">
+                <ul>
+                    <li>Sign in</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
         <div class="container1">
             <p class="header">Username</p>
@@ -13,27 +24,33 @@
             <p class="header">Password</p>
 
             <input class="input-text" type="password" id="myInput"></input>
-            <input type="checkbox" onclick="myFunction()">
-
+            <input type="checkbox" id="showPassword" onclick="showPassword()">
+            <label for="showPassword"><img id="eye" src="pic/invisible.png" alt="" width="16"></label>
             <script>
-                function myFunction() {
+                function showPassword() {
                     var x = document.getElementById("myInput");
                     if (x.type === "password") {
                         x.type = "text";
+                        document.getElementById("eye").setAttribute("src", "pic/visibility.png");
                     } else {
                         x.type = "password";
+                        document.getElementById("eye").setAttribute("src", "pic/invisible.png");
                     }
                 }
             </script>
 
             <br><br>
+            <div class="option">
+                <label class="check-con">
+                    <input type="checkbox" id="Remember" name="Remember" value="Remember"></input>
+                    <span class="checkmark"></span>
+                </label>
+                <p class="t1">จดจำผู้ใช้งาน</p>
 
-            <input type="checkbox" id="Remember" name="Remember" value="Remember"></input>
+                <button class="button-forget"><a href="">ลืมรหัสผ่าน</a></button>
+            </div>
 
-            <label for="Remember">จดจำผู้ใช้งาน</label>
-            <button class="button-forget">ลืมรหัสผ่าน</button>
-
-            <br><br><br>
+            <br><br>
 
             <button class="button-sign">Sign up</button>
             <button class="button-log">Login</button>
