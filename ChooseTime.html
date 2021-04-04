@@ -1,0 +1,521 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+  <title>CE Lab Tool u</title>
+</head>
+
+<body>
+  <!-- <div class="header">
+    <p class="header-text">CE Lab Tool U</p>
+    <div class="header-nav-bar">
+      <ul>
+        <li><a href="default.asp">Home</a></li>
+        <li><a href="news.asp">News</a></li>
+        <li><a href="contact.asp">Contact</a></li>
+        <li><a href="about.asp">About</a></li>
+      </ul>
+    </div>
+    <div class="header-bg"></div>
+  </div> -->
+  <nav>
+    <div class="navbar">
+      <div class="brand"> CE Tool Management</div>
+      <div class="nav-list">
+        <ul>
+          <li>Home</li>
+          <li>Items</li>
+          <li>User</li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- header -->
+  <div class="content">
+    <p class="main-txt">Choose Time</p>
+    <hr />
+
+    <div class="info-box">
+      <div>
+        <p class="box-head">เลือกเวลาที่ต้องการยืม</p>
+        <div class="lab-box">
+          <p class="lab-name">Chemistry Lab</p>
+          <hr style="margin: 0 10px " />
+          <div class="item-container">
+            <div class="item">
+              <div class="img-box"><img src="" alt="" /></div>
+              <div class="item-info">
+                <h4 id="itemname">ไม้บรรทัด</h4>
+                <p id="item-detail">
+                  ไม้บรรทัดไง เอาไว้ฟาดหน้ามึงอะ ล้อเล่น ที่จริงเอาไว้วัด
+                  วัดกะกูปะล่ะ
+                </p>
+              </div>
+            </div>
+            <div class="start-date-container">
+              <h3>วันที่ยืม:</h3>
+              <input type="date" id="Start-date" />
+              <div class="time-box">
+                <form action="">
+                  <div class="hour-box">
+                    <input type="radio" id="hour0" name="start" value="hour0" />
+                    <label for="hour0">00:00 - 00:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour1" name="start" value="hour1" />
+                    <label for="hour1">01:00 - 01:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour2" name="start" value="hour2" />
+                    <label for="hour2">02:00 - 02:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour3" name="start" value="hour3" />
+                    <label for="hour3">03:00 - 03:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour4" name="start" value="hour4" />
+                    <label for="hour4">04:00 - 04:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour5" name="start" value="hour5" />
+                    <label for="hour5">05:00 - 05:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour6" name="start" value="hour6" />
+                    <label for="hour6">06:00 - 06:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour7" name="start" value="hour7" />
+                    <label for="hour7">07:00 - 07:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour8" name="start" value="hour8" />
+                    <label for="hour8">08:00 - 08:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour9" name="start" value="hour9" />
+                    <label for="hour9">09:00 - 09:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour10" name="start" value="hour10" />
+                    <label for="hour10">10:00 - 10:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour11" name="start" value="hour11" />
+                    <label for="hour11">11:00 - 11:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour12" name="start" value="hour12" />
+                    <label for="hour12">12:00 - 12:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour13" name="start" value="hour13" />
+                    <label for="hour13">13:00 - 13:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour14" name="start" value="hour14" />
+                    <label for="hour14">14:00 - 14:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour15" name="start" value="hour15" />
+                    <label for="hour15">15:00 - 15:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour16" name="start" value="hour16" />
+                    <label for="hour16">16:00 - 16:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour17" name="start" value="hour17" />
+                    <label for="hour17">17:00 - 17:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour18" name="start" value="hour18" />
+                    <label for="hour18">18:00 - 18:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour19" name="start" value="hour19" />
+                    <label for="hour19">19:00 - 19:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour20" name="start" value="hour20" />
+                    <label for="hour20">20:00 - 20:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour21" name="start" value="hour21" />
+                    <label for="hour21">21:00 - 21:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour22" name="start" value="hour22" />
+                    <label for="hour22">22:00 - 22:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour23" name="start" value="hour23" />
+                    <label for="hour23">23:00 - 23:59</label>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="end-date-container">
+              <h3>วันที่คืน:</h3>
+              <input type="date" id="end-date" />
+              <div class="time-box">
+                <form action="">
+                  <div class="hour-box">
+                    <input type="radio" id="hour0" name="end" value="hour0" />
+                    <label for="hour0">00:00 - 00:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour1" name="end" value="hour1" />
+                    <label for="hour1">01:00 - 01:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour2" name="end" value="hour2" />
+                    <label for="hour2">02:00 - 02:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour3" name="end" value="hour3" />
+                    <label for="hour3">03:00 - 03:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour4" name="end" value="hour4" />
+                    <label for="hour4">04:00 - 04:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour5" name="end" value="hour5" />
+                    <label for="hour5">05:00 - 05:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour6" name="end" value="hour6" />
+                    <label for="hour6">06:00 - 06:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour7" name="end" value="hour7" />
+                    <label for="hour7">07:00 - 07:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour8" name="end" value="hour8" />
+                    <label for="hour8">08:00 - 08:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour9" name="end" value="hour9" />
+                    <label for="hour9">09:00 - 09:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour10" name="end" value="hour10" />
+                    <label for="hour10">10:00 - 10:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour11" name="end" value="hour11" />
+                    <label for="hour11">11:00 - 11:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour12" name="end" value="hour12" />
+                    <label for="hour12">12:00 - 12:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour13" name="end" value="hour13" />
+                    <label for="hour13">13:00 - 13:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour14" name="end" value="hour14" />
+                    <label for="hour14">14:00 - 14:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour15" name="end" value="hour15" />
+                    <label for="hour15">15:00 - 15:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour16" name="end" value="hour16" />
+                    <label for="hour16">16:00 - 16:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour17" name="end" value="hour17" />
+                    <label for="hour17">17:00 - 17:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour18" name="end" value="hour18" />
+                    <label for="hour18">18:00 - 18:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour19" name="end" value="hour19" />
+                    <label for="hour19">19:00 - 19:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour20" name="end" value="hour20" />
+                    <label for="hour20">20:00 - 20:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour21" name="end" value="hour21" />
+                    <label for="hour21">21:00 - 21:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour22" name="end" value="hour22" />
+                    <label for="hour22">22:00 - 22:59</label>
+                  </div>
+                  <div class="hour-box">
+                    <input type="radio" id="hour23" name="end" value="hour23" />
+                    <label for="hour23">23:00 - 23:59</label>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="btn-list">
+        <button id="Cancel">Cancel</button>
+        <button id="Confirm">Confirm</button>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+<style>
+  /*  
+  .header .header-text {
+    position: absolute;
+    width: 417px;
+    height: 63px;
+    left: 54px;
+    top: -38px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 48px;
+    line-height: 56px;
+    color: #ffffff;
+  }
+
+  .header-nav-bar {
+    float: right;
+    top: 8px;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+
+  li {
+    float: left;
+  }
+
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  li a:hover {
+    background-color: #111;
+  }
+
+  .header-bg {
+    position: absolute;
+    width: 100%;
+    height: 80px;
+    left: 0px;
+    top: 0px;
+    background: #ff7d7d;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    z-index: -200;
+  } */
+
+  /* .main {
+    background: #fbfbfb;
+  } */
+
+  /* .main-txt {
+    position: absolute;
+    width: 232px;
+    height: 50px;
+    left: 62px;
+    top: 100px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 42px;
+
+    color: #000000;
+  } */
+  /* 
+  .main-txt-end-line {
+    position: absolute;
+    width: 1315px;
+    height: 0px;
+    left: 62px;
+    top: 167px;
+
+    border: 1px solid #000000;
+  } */
+
+  .info-box {
+    /* position: absolute; */
+    width: 100%x;
+    height: 75vh;
+    /* left: 65px;
+    top: 200px; */
+    margin: 30px 0;
+    background: #ffdfc8;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .box-head {
+    /* margin-top: 10px;
+    margin-left: 2%;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 42px; */
+    padding: 10px;
+
+    color: #000000;
+  }
+
+  .lab-box {
+    padding-left: 5%;
+  }
+
+  .lab-name {
+
+    /*
+    margin-top: -30px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+   
+    line-height: 28px;
+
+   */
+    font-size: 24px;
+    color: #000000;
+  }
+
+  .lab-line {
+    margin-left: 5%;
+    margin-top: -30px;
+
+    border: 1px solid #000000;
+  }
+
+  .item-container {
+    margin: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    font-size: 24px;
+  }
+
+  .item {
+    grid-area: 1 / 1 / 2 / 2;
+  }
+
+  .start-date-container {
+    grid-area: 1 / 2 / 2 / 3;
+  }
+
+  .end-date-container {
+    grid-area: 1 / 3 / 2 / 4;
+  }
+
+  .img-box {
+    margin-left: 5%;
+    margin-top: 0px;
+    width: 222px;
+    height: 187.03px;
+    background-color: #000000;
+    /* background: url(image.png), url(image.png); */
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .img-box img {
+    position: relative;
+  }
+
+  .item-info {
+    margin-left: 5%;
+    margin-top: 0px;
+    width: 200px;
+    /* font-family: Roboto;
+    font-style: normal;
+    font-weight: normal; */
+    color: #000000;
+    overflow: auto;
+  }
+
+  .time-box {
+    margin-top: 2%;
+    height: 400px;
+    width: 250px;
+    overflow: auto;
+    background-color: #af8c72;
+    border-radius: 10px;
+  }
+
+  .hour-box {
+    margin: 10px;
+    height: 48px;
+    background-color: green;
+    border-radius: 10px;
+  }
+
+  .btn-list {
+  
+    padding: 20px 100px;
+    display: flex;
+    justify-content: flex-end;
+   
+
+  }
+
+  #Confirm {
+    background-color: rgb(49, 122, 77);
+    color: rgb(255, 255, 255);
+    /* position: absolute; */
+    width: 100px;
+    height: 50px;
+    /* bottom: 2%;
+    right: 2%; */
+    margin: 0 20px;
+    border-radius: 10px;
+  }
+
+  #Cancel {
+    background-color: rgb(255, 72, 72);
+    color: rgb(255, 255, 255);
+    /* position: absolute; */
+    width: 100px;
+    height: 50px;
+    /* bottom: 2%;
+    right: 15%; */
+    margin: 0 20px;
+    border-radius: 10px;
+  }
+</style>
