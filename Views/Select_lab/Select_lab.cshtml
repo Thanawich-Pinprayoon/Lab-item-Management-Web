@@ -110,6 +110,35 @@
             left: 50%;
         }
     </style>
+    <script>
+        function ChangeSet() {
+            ChangeData("lab1_A_C1"," ไม้บรรทัด1 0 of 5<br>ไม้บรรทัด2 0 of 5<br>");
+            ChangeData("lab1_A_C2"," ไม้บรรทัด2 0 of 5<br>ไม้บรรทัด3 0 of 5<br>");
+            ChangeData("lab1_N_C1"," ไม้บรรทัด1 0 of 5<br>ไม้บรรทัด2 0 of 5<br>");
+            ChangeData("lab1_N_C2"," ไม้บรรทัด2 0 of 5<br>ไม้บรรทัด3 0 of 5<br>");
+            
+            ChangeData('lab2_A_C1',' ไม้บรรทัด1 0 of 5<br>ไม้บรรทัด2 0 of 5<br>');
+            ChangeData('lab2_A_C2',' ไม้บรรทัด2 0 of 5<br>ไม้บรรทัด3 0 of 5<br>');
+            ChangeData('lab2_N_C1',' ไม้บรรทัด1 0 of 5<br>ไม้บรรทัด2 0 of 5<br>');
+            ChangeData('lab2_N_C2',' ไม้บรรทัด2 0 of 5<br>ไม้บรรทัด3 0 of 5<br>');
+
+            ChangeData('lab3_A_C1',' ไม้บรรทัด1 0 of 5<br>ไม้บรรทัด2 0 of 5<br>');
+            ChangeData('lab3_A_C2',' ไม้บรรทัด1 0 of 5<br>ไม้บรรทัด2 0 of 5<br>');
+            ChangeData('lab3_N_C1',' ไม้บรรทัด2 0 of 5<br>ไม้บรรทัด3 0 of 5<br>');
+            ChangeData('lab3_N_C2',' ไม้บรรทัด2 0 of 5<br>ไม้บรรทัด3 0 of 5<br>');
+
+            ChangeData('lab4_A_C1',' ไม้บรรทัด1 0 of 5<br>ไม้บรรทัด2 0 of 5<br>');
+            ChangeData('lab4_A_C2',' ไม้บรรทัด2 0 of 5<br>ไม้บรรทัด3 0 of 5<br>');
+            ChangeData('lab4_N_C1',' ไม้บรรทัด1 0 of 5<br>ไม้บรรทัด2 0 of 5<br>');
+            ChangeData('lab4_N_C2',' ไม้บรรทัด2 0 of 5<br>ไม้บรรทัด3 0 of 5<br>');
+        }
+        function ChangeData(p1,p2) {
+            console.log(p1)
+            //p1 lab1_  N _C1
+            console.log(p2)
+            document.getElementById(p1).innerHTML = p2;
+        }
+    </script>
     <title>Select Lab</title>
 </head>
 
@@ -137,9 +166,9 @@
             Lab Rooms
         </div>
         <hr />
-
         <div class="warpper">
-            <div class=box>
+            <button onclick="ChangeSet()">Click Me!</button>
+            <div class=box> 
                 <img src=\img\Pic.PNG>
                 <div class="box-content">
                     <div style="margin: 0 30px;">
@@ -157,7 +186,7 @@
 
                             <div class="innertext">
                                 <div class="col1">
-                                    <p class="innerBoxText2">
+                                    <p class="innerBoxText2" id='lab1_A_C1'>
                                         ไม้บรรทัด1 0 of 5<br>
                                         ไม้บรรทัด2 0 of 5<br>
                                         ไม้บรรทัด3 0 of 5<br>
@@ -172,7 +201,7 @@
                                     </p>
                                 </div>
                                 <div class="col2">
-                                    <p class="innerBoxText2">
+                                    <p class="innerBoxText2" id='lab1_A_C2'>
                                         ไม้บรรทัด12 0 of 5<br>
                                         ไม้บรรทัด13 0 of 5<br>
                                         ไม้บรรทัด14 0 of 5<br>
@@ -194,7 +223,7 @@
                             <hr style="margin: 10px;" />
                             <div class="innertext">
                                 <div class="col1">
-                                    <p class="innerBoxText2">
+                                    <p class="innerBoxText2" id='lab1_N_C1'>
                                         ไม้บรรทัด1 0 of 5<br>
                                         ไม้บรรทัด2 0 of 5<br>
                                         ไม้บรรทัด3 0 of 5<br>
@@ -209,7 +238,7 @@
                                     </p>
                                 </div>
                                 <div class="col2">
-                                    <p class="innerBoxText2">
+                                    <p class="innerBoxText2" id='lab1_N_C2'>
                                         ไม้บรรทัด12 0 of 5<br>
                                         ไม้บรรทัด13 0 of 5<br>
                                         ไม้บรรทัด14 0 of 5<br>
@@ -246,14 +275,14 @@
 
                             <div class="innertext">
                                 <div class="col1">
-                                    <p class="innerBoxText2">
+                                    <p class="innerBoxText2" id='lab2_A_C1'>
                                         ไม้บรรทัด1 0 of 5<br>
                                         ไม้บรรทัด3 0 of 5<br>
 
                                     </p>
                                 </div>
                                 <div class="col2">
-                                    <p class="innerBoxText2">
+                                    <p class="innerBoxText2" id='lab2_A_C2'>
                                         ไม้บรรทัด2 0 of 5<br>
 
                                     </p>
@@ -270,7 +299,7 @@
                             <hr style="margin: 10px;" />
                             <div class="innertext">
                                 <div class="col1">
-                                    <p class="innerBoxText2">
+                                    <p class="innerBoxText2" id='lab2_N_C1'>
                                         ไม้บรรทัด1 0 of 5<br>
                                         ไม้บรรทัด2 0 of 5<br>
                                         ไม้บรรทัด3 0 of 5<br>
@@ -285,7 +314,7 @@
                                     </p>
                                 </div>
                                 <div class="col2">
-                                    <p class="innerBoxText2">
+                                    <p class="innerBoxText2" id='lab2_N_C2'>
                                         ไม้บรรทัด12 0 of 5<br>
                                         ไม้บรรทัด13 0 of 5<br>
                                         ไม้บรรทัด14 0 of 5<br>
@@ -322,14 +351,14 @@
 
                             <div class="innertext">
                                 <div class="col1">
-                                    <p class="innerBoxText2">
+                                    <p class="innerBoxText2" id='lab3_A_C1'>
                                         ไม้บรรทัด1 0 of 5<br>
                                         ไม้บรรทัด3 0 of 5<br>
 
                                     </p>
                                 </div>
                                 <div class="col2">
-                                    <p class="innerBoxText2">
+                                    <p class="innerBoxText2" id='lab3_A_C2'>
                                         ไม้บรรทัด2 0 of 5<br>
                                         ไม้บรรทัด4 0 of 5<br>
                                         ไม้บรรทัด5 0 of 5<br>
@@ -349,7 +378,7 @@
                             <hr style="margin: 10px;" />
                             <div class="innertext">
                                 <div class="col1">
-                                    <p class="innerBoxText2">
+                                    <p class="innerBoxText2" id='lab3_N_C1'>
                                         ไม้บรรทัด1 0 of 5<br>
                                         ไม้บรรทัด2 0 of 5<br>
                                         ไม้บรรทัด3 0 of 5<br>
@@ -364,7 +393,7 @@
                                     </p>
                                 </div>
                                 <div class="col2">
-                                    <p class="innerBoxText2">
+                                    <p class="innerBoxText2" id='lab3_N_C2'>
                                         ไม้บรรทัด12 0 of 5<br>
                                         ไม้บรรทัด13 0 of 5<br>
                                         ไม้บรรทัด14 0 of 5<br>
@@ -379,6 +408,87 @@
                     </div>
                 </div>
             </div>
+
+            <div class="box">
+                <img src=\img\Pic.PNG>
+                <!-- <div
+                    style=" position: absolute; width: 10%; height: 50px; left: 28%; top: 58.69px; font-family: Roboto; font-size: 36px; line-height: 42px; color: #000000;">
+                    Lab 2
+                </div> -->
+                <div class="box-content">
+                    <div style="margin: 0 30px;">
+                        Lab 4
+                    </div>
+                    <div class="item-box">
+                        <div class='innerBox'>
+                            <div class="innerinnerBoxHeader">
+                                <p class="innerBoxText">item available</p>
+                            </div>
+                            <!-- <line
+                        style="position:absolute 5%; width: 90%; top: 55px; height:0px;  border: 1px solid #000000;transform: rotate(-0.26deg);">
+                    </line> -->
+                            <hr style="margin: 10px;" />
+
+                            <div class="innertext">
+                                <div class="col1">
+                                    <p class="innerBoxText2" id='lab4_A_C1'>
+                                        ไม้บรรทัด1 0 of 5<br>
+                                        ไม้บรรทัด3 0 of 5<br>
+
+                                    </p>
+                                </div>
+                                <div class="col2">
+                                    <p class="innerBoxText2" id='lab4_A_C2'>
+                                        ไม้บรรทัด2 0 of 5<br>
+                                        ไม้บรรทัด4 0 of 5<br>
+                                        ไม้บรรทัด5 0 of 5<br>
+                                        ไม้บรรทัด6 0 of 5<br>
+
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='innerBox'>
+                            <div class="innerinnerBoxHeader">
+                                <p class="innerBoxText">item not available</p>
+                            </div>
+                            <!-- <line
+                        style="position:absolute 5%; width: 90%; top: 55px; height:0px;  border: 1px solid #000000;transform: rotate(-0.26deg);">
+                    </line> -->
+                            <hr style="margin: 10px;" />
+                            <div class="innertext">
+                                <div class="col1">
+                                    <p class="innerBoxText2" id='lab4_N_C1'>
+                                        ไม้บรรทัด1 0 of 5<br>
+                                        ไม้บรรทัด2 0 of 5<br>
+                                        ไม้บรรทัด3 0 of 5<br>
+                                        ไม้บรรทัด4 0 of 5<br>
+                                        ไม้บรรทัด5 0 of 5<br>
+                                        ไม้บรรทัด6 0 of 5<br>
+                                        ไม้บรรทัด7 0 of 5<br>
+                                        ไม้บรรทัด8 0 of 5<br>
+                                        ไม้บรรทัด9 0 of 5<br>
+                                        ไม้บรรทัด10 0 of 5<br>
+                                        ไม้บรรทัด11 0 of 5<br>
+                                    </p>
+                                </div>
+                                <div class="col2">
+                                    <p class="innerBoxText2" id='lab4_N_C2'>
+                                        ไม้บรรทัด12 0 of 5<br>
+                                        ไม้บรรทัด13 0 of 5<br>
+                                        ไม้บรรทัด14 0 of 5<br>
+                                        ไม้บรรทัด15 0 of 5<br>
+                                        ไม้บรรทัด16 0 of 5<br>
+                                        ไม้บรรทัด17 0 of 5<br>
+                                        ไม้บรรทัด18 0 of 5<br>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
         </div>
     </div>
 
