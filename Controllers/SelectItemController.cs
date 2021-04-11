@@ -18,10 +18,16 @@ namespace Lab_item_Management_Web.Controllers
             _logger = logger;
         }
 
-        public IActionResult SelectItem()
+        public IActionResult Index()
         {
             return View();
         }
+        // public IActionResult AddBtnHandle()
+        // {
+        //     return View();
+        // }
+
+
 
         // public IActionResult Privacy()
         // {

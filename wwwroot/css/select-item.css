@@ -16,12 +16,14 @@
     justify-content: space-evenly;
     min-width: 1080px;
 }
+
 .section{
     font-size: 28px;
 }
+
 .lab{
     background: #FBA4A4;
-    min-width: 450px;
+    min-width: 500px;
     width: 40%;
     margin: 10px;
     border-radius: 10px;
@@ -30,38 +32,46 @@
     flex-direction: column;
 }
 .lab-text{
-    margin: 20px 10%;
+    margin: 20px 5%;
     
 }
 .lab-name{
     font-size: 24px;
 }
 .lab-description{
-    font-size: 18px;
+    font-size: 20px;
 
 }
 .lab-img{
     border-radius: 10px;
-    width: 80%;
-    height: 60%;
+    width: 90%;
+    height: 50%;
     margin: 30px auto;
     object-fit: cover;
+}
+
+.lab-container{
+    display: flex;
+    justify-content: space-between;
     
 }
 
-.item-list{
-    min-width: 40%;
-    background: #FFDFC8;
-    margin: 10px;
+.item-list-card{
+    width: 95%;
+    height: 90%;
+    background-color: white;
     border-radius: 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin: 10px 0 10px 0px;
+    padding: 30px 20px;
     display: flex;
     flex-direction: column;
-    padding: 30px 5%;
+    justify-content: space-between;
 
 }
 .itemlist-top{
     display: flex;
+    width: 100%;
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 10px;
@@ -69,57 +79,58 @@
 .list-text{
     font-size: 24px;
 }
-/* 
-.add-btn{
-    width: 80px;
-    height: 40px; 
-    font-size: 18px;
+
+.edit-btn{
+    width: 100px;
+    height: 30px; 
+    font-size: 16px;
     border-radius: 5px;
     background-color: #BCF4B3;
     border: none;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-} */
-.cards-list{
-    height: 55vh;
-    padding-right: 10px;
-    overflow: hidden auto;
-    padding-right: 20px;
-    
 }
-.item-card{
+
+.item-list{
+    min-width: 600px;
+    width: 60%;
+    background: #FFDFC8;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px;
+
+}
+
+.item-main{
     width: 95%;
-    height: 180px;
+    height: 200px;
     background-color: white;
     border-radius: 10px;
-    margin: 0 0 20px 0px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin: 20px 0 20px 0px;
     align-items: center;
     display: flex;
-    justify-content: space-between;
     padding: 0px 20px;
 
 }
-.left-item{
-    display: flex;
-    justify-content: flex-start;
-    padding: 0px 20px;
 
-}
 .item-img{
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     border-radius: 10px;
     border: gray thin;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.25);
     object-fit: cover;
 
 }
 .item-text{
     margin: 0px 50px;
-    height: 70%;
+    height: 80%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+
 
 }
 .item-name{
@@ -132,6 +143,28 @@
 .item-description{
     font-size: 18px;
 }
+
+.cards-list{
+    height: 60vh;
+    margin-top: 20px;
+    padding-right: 10px;
+    overflow: hidden auto;
+    padding-right: 20px;
+    
+}
+.item-card{
+    width: 95%;
+    height: 80px;
+    background-color: white;
+    border-radius: 10px;
+    margin: 5px 0 5px 0px;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.25);
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 20px;
+}
+
 .book-btn{
     width: 100px;
     height: 40px; 
@@ -148,9 +181,7 @@
     padding-top: 20px;
     display: flex;
     justify-content: flex-end;
-    align-items: flex-end;
-    
-    
+    align-items: flex-end;  
 }
   
 .confirm-btn{
