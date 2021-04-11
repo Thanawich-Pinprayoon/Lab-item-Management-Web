@@ -17,6 +17,10 @@ namespace Lab_item_Management_Web.Controllers
         //     _logger = logger;
         // }
 
+        public IActionResult index()
+        {
+            return View();
+        }
         public IActionResult ChooseTime()
         {
             return View();
