@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="~/css/Register.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="container1">
+            <br>
+            <p class="header">Username</p>
+            <input class="input-text" type="text"></input>
+            <p class="header">Password</p>
+
+            <input class="input-text" type="password" id="myInput"></input>
+            <input type="checkbox" id="showPassword" onclick="showPassword()">
+            <label for="showPassword"><img id="eye" src="pic/invisible.png" alt="" width="16"></label>
+            <script>
+                function showPassword() {
+                    var x = document.getElementById("myInput");
+                    if (x.type === "password") {
+                        x.type = "text";
+                        document.getElementById("eye").setAttribute("src", "pic/visibility.png");
+                    } else {
+                        x.type = "password";
+                        document.getElementById("eye").setAttribute("src", "pic/invisible.png");
+                    }
+                }
+            </script>
+
+            <br><br>
+            <div class="option">
+                <label class="check-con">
+                    <input type="checkbox" id="Remember" name="Remember" value="Remember"></input>
+                    <span class="checkmark"></span>
+                </label>
+                <p class="t1">จดจำผู้ใช้งาน</p>
+
+            </div>
+
+            <br><br>
+
+            <button class="button-sign">Sign up</button>
+
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,46 +1,3 @@
-/*nav*/
-nav{
-    width: 100%;
-    height: 70px;
-    background-color: #FF7D7D;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-.navbar{
-    width: 100%;
-    max-width: 1600px;
-    min-width:480px;
-    display: flex;
-    justify-content: space-between;
-}
-.brand{
-    color: white;
-    font-size: 40px;
-    justify-content: flex-start;
-   
-}
-.nav-list{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-}
-.nav-list ul {
-    list-style-type: none;
-    display: flex;
-    justify-content: space-evenly;
-}
-.nav-list ul li{
-    margin: 0 20px;
-    color: white;
-    font-size: 20px;
-
-}
 .container{
     display: flex;
     justify-content: center;
@@ -76,51 +33,19 @@ nav{
     cursor: pointer;
     font-size: 18px;
     border-radius: 10px;
-    background-color: white;
+    background-color: #fd7d7d;
     border: none;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    margin-left: 10%;
+    /*float: right;*/
+    margin-left: 33%;
     outline: none;
 }
 
 .button-sign:hover{
-    background-color: #FFDFC8;
-}
-
-.button-sign:active{
-    transform: translateY(4px);
-    box-shadow: none;
-}
-
-.button-forget{
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    float: right;
-    position: relative;
-    top: -34px;
-    outline: none;
-}
-
-.button-log{
-    width: 90px;
-    height: 30px;
-    cursor: pointer;
-    font-size: 18px;
-    border-radius: 10px;
-    background-color: #fd7d7d;
-    border: none;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    float: right;
-    margin-right: 13%;
-    outline: none;
-}
-
-.button-log:hover{
     background-color: #fa6b6b;
 }
 
-.button-log:active{
+.button-sign:active{
     transform: translateY(4px);
     box-shadow: none;
 }
