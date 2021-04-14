@@ -7,9 +7,9 @@ namespace Lab_item_Management_Web.Models
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data source=database/myDB.db");
+            optionsBuilder.UseSqlite("Data source=Database/blacklist.db");
         }
 
-        public DbSet<BlackListModel> Movie { get; set; }
+        public DbSet<BlackListModel> BlackList { get; set; }
     }
 }
