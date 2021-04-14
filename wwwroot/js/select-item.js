@@ -1,3 +1,35 @@
+let labName = document.getElementById("lab-name").getAttribute("value");
+document.getElementById("lab-name").textContent = labName;
+let labDes = document.getElementById("lab-description").getAttribute("value");
+document.getElementById("lab-description").textContent = labDes;
+
+let isEdit = false
+
+
+function editLab() {
+
+    if (!isEdit) {
+        document.getElementById("edit-lab-btn").innerHTML = "Save"
+        document.getElementById("lab-name").contentEditable = "true"
+        document.getElementById("lab-description").contentEditable = "true"
+        isEdit = true
+    } else {
+        var labName = document.getElementById("lab-name");
+        var labDes = document.getElementById("lab-description");
+        labName.setAttribute("value", document.getElementById("lab-name").innerHTML)
+        labDes.setAttribute("value", document.getElementById("lab-description").innerHTML)
+
+        document.getElementById("edit-lab-btn").innerHTML = "Edit"
+        document.getElementById("lab-name").contentEditable = "false"
+        document.getElementById("lab-description").contentEditable = "false"
+
+        console.log(document.getElementById("lab-name").getAttribute("value"))
+        console.log(document.getElementById("lab-description").getAttribute("value"))
+        isEdit = false
+    }
+
+}
+
 
 function createItem() {
 
@@ -10,7 +42,8 @@ function createItem() {
         ["อุปกรณ์ 4", false],
         ["อุปกรณ์ 5", false],
         ["อุปกรณ์ 6", true],
-        ["อุปกรณ์ 7", false]
+        ["อุปกรณ์ 7", false],
+        ["อุปกรณ์ 8", true],
     ];
 
     items.forEach((item) => {
@@ -38,3 +71,5 @@ function createItem() {
 
 createItem();
 console.log(':)');
+
+

@@ -1,6 +1,6 @@
 @{
     ViewData["Title"] = "Home Page";
-
+    int i = 1;
     String[] labName ={
         "Computer Laboratory",
         "Electronics Laboratory",
@@ -20,7 +20,6 @@
             "ToolName","5","10","Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat cupiditate aut ad facilis?"
         }
     };
-
 
 
 }
@@ -45,7 +44,7 @@
     <script defer src="~/js/select-item.js"></script>
     <div class="content">
         <div class="section">
-            <p>@labName[2]</p>
+            <p>@labName[i]</p>
         </div>
         <hr>
         <div class="layout">
@@ -53,10 +52,11 @@
                 <img class="lab-img" src="~/img/lab.jpg" />
                 <div class="lab-text">
                     <div class="lab-container">
-                        <div class="lab-name">@labName[2] <br><br/></div>
-                        <button class="edit-btn">Edit</button>
+                        <div class="lab-name" id="lab-name" value="@labName[i]"></div>
+                        <button class="edit-btn" id="edit-lab-btn" onclick="editLab()" >Edit</button>
                     </div>
-                    <div class="lab-description"> @labDescription[2]</div>
+                    <br><br/>
+                    <div class="lab-description" id="lab-description" value="@labDescription[i]"></div>
                 </div>
             </div>
             <div class="item-list">

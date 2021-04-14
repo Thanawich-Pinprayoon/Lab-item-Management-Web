@@ -22,11 +22,7 @@ namespace Lab_item_Management_Web.Controllers
         {
             return View();
         }
-        // public IActionResult AddBtnHandle()
-        // {
-        //     return View();
-        // }
-
+     
 
 
         // public IActionResult Privacy()
