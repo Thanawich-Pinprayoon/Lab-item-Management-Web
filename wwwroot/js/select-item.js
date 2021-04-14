@@ -3,6 +3,7 @@ document.getElementById("lab-name").textContent = labName;
 let labDes = document.getElementById("lab-description").getAttribute("value");
 document.getElementById("lab-description").textContent = labDes;
 
+
 let isEdit = false
 
 

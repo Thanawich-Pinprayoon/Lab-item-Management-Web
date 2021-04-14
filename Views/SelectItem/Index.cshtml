@@ -20,6 +20,7 @@
             "ToolName","5","10","Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat cupiditate aut ad facilis?"
         }
     };
+    Boolean isAdmin = true;
 
 
 }
@@ -53,7 +54,9 @@
                 <div class="lab-text">
                     <div class="lab-container">
                         <div class="lab-name" id="lab-name" value="@labName[i]"></div>
-                        <button class="edit-btn" id="edit-lab-btn" onclick="editLab()" >Edit</button>
+                        @if(isAdmin == true){
+                            <button class="edit-btn" id="edit-lab-btn" onclick="editLab()" >Edit</button>
+                        }
                     </div>
                     <br><br/>
                     <div class="lab-description" id="lab-description" value="@labDescription[i]"></div>
@@ -63,7 +66,9 @@
                 <div class="item-list-card">
                     <div class="itemlist-top">
                         <div class="list-text">รายการอุปกรณ์</div>
-                        <button class="edit-btn" asp-controller="SelectItemController" asp-action="AddBtnHandle">Edit</button>
+                        @if(isAdmin == true){
+                            <button class="edit-btn" asp-controller="SelectItemController" asp-action="AddBtnHandle">Edit</button>
+                        }
                     </div>
                     <div class="item-main">
                         <img class="item-img" src="~/img/tool.jpg">
