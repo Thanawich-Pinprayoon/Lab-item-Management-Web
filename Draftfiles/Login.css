@@ -1,0 +1,230 @@
+/*nav*/
+nav{
+    width: 100%;
+    height: 70px;
+    background-color: #FF7D7D;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.navbar{
+    width: 100%;
+    max-width: 1600px;
+    min-width:480px;
+    display: flex;
+    justify-content: space-between;
+}
+.brand{
+    color: white;
+    font-size: 40px;
+    justify-content: flex-start;
+   
+}
+.nav-list{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.nav-list ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-evenly;
+}
+.nav-list ul li{
+    margin: 0 20px;
+    color: white;
+    font-size: 20px;
+
+}
+.container{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    top: 53%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.container1{
+    background-color: #fdc4c4;
+    border: black;
+    height: auto;
+    padding-left: 8%;
+    padding-right: 8%;
+    /*padding-top: 2%;*/
+    padding-bottom: 3%;
+    border-radius: 10px;
+}
+
+.container2{
+    width: auto;
+}
+
+.header{
+    font-size: 24px;
+}
+
+.button-sign{
+    width: 90px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 10px;
+    background-color: white;
+    border: none;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-left: 10%;
+    outline: none;
+}
+
+.button-sign:hover{
+    background-color: #FFDFC8;
+}
+
+.button-sign:active{
+    transform: translateY(4px);
+    box-shadow: none;
+}
+
+.button-forget{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    float: right;
+    position: relative;
+    top: -34px;
+    outline: none;
+}
+
+.button-log{
+    width: 90px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 10px;
+    background-color: #fd7d7d;
+    border: none;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    float: right;
+    margin-right: 13%;
+    outline: none;
+}
+
+.button-log:hover{
+    background-color: #fa6b6b;
+}
+
+.button-log:active{
+    transform: translateY(4px);
+    box-shadow: none;
+}
+
+.input-text{
+    height: 30px;
+    font-size: 18px;
+    border-color: #fd7d7d;
+    border-width: 3.5px;
+    border-radius: 5px;
+    color: #f35757;
+    padding-left: 5px;
+}
+
+#showPassword {
+    display: none;
+}
+  
+#showPassword + label {
+    height: 25px;
+    width: 25px;
+    display: inline-block;
+    padding: 0 0 0 0px;
+    cursor: pointer;
+}
+
+label img{
+    position: relative;
+    top: 2px;
+}
+  
+#showPassword:checked + label {
+    height: 25px;
+    width: 25px;
+    display: inline-block;
+    padding: 0 0 0 0px;
+}
+
+.check-con input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.check-con{
+    display: block;
+    position: relative;
+    /*padding-left: 35px;*/
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.check-con p{
+    margin-left:30px;
+}
+
+.check-con:hover input ~ .checkmark {
+    background-color: #FFDFC8;
+}
+
+.checkmark {
+    position:absolute;
+    height: 24px;
+    width: 24px;
+    background-color: white;
+}
+
+.check-con input:checked ~ .checkmark {
+    background-color: #fc7171;    
+}
+  
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  .check-con input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  .check-con .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 4px;
+    height: 9px;
+    border: solid rgb(255, 255, 255);
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+.option{
+    display: inline;
+}
+
+.t1{
+    margin-left: 12%;
+}
