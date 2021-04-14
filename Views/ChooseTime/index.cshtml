@@ -1,0 +1,210 @@
+@{
+    ViewData["Title"] = "Choose Time";
+}
+<div class="choosetime-page">
+    <h1>@ViewData["Title"]</h1>
+    <link rel="stylesheet" href="~/css/style.css">
+    <p class="main-txt">Choose Time</p>
+    <hr />
+    <div class="info-box">
+        <div>
+            <div class="lab-box">
+                <p class="lab-name">Chemistry Lab</p>
+                <hr style="margin: 0 10px " />
+                <div class="item-container">
+                    <div class="item">
+                        <div class="img-box"><img src="" alt="" /></div>
+                        <div class="item-info">
+                            <h4 id="itemname">ไม้บรรทัด</h4>
+                            <p id="item-detail">
+                                ไม้บรรทัดไง เอาไว้ฟาดหน้ามึงอะ ล้อเล่น ที่จริงเอาไว้วัด
+                                วัดกะกูปะล่ะ
+                            </p>
+                        </div>
+                    </div>
+                    <p class="lab-name">กรุณาเลือกเวลา</p>
+                    <hr style="margin: 0 10px " />
+                    <div class="date-container">
+                        <div class="start-date-container">
+                            <h3>วันที่ยืม:</h3>
+                            <input type="date" id="Start-date" />
+                        </div>
+                        <div class="end-date-container">
+                            <h3>วันที่คืน:</h3>
+                            <input type="date" id="end-date" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="btn-list">
+            <button id="Cancel">Cancel</button>
+            <button id="Confirm">Confirm</button>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .choosetime-page {
+        margin-top: -50px;
+        overflow: hidden;
+    }
+
+    .info-box {
+        width: 100%;
+        height: 75vh;
+        margin: 30px 0;
+        background: #ffdfc8;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+    }
+
+
+    .lab-box {
+        padding-left: 5%;
+        padding: 10px;
+    }
+
+    .lab-name {
+        font-size: 24px;
+        color: #000000;
+        order: 0;
+    }
+
+    .lab-line {
+        margin-left: 5%;
+        margin-top: -30px;
+
+        border: 1px solid #000000;
+    }
+
+    .item-container {
+        margin: 20px;
+
+    }
+
+    .item {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+
+    }
+
+    .start-date-container {
+        padding: 10px;
+        margin-left: 20%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+    }
+
+    .start-date-container h3 {
+        grid-area: 1 / 1 / 2 / 2;
+
+    }
+
+    .start-date-container input {
+        grid-area: 1 / 2 / 2 / 3;
+        margin-right: 20%;
+        width: 80%;
+        margin-left: -240px;
+    }
+
+    .date-container {
+        width: 70%;
+    }
+
+    .end-date-container {
+        padding: 10px;
+        margin-left: 20%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+    }
+
+    .end-date-container h3 {
+        grid-area: 1 / 1 / 2 / 2;
+    }
+
+    .end-date-container input {
+        grid-area: 1 / 2 / 2 / 3;
+        width: 80%;
+        margin-left: -240px;
+    }
+
+    .img-box {
+        margin-left: 35%;
+        margin-top: 0px;
+        width: 300px;
+        height: 300px;
+        background-color: #000000;
+        /* background: url(image.png), url(image.png); */
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+        border-radius: 10px;
+        overflow: hidden;
+        grid-area: 1 / 1 / 2 / 2;
+    }
+
+    .img-box img {
+        position: relative;
+    }
+
+    .item-info {
+        margin-top: 0px;
+        width: 200px;
+        color: #000000;
+        overflow: auto;
+        grid-area: 1 / 2 / 2 / 3;
+    }
+
+    .time-box {
+        margin-top: 2%;
+        height: 400px;
+        width: 250px;
+        overflow: auto;
+        background-color: #af8c72;
+        border-radius: 10px;
+    }
+
+    .hour-box {
+        margin: 10px;
+        height: 48px;
+        background-color: green;
+        border-radius: 10px;
+    }
+
+    .btn-list {
+        padding: 140px 20px;
+        display: flex;
+        justify-content: flex-end;
+
+    }
+
+    #Confirm {
+        background-color: rgb(49, 122, 77);
+        color: rgb(255, 255, 255);
+        width: 100px;
+        height: 50px;
+        margin: 0 20px;
+        border-radius: 10px;
+        outline: none;
+    }
+
+    #Cancel {
+        background-color: rgb(255, 72, 72);
+        color: rgb(255, 255, 255);
+        width: 100px;
+        height: 50px;
+        margin: 0 20px;
+        border-radius: 10px;
+        outline: none;
+    }
+</style>
