@@ -6,32 +6,59 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Lab_item_Management_Web.Models;
+using Microsoft.EntityFrameworkCore;
+using Lab_item_Management_Web.Data;
 
 namespace Lab_item_Management_Web.Controllers
 {
     public class Select_labController : Controller
     {
-        private readonly ILogger<Select_labController> _logger;
+        // private readonly ILogger<Select_labController> _logger;
 
-        public Select_labController(ILogger<Select_labController> logger)
+        // public Select_labController(ILogger<Select_labController> logger)
+        // {
+        //     _logger = logger;
+        // }
+
+        private readonly LabItemManagementContext _context;
+
+        public Select_labController(LabItemManagementContext context)//Contructure
         {
-            _logger = logger;
+            _context = context;
+        }
+        
+        // public IActionResult Select_lab()
+        // {
+        //     return View();
+        // }
+
+        public async Task<IActionResult> Index()
+        {
+            return View(await _context.Lab.ToListAsync());
         }
 
-        public IActionResult Select_lab()
+         // GET: User/Create
+        public IActionResult Create()
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        // POST: User/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Name,Description,Picture")] Lab lab)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                _context.Add(lab);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(lab);
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+       
     }
 }
