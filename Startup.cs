@@ -1,3 +1,6 @@
+using Lab_item_Management_Web.Data;
+using Microsoft.EntityFrameworkCore;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +27,10 @@ namespace Lab_item_Management_Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<LabItemManagementContext>(options =>
+                options.UseSqlite(Configuration.GetConnectionString("LabItemManagementContext")));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
