@@ -10,7 +10,7 @@ namespace Lab_item_Management_Web.Controllers
 {
     public class ChooseTimeController : Controller
     {
-        private readonly ILogger<ChooseTimeController> _logger;
+        // private readonly ILogger<ChooseTimeController> _logger;
 
         // public ChooseTimeController(ILogger<ChooseTimeController> logger)
         // {

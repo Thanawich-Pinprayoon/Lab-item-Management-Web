@@ -1,16 +1,19 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Lab_item_Management_Web.Models
 {
     public class BlackListModel
     {
-        
+        public int Id { get; set; }
         public int userID { get; set; }
+        [Display(Name = "Add Date")]
+        [DataType(DataType.Date)]
         public DateTime? addDate { get; set; }
         public string reason { get; set; }
         public int staffID { get; set; }
-        [Key]
+        // [Key]
         public string labName { get; set;}
     }
     //     public static DateTime RandomDay()
