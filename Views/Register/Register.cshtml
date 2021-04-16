@@ -6,25 +6,26 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-re">
         <div class="container1">
             <br>
             <p class="header">Username</p>
             <input class="input-text" type="text"></input>
-            <p class="header">Password</p>
+
+            <p class="header spacetop">Password</p>
 
             <input class="input-text" type="password" id="myInput"></input>
             <input type="checkbox" id="showPassword" onclick="showPassword()">
-            <label for="showPassword"><img id="eye" src="pic/invisible.png" alt="" width="16"></label>
+            <label for="showPassword"><img id="eye" src="~/img/invisible.png" alt="" width="16"></label>
             <script>
                 function showPassword() {
                     var x = document.getElementById("myInput");
                     if (x.type === "password") {
                         x.type = "text";
-                        document.getElementById("eye").setAttribute("src", "pic/visibility.png");
+                        document.getElementById("eye").setAttribute("src", "/img/visibility.png");
                     } else {
                         x.type = "password";
-                        document.getElementById("eye").setAttribute("src", "pic/invisible.png");
+                        document.getElementById("eye").setAttribute("src", "/img/invisible.png");
                     }
                 }
             </script>
