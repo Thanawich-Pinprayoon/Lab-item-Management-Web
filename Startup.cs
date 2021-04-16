@@ -8,8 +8,10 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using LabManage.Data;
+using Microsoft.EntityFrameworkCore;
 
-namespace Lab_item_Management_Web
+namespace LabManage
 {
     public class Startup
     {
@@ -24,6 +26,9 @@ namespace Lab_item_Management_Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<LabManageContext>(options =>
+                options.UseSqlite(Configuration.GetConnectionString("LabManageContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

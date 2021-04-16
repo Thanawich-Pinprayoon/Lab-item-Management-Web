@@ -1,6 +1,6 @@
 using System;
 
-namespace Lab_item_Management_Web.Models
+namespace LabManage.Models
 {
     public class ErrorViewModel
     {

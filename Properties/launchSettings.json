@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Lab_item_Management_Web": {
+    "LabManage": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,
