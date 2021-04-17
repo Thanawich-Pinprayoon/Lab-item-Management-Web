@@ -22,8 +22,7 @@ namespace LabManage.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("date")
-                        .IsRequired()
+                    b.Property<DateTime>("date")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("labID")

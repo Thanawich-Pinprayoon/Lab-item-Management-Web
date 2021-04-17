@@ -116,7 +116,7 @@ namespace LabManage.Migrations
                     staffID = table.Column<int>(type: "INTEGER", nullable: false),
                     reason = table.Column<string>(type: "TEXT", nullable: false),
                     labID = table.Column<int>(type: "INTEGER", nullable: false),
-                    date = table.Column<string>(type: "TEXT", nullable: false)
+                    date = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {

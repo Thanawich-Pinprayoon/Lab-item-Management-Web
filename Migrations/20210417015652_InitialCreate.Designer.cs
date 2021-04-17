@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LabManage.Migrations
 {
     [DbContext(typeof(LabManageContext))]
-    [Migration("20210417013054_InitialCreate")]
+    [Migration("20210417015652_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,8 +24,7 @@ namespace LabManage.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("date")
-                        .IsRequired()
+                    b.Property<DateTime>("date")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("labID")

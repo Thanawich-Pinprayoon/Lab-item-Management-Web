@@ -7,11 +7,11 @@ namespace LabManage.Models
     public class Timeslot
     {
         [Required]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime start { get; set; }
         
         [Required]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime end { get; set; } 
 
         [Required]

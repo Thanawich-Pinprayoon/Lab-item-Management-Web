@@ -35,7 +35,7 @@ namespace LabManage.Models
 
         [Required]
         [Display(Name = "Blacklist At")]
-        [DataType(DataType.Date)]
-        public string date { get; set; }
+        [DataType(DataType.DateTime)]
+        public DateTime date { get; set; }
     }
 }

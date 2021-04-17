@@ -38,12 +38,12 @@ namespace LabManage.Models
 
         [Required]
         [Display(Name = "Borrow start")]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime start { get; set; }
 
         [Required]
         [Display(Name = "Borrow end")]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime end { get; set; }
         
         [Required]
