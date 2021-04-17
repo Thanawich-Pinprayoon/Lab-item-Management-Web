@@ -30,7 +30,7 @@ namespace LabManage.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     name = table.Column<string>(type: "TEXT", nullable: false),
                     description = table.Column<string>(type: "TEXT", nullable: true),
-                    picture = table.Column<string>(type: "TEXT", nullable: true),
+                    pic = table.Column<string>(type: "TEXT", nullable: true),
                     labID = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
@@ -55,7 +55,7 @@ namespace LabManage.Migrations
                     username = table.Column<string>(type: "TEXT", nullable: false),
                     password = table.Column<string>(type: "TEXT", nullable: false),
                     pic = table.Column<string>(type: "TEXT", nullable: true),
-                    manageLabID = table.Column<int>(type: "INTEGER", nullable: false)
+                    manageLabID = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -65,7 +65,7 @@ namespace LabManage.Migrations
                         column: x => x.manageLabID,
                         principalTable: "Lab",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -148,9 +148,9 @@ namespace LabManage.Migrations
                     id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     userID = table.Column<int>(type: "INTEGER", nullable: false),
-                    staffID = table.Column<int>(type: "INTEGER", nullable: false),
+                    staffID = table.Column<int>(type: "INTEGER", nullable: true),
                     toolID = table.Column<int>(type: "INTEGER", nullable: false),
-                    itemID = table.Column<int>(type: "INTEGER", nullable: false),
+                    itemID = table.Column<int>(type: "INTEGER", nullable: true),
                     start = table.Column<DateTime>(type: "TEXT", nullable: false),
                     end = table.Column<DateTime>(type: "TEXT", nullable: false),
                     status = table.Column<int>(type: "INTEGER", nullable: false)
@@ -163,7 +163,7 @@ namespace LabManage.Migrations
                         column: x => x.itemID,
                         principalTable: "Item",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Transaction_Tool_toolID",
                         column: x => x.toolID,
@@ -175,7 +175,7 @@ namespace LabManage.Migrations
                         column: x => x.staffID,
                         principalTable: "User",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Transaction_User_userID",
                         column: x => x.userID,

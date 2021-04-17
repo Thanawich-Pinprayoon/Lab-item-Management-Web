@@ -9,6 +9,7 @@ namespace LabManage.Models
         public int id { get; set; }
 
         [Required]
+        [Display(Name = "Tool type")]
         public int toolID { get; set; }
         [Required]
         [ForeignKey("toolID")]

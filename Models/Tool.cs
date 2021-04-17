@@ -9,13 +9,17 @@ namespace LabManage.Models
         public int id { get; set; }
 
         [Required]
+        [Display(Name = "Name")]
         public string name { get; set; }
 
+        [Display(Name = "Description")]
         public string description { get; set; }
         
-        public string picture { get; set; }
+        [Display(Name = "Tool Picture")]
+        public string pic { get; set; }
 
         [Required]
+        [Display(Name = "Store in Lab")]
         public int labID { get; set; }
         [Required]
         [ForeignKey("labID")]

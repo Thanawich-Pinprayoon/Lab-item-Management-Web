@@ -122,7 +122,7 @@ namespace LabManage.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("picture")
+                    b.Property<string>("pic")
                         .HasColumnType("TEXT");
 
                     b.HasKey("id");
@@ -141,10 +141,10 @@ namespace LabManage.Migrations
                     b.Property<DateTime>("end")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("itemID")
+                    b.Property<int?>("itemID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("staffID")
+                    b.Property<int?>("staffID")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("start")
@@ -178,7 +178,7 @@ namespace LabManage.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("manageLabID")
+                    b.Property<int?>("manageLabID")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("name")
@@ -270,15 +270,11 @@ namespace LabManage.Migrations
                 {
                     b.HasOne("LabManage.Models.Item", "item")
                         .WithMany()
-                        .HasForeignKey("itemID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("itemID");
 
                     b.HasOne("LabManage.Models.User", "staff")
                         .WithMany()
-                        .HasForeignKey("staffID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("staffID");
 
                     b.HasOne("LabManage.Models.Tool", "tool")
                         .WithMany()
@@ -305,9 +301,7 @@ namespace LabManage.Migrations
                 {
                     b.HasOne("LabManage.Models.Lab", "manage")
                         .WithMany()
-                        .HasForeignKey("manageLabID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("manageLabID");
 
                     b.Navigation("manage");
                 });

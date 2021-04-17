@@ -4,38 +4,51 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LabManage.Models
 {
+    public enum Status
+    {
+        Book, Borrow, Return, Cancel
+    }
     public class Transaction
     {
         public int id { get; set; }
 
         [Required]
+        [Display(Name = "User")]
         public int userID { get; set; }
         [Required]
         [ForeignKey("userID")]
         public virtual User user { get; set; } 
 
-        public int staffID { get; set; }
+        [Display(Name = "Give by staff")]
+        public int? staffID { get; set; }
         [ForeignKey("staffID")]
         public virtual User staff { get; set; }
 
         [Required]
+        [Display(Name = "Tool")]
         public int toolID { get; set; }
         [Required]
         [ForeignKey("toolID")]
         public virtual Tool tool { get; set; }
 
-        public int itemID { get; set; }
+        [Display(Name = "Item")]
+        public int? itemID { get; set; }
         [ForeignKey("itemID")]
         public virtual Item item { get; set; }
 
         [Required]
+        [Display(Name = "Borrow start")]
+        [DataType(DataType.Date)]
         public DateTime start { get; set; }
 
         [Required]
+        [Display(Name = "Borrow end")]
+        [DataType(DataType.Date)]
         public DateTime end { get; set; }
         
         [Required]
-        public int status { get; set; }
+        [Display(Name = "Status")]
+        public Status status { get; set; }
         // todo : reason for book
     }
 }
