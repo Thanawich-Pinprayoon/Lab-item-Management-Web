@@ -1,0 +1,60 @@
+@model LabManage.Models.Transaction
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Transaction</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.user)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.user.name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.staff)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.staff.name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.tool)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.tool.name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.item)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.item.id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.start)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.start)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.end)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.end)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.status)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
