@@ -11,7 +11,7 @@ namespace Lab_item_Management_Web.Models //ชื่อ project.ชื่อ Fol
         public string Username { get; set; }
         public string Password { get; set; }
         public string Picture { get; set; }
-        public string Manage { get; set; }
+        public int Manage { get; set; }
 
     }
 }

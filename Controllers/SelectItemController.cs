@@ -6,34 +6,45 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Lab_item_Management_Web.Models;
+using Microsoft.EntityFrameworkCore;
+using Lab_item_Management_Web.Data;
 
 namespace Lab_item_Management_Web.Controllers
 {
     public class SelectItemController : Controller
     {
-        private readonly ILogger<SelectItemController> _logger;
+        private readonly LabItemManagementContext _context;
 
-        public SelectItemController(ILogger<SelectItemController> logger)
+        public SelectItemController(LabItemManagementContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-     
+        // public IActionResult Index()
+        // {
+        //     return View();
+        // }
 
+        public async Task<IActionResult> Index(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var lab = await _context.Lab
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (lab == null)
+            {
+                return NotFound();
+            }
+
+            return View(lab);
+        }
 
         // public IActionResult Privacy()
         // {
         //     return View();
         // }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }

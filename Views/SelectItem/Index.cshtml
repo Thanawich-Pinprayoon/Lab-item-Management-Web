@@ -1,106 +1,83 @@
+@model Lab_item_Management_Web.Models.Lab
 @{
     ViewData["Title"] = "Home Page";
     int i = 1;
     String[] labName ={
-        "Computer Laboratory",
-        "Electronics Laboratory",
-        "Chemistry Laboratory",
-        "Electrical Laboratory",
-        "Network Laboratory",
-    };
+"Computer Laboratory",
+"Electronics Laboratory",
+"Chemistry Laboratory",
+"Electrical Laboratory",
+"Network Laboratory",
+};
     String[] labDescription ={
-        "1Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat cupiditate aut ad facilis?",
-        "2Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat cupiditate aut ad facilis?",
-        "3Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat cupiditate aut ad facilis?",
-        "4Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat cupiditate aut ad facilis?",
-        "5Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat cupiditate aut ad facilis?",
-    };
-    String[,] items= {
-        {
-            "ToolName","5","10","Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat cupiditate aut ad facilis?"
-        }
-    };
+"1Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat cupiditate aut ad facilis?",
+"2Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat cupiditate aut ad facilis?",
+"3Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat cupiditate aut ad facilis?",
+"4Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat cupiditate aut ad facilis?",
+"5Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat cupiditate aut ad facilis?",
+};
+    String[,] items = {
+{
+"ToolName","5","10","Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat cupiditate aut ad facilis?"
+}
+};
     Boolean isAdmin = true;
 
 
 }
-@* <!DOCTYPE html>
-<html lang="en"> *@
-@* 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Select-Item</title>
-    <link rel="stylesheet" href="~/css/select-item.css">
-    <link rel="stylesheet" href="~/css/style.css">
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-
-</head>
-<body> *@
-    <link rel="stylesheet" href="~/css/select-item.css">
-    <link rel="stylesheet" href="~/css/style.css">
-    <script defer src="~/js/select-item.js"></script>
-    <div class="content">
-        <div class="section">
-            <p>@labName[i]</p>
-        </div>
-        <hr>
-        <div class="layout">
-            <div class="lab">
-                <img class="lab-img" src="~/img/lab.jpg" />
-                <div class="lab-text">
-                    <div class="lab-container">
-                        <div class="lab-name" id="lab-name" value="@labName[i]"></div>
-                        @if(isAdmin == true){
-                            <button class="edit-btn" id="edit-lab-btn" onclick="editLab()" >Edit</button>
-                        }
-                    </div>
-                    <br><br/>
-                    <div class="lab-description" id="lab-description" value="@labDescription[i]"></div>
-                </div>
-            </div>
-            <div class="item-list">
-                <div class="item-list-card">
-                    <div class="itemlist-top">
-                        <div class="list-text">รายการอุปกรณ์</div>
-                        @if(isAdmin == true){
-                            <button class="edit-btn" asp-controller="SelectItemController" asp-action="AddBtnHandle">Edit</button>
-                        }
-                    </div>
-                    <div class="item-main">
-                        <img class="item-img" src="~/img/tool.jpg">
-                        <div class="item-text">
-                            <div class="item-name">@items[0,0]</div>
-                            <div class="item-number">@items[0,1] / @items[0,2] left</div>
-                            <div class="item-description"> @items[0,3]</div>
-                        </div>
-                    </div> 
-                    <hr style="border-color:gray">
-                    <div class="cards-list" id="card-list"> 
-                        @* <!-- ----------------------- card-1 ----------------------->
-                            <div class="item-card">
-                                <div class="item-name">ชื่ออุปกรณ์</div>
-                                <button class="book-btn">Book</button>
-                            </div> *@
-                    </div>
-                    @* <div class="itemlist-bottom">
-                        <button class="cancel-btn">Cancel</button>
-                        <button class="confirm-btn">Confirm</button>
-
-                    </div> *@
-                </div>
-
-            </div>
-
-        </div>
+<link rel="stylesheet" href="~/css/select-item.css">
+<link rel="stylesheet" href="~/css/style.css">
+<script defer src="~/js/select-item.js"></script>
+<div class="content">
+    <div class="section">
+        <p>@Model.Name</p>
     </div>
+    <hr>
+    <div class="layout">
+        <div class="lab">
+            <img class="lab-img" src="~/img/lab.jpg" />
+            <div class="lab-text">
+                <div class="lab-container">
+                    <div class="lab-name" id="lab-name" value="@Model.Name"></div>
+                    @if (isAdmin == true)
+                    {
+                        <button class="edit-btn" id="edit-lab-btn" onclick="editLab()">Edit</button>
+                    }
+                </div>
+                <br><br />
+                <div class="lab-description" id="lab-description" value="@Model.Description"></div>
+            </div>
+        </div>
+        <div class="item-list">
+            <div class="item-list-card">
+                <div class="itemlist-top">
+                    <div class="list-text">รายการอุปกรณ์</div>
+                    @if (isAdmin == true)
+                    {
+                        <button class="edit-btn" asp-controller="SelectItemController"
+                        asp-action="AddBtnHandle">Edit</button>
+                    }
+                </div>
+                <div class="item-main">
+                    <img class="item-img" src="~/img/tool.jpg">
+                    <div class="item-text">
+                        <div class="item-name">@items[0,0]</div>
+                        <div class="item-number">@items[0,1] / @items[0,2] left</div>
+                        <div class="item-description"> @items[0,3]</div>
+                    </div>
+                </div>
+                <hr style="border-color:gray">
+                <div class="cards-list" id="card-list"></div>
+               
+            </div>
 
-    @* <script defer src="~/js/select-item.js"></script> *@
+        </div>
 
-@* </body>
-
-
-</html> *@
+    </div>
+</div>
+@* <!-- ----------------------- card-1 ----------------------->
+                        <div class="item-card">
+                        <div class="item-name">ชื่ออุปกรณ์</div>
+                        <button class="book-btn">Book</button>
+                        </div> *@

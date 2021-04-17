@@ -57,7 +57,7 @@ namespace Lab_item_Management_Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=SelectLab}/{action=Index}/{id?}"); // make Selectlab to default page
             });
         }
     }
