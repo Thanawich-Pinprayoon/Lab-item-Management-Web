@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http;
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -39,6 +41,10 @@
                                 </div> 
                             </a>
                         </li>
+                        <li>
+                            <a asp-area="" asp-controller="Profile" asp-action="Index">@Context.Session.GetString("username")</a>
+                        </li>
+                        
                     </ul>
                 </div>
             </div>

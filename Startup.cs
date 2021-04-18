@@ -1,5 +1,6 @@
 using Lab_item_Management_Web.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,19 @@ namespace Lab_item_Management_Web
 
             services.AddDbContext<LabItemManagementContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("LabItemManagementContext")));
+            
+            //user auth
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.CheckConsentNeeded = context => false;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromDays(1);
+                options.Cookie.HttpOnly = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +61,8 @@ namespace Lab_item_Management_Web
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseSession();
 
             app.UseRouting();
 

@@ -37,26 +37,28 @@
 <link rel="stylesheet" href="~/css/select-item.css">
 <link rel="stylesheet" href="~/css/style.css">
 <script defer src="~/js/select-item.js"></script>
-@foreach (var item in ViewBag.item)
-{
+@* @foreach (var item in ViewBag.item)
+{ *@
    <div class="content">
     <div class="section">
-        <p>@GetObjectValue(item,"Name")</p>
+        <p>@GetObjectValue(ViewBag.item,"Name")</p>
     </div>
     <hr>
     <div class="layout">
         <div class="lab">
-            <img class="lab-img" src="~/img/lab.jpg" />
+            <img class="lab-img" src="@GetObjectValue(ViewBag.item,"Picture")" />
             <div class="lab-text">
                 <div class="lab-container">
-                    <div class="lab-name" id="lab-name" value="@GetObjectValue(item,"Name")"></div>
+                    <div class="lab-name" id="lab-name" value="@GetObjectValue(ViewBag.item,"Name")"></div>
                     @if (isAdmin == true)
                     {
-                        <button class="edit-btn" id="edit-lab-btn" onclick="editLab()">Edit</button>
+                        <a asp-action="EditLab" asp-route-id="@GetObjectValue(ViewBag.item,"Id")">
+                            <button class="edit-btn">Edit</button>
+                        </a>
                     }
                 </div>
                 <br><br />
-                <div class="lab-description" id="lab-description" value="@GetObjectValue(item,"Description")"></div>
+                <div class="lab-description" id="lab-description" value="@GetObjectValue(ViewBag.item,"Description")"></div>
             </div>
         </div>
         <div class="item-list">
@@ -72,9 +74,9 @@
                 <div class="item-main">
                     <img class="item-img" src="~/img/tool.jpg">
                     <div class="item-text">
-                        <div class="item-name">@GetObjectValue(item,"ToolName")</div>
-                        <div class="item-number">@items[0,1] / @GetObjectValue(item,"Amount") left</div>
-                        <div class="item-description"> @GetObjectValue(item,"ItemDesc")</div>
+                        <div class="item-name">@GetObjectValue(ViewBag.item,"ToolName")</div>
+                        <div class="item-number">@items[0,1] / @GetObjectValue(ViewBag.item,"Amount") left</div>
+                        <div class="item-description"> @GetObjectValue(ViewBag.item,"ItemDesc")</div>
                     </div>
                 </div>
                 <hr style="border-color:gray">
@@ -105,7 +107,7 @@
 
     </div>
 </div> 
-}
+@* } *@
 
 @* <!-- ----------------------- card-1 ----------------------->
                         <div class="item-card">

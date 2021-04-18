@@ -79,6 +79,12 @@ namespace Lab_item_Management_Web.Controllers
                 return View(lab);
             }
 
+             public IActionResult Edit()
+            {
+                return View();
+            }
+
+
 
         }
     }

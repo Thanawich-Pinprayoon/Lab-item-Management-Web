@@ -40,38 +40,82 @@ namespace Lab_item_Management_Web.Controllers
             }
 
             // var labs = await _context.Lab.ToListAsync();
-            var labs = await _context.Lab.Where(m=>m.Id == id ).ToListAsync();
+            var labs = await _context.Lab.FindAsync(id);
             // var tools = await _context.Tool.ToListAsync();
-            var tools = await _context.Tool.Where(m=>m.LabID == id ).ToListAsync();
+            var tools = await _context.Tool.FindAsync(id);
 
-            List<dynamic> result = new List<dynamic>();
-            result.Add(new 
-            {
-                Id = labs.ElementAt(0).Id,
-                Name = labs.ElementAt(0).Name,
-                Description = labs.ElementAt(0).Description,
-                Picture = labs.ElementAt(0).Picture,
-                ToolName = tools.ElementAt(0).Name,
-                Amount = tools.ElementAt(0).ItemAmount,
-                ItemDesc = tools.ElementAt(0).Description,
-            });
+            dynamic result = new {
+                Id = labs.Id,
+                Name = labs.Name,
+                Description = labs.Description,
+                Picture = labs.Picture,
+                ToolName = tools.Name,
+                Amount = tools.ItemAmount,
+                ToolPicture = tools.Picture,
+                ItemDesc = tools.Description,
+            };
         
-
             ViewBag.item = result;
 
+            return View();
+        }
+
+        
+        // GET: User/Edit/5
+        public async Task<IActionResult> EditLab(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var lab = await _context.Lab.FindAsync(id);
+            if (lab == null)
+            {
+                return NotFound();
+            }
             return View(lab);
         }
 
-        //  public async Task<IActionResult> Index()
-        // {
-           
-        //     return View();
-        // }
+        // POST: User/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditLab(int id, [Bind("Id,Name,Description,Picture")] Lab lab)
+        {
+            if (id != lab.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(lab);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!LabExists(lab.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return Redirect($"/SelectItem/Index/{lab.Id}");
+            }
+            return View(lab);
+        }
+        private bool LabExists(int id)
+        {
+            return _context.Lab.Any(e => e.Id == id);
+        }
 
 
-        // public IActionResult Privacy()
-        // {
-        //     return View();
-        // }
     }
 }
