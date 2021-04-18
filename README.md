@@ -1,4 +1,4 @@
-Lab-item-Management-Web
+LabManage
 
 create crud
 ```dotnet aspnet-codegenerator controller -name ToolsController -m Tool -dc ApplicationDbContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries```
