@@ -4,12 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using LabManage.Data;
 using LabManage.Models;
 
 namespace LabManage.Controllers
 {
+    [Authorize(Policy = "ManageLab")]
     public class BlacklistsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -20,6 +22,7 @@ namespace LabManage.Controllers
         }
 
         // GET: Blacklists
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var blacklist = _context.Blacklist.Include(b => b.lab).Include(b => b.staff).Include(b => b.user);
@@ -27,6 +30,7 @@ namespace LabManage.Controllers
         }
 
         // GET: Blacklists/Details/5
+        [AllowAnonymous]
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)

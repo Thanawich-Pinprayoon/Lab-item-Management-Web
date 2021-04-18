@@ -44,6 +44,14 @@ namespace LabManage
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddControllersWithViews();
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("ManageLab", policy =>
+                    policy.RequireAssertion(context =>
+                        context.User.HasClaim(c => c.Type == "ManageLab" )
+                ));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

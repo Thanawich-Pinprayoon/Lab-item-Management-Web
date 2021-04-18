@@ -4,12 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using LabManage.Data;
 using LabManage.Models;
 
 namespace Lab_item_Management_Web.Controllers
 {
+    [Authorize(Policy = "ManageLab")]
     public class LabsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -20,12 +22,14 @@ namespace Lab_item_Management_Web.Controllers
         }
 
         // GET: Labs
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Lab.ToListAsync());
         }
 
         // GET: Labs/Details/5
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
