@@ -1,4 +1,4 @@
-@model Lab_item_Management_Web.Models.Lab
+@model Lab_item_Management_Web.Models.Lab 
 @{
     ViewData["Title"] = "Home Page";
     int i = 1;
@@ -25,13 +25,23 @@
 
 
 }
+@functions{
+    public dynamic GetObjectValue(object o, string propertyName)
+    {
+        return o.GetType().GetProperty(propertyName).GetValue(o, null);
+    }
+}
+
+
 
 <link rel="stylesheet" href="~/css/select-item.css">
 <link rel="stylesheet" href="~/css/style.css">
 <script defer src="~/js/select-item.js"></script>
-<div class="content">
+@foreach (var item in ViewBag.item)
+{
+   <div class="content">
     <div class="section">
-        <p>@Model.Name</p>
+        <p>@GetObjectValue(item,"Name")</p>
     </div>
     <hr>
     <div class="layout">
@@ -39,14 +49,14 @@
             <img class="lab-img" src="~/img/lab.jpg" />
             <div class="lab-text">
                 <div class="lab-container">
-                    <div class="lab-name" id="lab-name" value="@Model.Name"></div>
+                    <div class="lab-name" id="lab-name" value="@GetObjectValue(item,"Name")"></div>
                     @if (isAdmin == true)
                     {
                         <button class="edit-btn" id="edit-lab-btn" onclick="editLab()">Edit</button>
                     }
                 </div>
                 <br><br />
-                <div class="lab-description" id="lab-description" value="@Model.Description"></div>
+                <div class="lab-description" id="lab-description" value="@GetObjectValue(item,"Description")"></div>
             </div>
         </div>
         <div class="item-list">
@@ -62,20 +72,41 @@
                 <div class="item-main">
                     <img class="item-img" src="~/img/tool.jpg">
                     <div class="item-text">
-                        <div class="item-name">@items[0,0]</div>
-                        <div class="item-number">@items[0,1] / @items[0,2] left</div>
-                        <div class="item-description"> @items[0,3]</div>
+                        <div class="item-name">@GetObjectValue(item,"ToolName")</div>
+                        <div class="item-number">@items[0,1] / @GetObjectValue(item,"Amount") left</div>
+                        <div class="item-description"> @GetObjectValue(item,"ItemDesc")</div>
                     </div>
                 </div>
                 <hr style="border-color:gray">
-                <div class="cards-list" id="card-list"></div>
-               
-            </div>
+                @* <div class="cards-list" id="card-list"></div> *@
+                <br/>
+                <p class="list-text">กรุณาเลือกเวลา</p>
+                <div class="date-container">
+                    <div class="start-date-container">
+                        <p>วันที่ยืม:</p>
+                        <input type="date" id="Start-date" />
+                    </div>
+                    <div class="end-date-container">
+                        <p>วันที่คืน:</p>
+                        <input type="date" id="end-date" />
+                    </div>
+                </div>
 
+            </div> 
+            <div style="    
+                display: flex ;
+                justify-content: flex-end;
+                margin-right: 20px"
+            >
+                <button class="confirm-btn" asp-controller="Home" asp-action="Index">Book</button>
+            </div>
+            
         </div>
 
     </div>
-</div>
+</div> 
+}
+
 @* <!-- ----------------------- card-1 ----------------------->
                         <div class="item-card">
                         <div class="item-name">ชื่ออุปกรณ์</div>

@@ -39,8 +39,35 @@ namespace Lab_item_Management_Web.Controllers
                 return NotFound();
             }
 
+            // var labs = await _context.Lab.ToListAsync();
+            var labs = await _context.Lab.Where(m=>m.Id == id ).ToListAsync();
+            // var tools = await _context.Tool.ToListAsync();
+            var tools = await _context.Tool.Where(m=>m.LabID == id ).ToListAsync();
+
+            List<dynamic> result = new List<dynamic>();
+            result.Add(new 
+            {
+                Id = labs.ElementAt(0).Id,
+                Name = labs.ElementAt(0).Name,
+                Description = labs.ElementAt(0).Description,
+                Picture = labs.ElementAt(0).Picture,
+                ToolName = tools.ElementAt(0).Name,
+                Amount = tools.ElementAt(0).ItemAmount,
+                ItemDesc = tools.ElementAt(0).Description,
+            });
+        
+
+            ViewBag.item = result;
+
             return View(lab);
         }
+
+        //  public async Task<IActionResult> Index()
+        // {
+           
+        //     return View();
+        // }
+
 
         // public IActionResult Privacy()
         // {
