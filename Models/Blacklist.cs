@@ -23,15 +23,15 @@ namespace LabManage.Models
         public virtual User staff { get; set; }
 
         [Required]
-        [Display(Name = "Blacklist Reason")]
-        public string reason { get; set; }
-
-        [Required]
         [Display(Name = "Blacklist From Lab")]
         public int labID { get; set; }
         [Required]
         [ForeignKey("labID")]
         public Lab lab { get; set; }
+
+        [Required]
+        [Display(Name = "Blacklist Reason")]
+        public string reason { get; set; }
 
         [Required]
         [Display(Name = "Blacklist At")]

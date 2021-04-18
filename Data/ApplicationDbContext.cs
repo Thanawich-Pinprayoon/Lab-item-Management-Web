@@ -26,9 +26,11 @@ namespace LabManage.Data
         {  
             base.OnModelCreating(modelBuilder); 
              
-            modelBuilder.Entity<Timeslot>()  
-                //.HasNoKey();  
-                .HasKey(t => new {t.start, t.end, t.toolID});  
+            modelBuilder.Entity<Timeslot>()
+                .HasKey(t => new {t.start, t.end, t.toolID});
+
+            modelBuilder.Entity<Blacklist>()
+                .HasKey(t => new {t.userID, t.staffID, t.labID});
         }  
     } 
 } 
