@@ -3,14 +3,16 @@ using System;
 using LabManage.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LabManage.Migrations
 {
     [DbContext(typeof(LabManageContext))]
-    partial class LabManageContextModelSnapshot : ModelSnapshot
+    [Migration("20210418002822_ChangeTimeslotKey")]
+    partial class ChangeTimeslotKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

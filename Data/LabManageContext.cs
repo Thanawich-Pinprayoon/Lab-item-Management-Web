@@ -21,7 +21,8 @@ namespace LabManage.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Timeslot>()
-                .HasNoKey();
+                //.HasNoKey();
+                .HasKey(t => new {t.start, t.end, t.toolID});
         }
     }
 }
