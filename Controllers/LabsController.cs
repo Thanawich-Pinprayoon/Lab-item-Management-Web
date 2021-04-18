@@ -12,9 +12,9 @@ namespace Lab_item_Management_Web.Controllers
 {
     public class LabsController : Controller
     {
-        private readonly LabManageContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public LabsController(LabManageContext context)
+        public LabsController(ApplicationDbContext context)
         {
             _context = context;
         }

@@ -14,9 +14,9 @@ namespace Lab_item_Management_Web.Controllers
     [ApiController]
     public class ItemsAPIController : ControllerBase
     {
-        private readonly LabManageContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public ItemsAPIController(LabManageContext context)
+        public ItemsAPIController(ApplicationDbContext context)
         {
             _context = context;
         }

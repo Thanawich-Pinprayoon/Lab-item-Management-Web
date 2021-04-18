@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace LabManage.Migrations
+namespace LabManage.Data.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class MigrationOldModel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -98,6 +98,7 @@ namespace LabManage.Migrations
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("PK_Timeslot", x => new { x.start, x.end, x.toolID });
                     table.ForeignKey(
                         name: "FK_Timeslot_Tool_toolID",
                         column: x => x.toolID,

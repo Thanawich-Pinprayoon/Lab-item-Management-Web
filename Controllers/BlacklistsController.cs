@@ -12,9 +12,9 @@ namespace Lab_item_Management_Web.Controllers
 {
     public class BlacklistsController : Controller
     {
-        private readonly LabManageContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public BlacklistsController(LabManageContext context)
+        public BlacklistsController(ApplicationDbContext context)
         {
             _context = context;
         }
