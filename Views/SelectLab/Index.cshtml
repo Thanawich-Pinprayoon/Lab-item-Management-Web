@@ -9,6 +9,8 @@
     }
 
     .section {
+        display: flex;
+        justify-content: space-between;
         font-size: 28px;
     }
 
@@ -42,61 +44,78 @@
         color: black;
 
     }
+
     .lab-img {
         width: 330px;
         height: 200px;
         border-radius: 10px;
         margin: 10px auto;
     }
-    a{
+
+    a {
         text-decoration: none;
     }
-    .title{
+
+    .title {
         justify-content: flex-start;
         font-size: 24px;
         padding: 10px;
-        
-        
+
+
     }
-    .item{
+
+    .item {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        font-size: 18px ;
+        font-size: 18px;
         padding: 0 10px;
     }
-    .item-left{
-        color:green
+
+    .item-left {
+        color: green
     }
 
-
+    .edit-btn {
+        width: 100px;
+        height: 30px;
+        font-size: 16px;
+        border-radius: 5px;
+        background-color: #BCF4B3;
+        border: none;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        margin-bottom: 10px;
 </style>
 @* use with viewbag *@
 @functions{
     public dynamic GetObjectValue(object o, string propertyName)
-        {
-            return o.GetType().GetProperty(propertyName).GetValue(o, null);
-        }
+    {
+        return o.GetType().GetProperty(propertyName).GetValue(o, null);
+    }
 }
 
 <link rel="stylesheet" href="~/css/style.css">
 <div class="content">
-    <div class="section">Lab Rooms<a asp-controller="SelectLab" asp-action="Create" >Create</a></div>
-    
+    <div class="section">
+        <div>Lab Rooms</div>
+        <a asp-controller="SelectLab" asp-action="Create">
+            <button class="edit-btn" onclick="editLab()">Edit</button>
+        </a>
+    </div>
     <hr />
     <div class="warpper">
         @foreach (var lab in ViewBag.labTool)
         {
             <a asp-controller="SelectItem" asp-action="Index" asp-route-id="@GetObjectValue(lab,"Id")">
-            <div class=box>
-                <img class="lab-img" src=\img\Pic.PNG>
-                <div class="title">@GetObjectValue(lab,"Name") </div>
-                <div class="item">
-                    <div class="item-name">@GetObjectValue(lab,"ToolName")</div>
-                    <div class="item-left">5/10 available</div>
+                <div class=box>
+                    <img class="lab-img" src=\img\Pic.PNG>
+                    <div class="title">@GetObjectValue(lab,"Name") </div>
+                    <div class="item">
+                        <div class="item-name">@GetObjectValue(lab,"ToolName")</div>
+                        <div class="item-left">5 / @GetObjectValue(lab,"Amount") available</div>
+                    </div>
+
                 </div>
-   
-            </div>
             </a>
 
         }

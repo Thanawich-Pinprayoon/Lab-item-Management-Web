@@ -36,22 +36,24 @@ namespace Lab_item_Management_Web.Controllers
         {
             var labs = await _context.Lab.ToListAsync();
             // var labs = await _context.Lab.Where(m=>m.Id == 1 ).ToListAsync(); Filter เอาแต่ Lab 1
-            var users = await _context.User.ToListAsync();
+            var tools = await _context.Tool.ToListAsync();
 
             List<dynamic> result = new List<dynamic>();
+
             for (var i = 0; i < labs.Count(); i++)
             {
-                result.Add(new
+                result.Add(new 
                 {
                     Id = labs.ElementAt(i).Id,
                     Name = labs.ElementAt(i).Name,
                     Description = labs.ElementAt(i).Description,
                     Picture = labs.ElementAt(i).Picture,
-                    ToolName = users.ElementAt(i).Name
+                    ToolName = tools.ElementAt(i).Name,
+                    Amount = tools.ElementAt(i).ItemAmount
                 });
             }
 
-            ViewBag.labTool = result;
+            ViewBag.labTool= result;
             return View();
         }
 

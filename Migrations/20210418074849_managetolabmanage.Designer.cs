@@ -2,14 +2,16 @@
 using Lab_item_Management_Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Lab_item_Management_Web.Migrations
 {
     [DbContext(typeof(LabItemManagementContext))]
-    partial class LabItemManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20210418074849_managetolabmanage")]
+    partial class managetolabmanage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,32 +35,6 @@ namespace Lab_item_Management_Web.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Lab");
-                });
-
-            modelBuilder.Entity("Lab_item_Management_Web.Models.Tool", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("ItemAmount")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("LabID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Picture")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Tool");
                 });
 
             modelBuilder.Entity("Lab_item_Management_Web.Models.User", b =>

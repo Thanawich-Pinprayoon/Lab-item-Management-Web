@@ -1,4 +1,4 @@
-@model Lab_item_Management_Web.Models.User
+@model Lab_item_Management_Web.Models.Tool
 
 @{
     ViewData["Title"] = "Details";
@@ -7,7 +7,7 @@
 <h1>Details</h1>
 
 <div>
-    <h4>User</h4>
+    <h4>Tool</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -17,22 +17,10 @@
             @Html.DisplayFor(model => model.Name)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Tel)
+            @Html.DisplayNameFor(model => model.Description)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Tel)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Username)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Username)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Password)
+            @Html.DisplayFor(model => model.Description)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Picture)
@@ -41,10 +29,16 @@
             @Html.DisplayFor(model => model.Picture)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LabManage)
+            @Html.DisplayNameFor(model => model.LabID)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LabManage)
+            @Html.DisplayFor(model => model.LabID)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ItemAmount)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ItemAmount)
         </dd>
     </dl>
 </div>
