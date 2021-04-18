@@ -13,16 +13,19 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.user)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.staff)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.reason)
+                @Html.DisplayNameFor(model => model.lab)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.lab)
+                @Html.DisplayNameFor(model => model.reason)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.date)
@@ -34,24 +37,27 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.user.name)
+                @Html.DisplayFor(modelItem => item.id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.staff.name)
+                @Html.DisplayFor(modelItem => item.user.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.reason)
+                @Html.DisplayFor(modelItem => item.staff.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.lab.name)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.reason)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.date)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
 }

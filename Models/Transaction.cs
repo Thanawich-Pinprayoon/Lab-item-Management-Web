@@ -14,13 +14,13 @@ namespace LabManage.Models
 
         [Required]
         [Display(Name = "User")]
-        public int userID { get; set; }
+        public string userID { get; set; }
         [Required]
         [ForeignKey("userID")]
         public virtual Users user { get; set; } 
 
         [Display(Name = "Give by staff")]
-        public int? staffID { get; set; }
+        public string staffID { get; set; }
         [ForeignKey("staffID")]
         public virtual Users staff { get; set; }
 

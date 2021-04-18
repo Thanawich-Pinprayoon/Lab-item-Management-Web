@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using LabManage.Data;
 using LabManage.Models;
 
-namespace Lab_item_Management_Web.Controllers
+namespace LabManage.Controllers
 {
     public class TransactionsController : Controller
     {
@@ -52,9 +52,9 @@ namespace Lab_item_Management_Web.Controllers
         public IActionResult Create()
         {
             ViewData["itemID"] = new SelectList(_context.Item, "id", "id");
-            ViewData["staffID"] = new SelectList(_context.User, "id", "name");
+            ViewData["staffID"] = new SelectList(_context.Users, "Id", "Name");
             ViewData["toolID"] = new SelectList(_context.Tool, "id", "name");
-            ViewData["userID"] = new SelectList(_context.User, "id", "name");
+            ViewData["userID"] = new SelectList(_context.Users, "Id", "Name");
             return View();
         }
 
@@ -72,9 +72,9 @@ namespace Lab_item_Management_Web.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["itemID"] = new SelectList(_context.Item, "id", "id", transaction.itemID);
-            ViewData["staffID"] = new SelectList(_context.User, "id", "name", transaction.staffID);
+            ViewData["staffID"] = new SelectList(_context.Users, "Id", "Name", transaction.staffID);
             ViewData["toolID"] = new SelectList(_context.Tool, "id", "name", transaction.toolID);
-            ViewData["userID"] = new SelectList(_context.User, "id", "name", transaction.userID);
+            ViewData["userID"] = new SelectList(_context.Users, "Id", "Name", transaction.userID);
             return View(transaction);
         }
 
@@ -92,9 +92,9 @@ namespace Lab_item_Management_Web.Controllers
                 return NotFound();
             }
             ViewData["itemID"] = new SelectList(_context.Item, "id", "id", transaction.itemID);
-            ViewData["staffID"] = new SelectList(_context.User, "id", "name", transaction.staffID);
+            ViewData["staffID"] = new SelectList(_context.Users, "Id", "Name", transaction.staffID);
             ViewData["toolID"] = new SelectList(_context.Tool, "id", "name", transaction.toolID);
-            ViewData["userID"] = new SelectList(_context.User, "id", "name", transaction.userID);
+            ViewData["userID"] = new SelectList(_context.Users, "Id", "Name", transaction.userID);
             return View(transaction);
         }
 
@@ -131,9 +131,9 @@ namespace Lab_item_Management_Web.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["itemID"] = new SelectList(_context.Item, "id", "id", transaction.itemID);
-            ViewData["staffID"] = new SelectList(_context.User, "id", "name", transaction.staffID);
+            ViewData["staffID"] = new SelectList(_context.Users, "Id", "Name", transaction.staffID);
             ViewData["toolID"] = new SelectList(_context.Tool, "id", "name", transaction.toolID);
-            ViewData["userID"] = new SelectList(_context.User, "id", "name", transaction.userID);
+            ViewData["userID"] = new SelectList(_context.Users, "Id", "Name", transaction.userID);
             return View(transaction);
         }
 

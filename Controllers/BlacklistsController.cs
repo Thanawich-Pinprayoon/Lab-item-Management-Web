@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using LabManage.Data;
 using LabManage.Models;
 
-namespace Lab_item_Management_Web.Controllers
+namespace LabManage.Controllers
 {
     public class BlacklistsController : Controller
     {
@@ -27,7 +27,7 @@ namespace Lab_item_Management_Web.Controllers
         }
 
         // GET: Blacklists/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string id)
         {
             if (id == null)
             {
@@ -38,7 +38,7 @@ namespace Lab_item_Management_Web.Controllers
                 .Include(b => b.lab)
                 .Include(b => b.staff)
                 .Include(b => b.user)
-                .FirstOrDefaultAsync(m => m.id == id);
+                .FirstOrDefaultAsync(m => m.userID == id);
             if (blacklist == null)
             {
                 return NotFound();
@@ -51,8 +51,8 @@ namespace Lab_item_Management_Web.Controllers
         public IActionResult Create()
         {
             ViewData["labID"] = new SelectList(_context.Lab, "id", "name");
-            ViewData["staffID"] = new SelectList(_context.User, "id", "name");
-            ViewData["userID"] = new SelectList(_context.User, "id", "name");
+            ViewData["staffID"] = new SelectList(_context.Users, "Id", "Name");
+            ViewData["userID"] = new SelectList(_context.Users, "Id", "Name");
             return View();
         }
 
@@ -61,7 +61,7 @@ namespace Lab_item_Management_Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,userID,staffID,reason,labID,date")] Blacklist blacklist)
+        public async Task<IActionResult> Create([Bind("id,userID,staffID,labID,reason,date")] Blacklist blacklist)
         {
             if (ModelState.IsValid)
             {
@@ -70,13 +70,13 @@ namespace Lab_item_Management_Web.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["labID"] = new SelectList(_context.Lab, "id", "name", blacklist.labID);
-            ViewData["staffID"] = new SelectList(_context.User, "id", "name", blacklist.staffID);
-            ViewData["userID"] = new SelectList(_context.User, "id", "name", blacklist.userID);
+            ViewData["staffID"] = new SelectList(_context.Users, "Id", "Name", blacklist.staffID);
+            ViewData["userID"] = new SelectList(_context.Users, "Id", "Name", blacklist.userID);
             return View(blacklist);
         }
 
         // GET: Blacklists/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
             {
@@ -89,8 +89,8 @@ namespace Lab_item_Management_Web.Controllers
                 return NotFound();
             }
             ViewData["labID"] = new SelectList(_context.Lab, "id", "name", blacklist.labID);
-            ViewData["staffID"] = new SelectList(_context.User, "id", "name", blacklist.staffID);
-            ViewData["userID"] = new SelectList(_context.User, "id", "name", blacklist.userID);
+            ViewData["staffID"] = new SelectList(_context.Users, "Id", "Name", blacklist.staffID);
+            ViewData["userID"] = new SelectList(_context.Users, "Id", "Name", blacklist.userID);
             return View(blacklist);
         }
 
@@ -99,9 +99,9 @@ namespace Lab_item_Management_Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,userID,staffID,reason,labID,date")] Blacklist blacklist)
+        public async Task<IActionResult> Edit(string id, [Bind("id,userID,staffID,labID,reason,date")] Blacklist blacklist)
         {
-            if (id != blacklist.id)
+            if (id != blacklist.userID)
             {
                 return NotFound();
             }
@@ -115,7 +115,7 @@ namespace Lab_item_Management_Web.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!BlacklistExists(blacklist.id))
+                    if (!BlacklistExists(blacklist.userID))
                     {
                         return NotFound();
                     }
@@ -127,13 +127,13 @@ namespace Lab_item_Management_Web.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["labID"] = new SelectList(_context.Lab, "id", "name", blacklist.labID);
-            ViewData["staffID"] = new SelectList(_context.User, "id", "name", blacklist.staffID);
-            ViewData["userID"] = new SelectList(_context.User, "id", "name", blacklist.userID);
+            ViewData["staffID"] = new SelectList(_context.Users, "Id", "Name", blacklist.staffID);
+            ViewData["userID"] = new SelectList(_context.Users, "Id", "Name", blacklist.userID);
             return View(blacklist);
         }
 
         // GET: Blacklists/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
             {
@@ -144,7 +144,7 @@ namespace Lab_item_Management_Web.Controllers
                 .Include(b => b.lab)
                 .Include(b => b.staff)
                 .Include(b => b.user)
-                .FirstOrDefaultAsync(m => m.id == id);
+                .FirstOrDefaultAsync(m => m.userID == id);
             if (blacklist == null)
             {
                 return NotFound();
@@ -156,7 +156,7 @@ namespace Lab_item_Management_Web.Controllers
         // POST: Blacklists/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var blacklist = await _context.Blacklist.FindAsync(id);
             _context.Blacklist.Remove(blacklist);
@@ -164,9 +164,9 @@ namespace Lab_item_Management_Web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool BlacklistExists(int id)
+        private bool BlacklistExists(string id)
         {
-            return _context.Blacklist.Any(e => e.id == id);
+            return _context.Blacklist.Any(e => e.userID == id);
         }
     }
 }
