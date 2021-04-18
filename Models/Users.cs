@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
-namespace LabManage.Data
+namespace LabManage.Models
 {
     // Add profile data for application users by adding properties to the Users class
     public class Users : IdentityUser
@@ -18,5 +18,7 @@ namespace LabManage.Data
         [PersonalData]
         [Display(Name = "Profile Picture")]
         public string Pic { get; set; }
+
+        // Lab manage will in Claim
     }
 }

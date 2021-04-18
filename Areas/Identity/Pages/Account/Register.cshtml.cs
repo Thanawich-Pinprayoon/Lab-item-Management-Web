@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-using LabManage.Data;
+using LabManage.Models;
 
 namespace LabManage.Areas.Identity.Pages.Account
 {

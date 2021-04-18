@@ -13,14 +13,14 @@ namespace LabManage.Models
         public int userID { get; set; }
         [Required]
         [ForeignKey("userID")]
-        public virtual User user { get; set; } 
+        public virtual Users user { get; set; } 
 
         [Required]
         [Display(Name = "Blacklist By")]
         public int staffID { get; set; }
         [Required]
         [ForeignKey("staffID")]
-        public virtual User staff { get; set; }
+        public virtual Users staff { get; set; }
 
         [Required]
         [Display(Name = "Blacklist From Lab")]

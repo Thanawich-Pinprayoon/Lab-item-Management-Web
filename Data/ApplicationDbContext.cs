@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text; 
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore; 
 using Microsoft.EntityFrameworkCore; 
-using LabManage.Models; 
+using LabManage.Models;
  
 namespace LabManage.Data 
 { 
@@ -13,8 +13,6 @@ namespace LabManage.Data
             : base(options) 
         { 
         } 
- 
-        public DbSet<User> User { get; set; }  
         public DbSet<Lab> Lab { get; set; }  
         public DbSet<Tool> Tool { get; set; }  
         public DbSet<Item> Item { get; set; }  

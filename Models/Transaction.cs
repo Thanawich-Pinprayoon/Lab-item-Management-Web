@@ -17,12 +17,12 @@ namespace LabManage.Models
         public int userID { get; set; }
         [Required]
         [ForeignKey("userID")]
-        public virtual User user { get; set; } 
+        public virtual Users user { get; set; } 
 
         [Display(Name = "Give by staff")]
         public int? staffID { get; set; }
         [ForeignKey("staffID")]
-        public virtual User staff { get; set; }
+        public virtual Users staff { get; set; }
 
         [Required]
         [Display(Name = "Tool")]
