@@ -67,12 +67,13 @@
                     <div class="list-text">รายการอุปกรณ์</div>
                     @if (isAdmin == true)
                     {
-                        <button class="edit-btn" asp-controller="SelectItemController"
-                        asp-action="AddBtnHandle">Edit</button>
+                        <a asp-action="EditTool" asp-route-id="@GetObjectValue(ViewBag.item,"ToolId")">
+                            <button class="edit-btn">Edit</button>
+                        </a>
                     }
                 </div>
                 <div class="item-main">
-                    <img class="item-img" src="~/img/tool.jpg">
+                    <img class="item-img" src="@GetObjectValue(ViewBag.item,"ToolPicture")">
                     <div class="item-text">
                         <div class="item-name">@GetObjectValue(ViewBag.item,"ToolName")</div>
                         <div class="item-number">@items[0,1] / @GetObjectValue(ViewBag.item,"Amount") left</div>

@@ -51,12 +51,7 @@
 .lab-description{
     font-size: 20px;
 }
-*[contenteditable="true"] {
-    background-color: rgba(255, 255, 255,1);
-    border:1 solid gray;
-    border-radius: 5px;
-    padding: 10px;
-  }
+
 .lab-img{
     border-radius: 10px;
     width: 90%;
@@ -124,8 +119,8 @@
 }
 
 .item-img{
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     border-radius: 10px;
     border: gray thin;
     box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.25);
