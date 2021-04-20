@@ -15,17 +15,17 @@
             <input type="hidden" asp-for="id" />
             <div class="form-group">
                 <label asp-for="userID" class="control-label"></label>
-                <select asp-for="userID" class="form-control" asp-items="ViewBag.userID"></select>
+                <select asp-for="userID" class="form-control" asp-items="ViewBag.userID" disabled></select>
                 <span asp-validation-for="userID" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="staffID" class="control-label"></label>
-                <select asp-for="staffID" class="form-control" asp-items="ViewBag.staffID"></select>
+                <select asp-for="staffID" class="form-control" asp-items="ViewBag.staffID" disabled></select>
                 <span asp-validation-for="staffID" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="toolID" class="control-label"></label>
-                <select asp-for="toolID" class="form-control" asp-items="ViewBag.toolID"></select>
+                <select asp-for="toolID" class="form-control" asp-items="ViewBag.toolID" disabled></select>
                 <span asp-validation-for="toolID" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -45,7 +45,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="status" class="control-label"></label>
-                <select asp-for="status" class="form-control"></select>
+                <select asp-for="status" class="form-control" asp-items="ViewBag.status"></select>
                 <span asp-validation-for="status" class="text-danger"></span>
             </div>
             <div class="form-group">

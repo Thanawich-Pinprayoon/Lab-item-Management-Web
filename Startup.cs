@@ -44,6 +44,7 @@ namespace LabManage
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddControllersWithViews();
+            services.AddHttpContextAccessor();
 
             services.AddAuthorization(options =>
             {

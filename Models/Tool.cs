@@ -21,7 +21,6 @@ namespace LabManage.Models
         [Required]
         [Display(Name = "Store in Lab")]
         public int labID { get; set; }
-        [Required]
         [ForeignKey("labID")]
         public Lab lab { get; set; }
     }

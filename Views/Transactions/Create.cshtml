@@ -13,20 +13,8 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="userID" class="control-label"></label>
-                <select asp-for="userID" class ="form-control" asp-items="ViewBag.userID"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="staffID" class="control-label"></label>
-                <select asp-for="staffID" class ="form-control" asp-items="ViewBag.staffID"></select>
-            </div>
-            <div class="form-group">
                 <label asp-for="toolID" class="control-label"></label>
                 <select asp-for="toolID" class ="form-control" asp-items="ViewBag.toolID"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="itemID" class="control-label"></label>
-                <select asp-for="itemID" class ="form-control" asp-items="ViewBag.itemID"></select>
             </div>
             <div class="form-group">
                 <label asp-for="start" class="control-label"></label>
@@ -37,11 +25,6 @@
                 <label asp-for="end" class="control-label"></label>
                 <input asp-for="end" class="form-control" />
                 <span asp-validation-for="end" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="status" class="control-label"></label>
-                <select asp-for="status" class="form-control"></select>
-                <span asp-validation-for="status" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

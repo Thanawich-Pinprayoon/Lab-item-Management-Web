@@ -1,3 +1,9 @@
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
+@using LabManage.Models
+@inject SignInManager<Users> SignInManager
 @model IEnumerable<LabManage.Models.Transaction>
 
 @{
@@ -62,8 +68,23 @@
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                <a asp-action="Details" asp-route-id="@item.id">Details</a>
+@if ((await AuthorizationService.AuthorizeAsync(User, "ManageLab")).Succeeded)
+{
+    if (item.status == LabManage.Models.Status.Book) {
+        @:|
+        <a asp-action="Give" asp-route-id="@item.id">Give</a>
+    }
+    if (item.status == LabManage.Models.Status.Borrow) {
+        @:|
+        <a asp-action="Grab" asp-route-id="@item.id">Grab</a>
+    }
+}
+@if (item.status == LabManage.Models.Status.Book && item.userID == User.FindFirst(ClaimTypes.NameIdentifier).Value)
+{
+    @:|
+    <a asp-action="Cancel" asp-route-id="@item.id">Cancel</a>
+}
             </td>
         </tr>
 }

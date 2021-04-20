@@ -15,7 +15,6 @@ namespace LabManage.Models
         [Required]
         [Display(Name = "User")]
         public string userID { get; set; }
-        [Required]
         [ForeignKey("userID")]
         public virtual Users user { get; set; } 
 
@@ -27,7 +26,6 @@ namespace LabManage.Models
         [Required]
         [Display(Name = "Tool")]
         public int toolID { get; set; }
-        [Required]
         [ForeignKey("toolID")]
         public virtual Tool tool { get; set; }
 

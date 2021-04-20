@@ -3,26 +3,49 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 using LabManage.Data;
 using LabManage.Models;
 
 namespace LabManage.Controllers
 {
+    [Authorize]
     public class TransactionsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<Users> _userManager;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public TransactionsController(ApplicationDbContext context)
+        public TransactionsController(ApplicationDbContext context,
+            UserManager<Users> userManager,
+            IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            _userManager = userManager;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         // GET: Transactions
         public async Task<IActionResult> Index()
         {
-            var transaction = _context.Transaction.Include(t => t.item).Include(t => t.staff).Include(t => t.tool).Include(t => t.user);
+            var currentUser = await _userManager.GetUserAsync(User);
+            var transaction = _context.Transaction.AsQueryable();
+
+            if (_httpContextAccessor.HttpContext.User.HasClaim(c => c.Type == "ManageLab")) {
+                var c = _httpContextAccessor.HttpContext.User.Claims.First(c => c.Type == "ManageLab");
+                transaction = transaction.Where(t => (t.tool.labID == Int32.Parse(c.Value)) || (t.userID == currentUser.Id));
+            } else {
+                transaction = transaction.Where(t => t.userID == currentUser.Id);
+            }
+
+            transaction = transaction.Include(t => t.item).Include(t => t.staff).Include(t => t.tool).Include(t => t.user);
+            
             return View(await transaction.ToListAsync());
         }
 
@@ -48,37 +71,39 @@ namespace LabManage.Controllers
             return View(transaction);
         }
 
-        // GET: Transactions/Create
+        // GET: Transactions/CreateNew
         public IActionResult Create()
         {
-            ViewData["itemID"] = new SelectList(_context.Item, "id", "id");
-            ViewData["staffID"] = new SelectList(_context.Users, "Id", "Name");
             ViewData["toolID"] = new SelectList(_context.Tool, "id", "name");
-            ViewData["userID"] = new SelectList(_context.Users, "Id", "Name");
             return View();
         }
 
-        // POST: Transactions/Create
+        // POST: Transactions/CreateNew
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,userID,staffID,toolID,itemID,start,end,status")] Transaction transaction)
+        public async Task<IActionResult> Create([Bind("toolID,start,end")] Transaction transaction)
         {
-            if (ModelState.IsValid)
+            ModelState.Clear();
+
+            var currentUser = await _userManager.GetUserAsync(User);
+            transaction.userID = currentUser.Id;
+            transaction.status = Status.Book;
+
+            if (TryValidateModel(transaction, nameof(transaction)))
             {
                 _context.Add(transaction);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["itemID"] = new SelectList(_context.Item, "id", "id", transaction.itemID);
-            ViewData["staffID"] = new SelectList(_context.Users, "Id", "Name", transaction.staffID);
+            
             ViewData["toolID"] = new SelectList(_context.Tool, "id", "name", transaction.toolID);
-            ViewData["userID"] = new SelectList(_context.Users, "Id", "Name", transaction.userID);
             return View(transaction);
         }
 
         // GET: Transactions/Edit/5
+        [Authorize(Policy = "ManageLab")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -91,10 +116,19 @@ namespace LabManage.Controllers
             {
                 return NotFound();
             }
+            var currentUser = await _userManager.GetUserAsync(User);
             ViewData["itemID"] = new SelectList(_context.Item, "id", "id", transaction.itemID);
             ViewData["staffID"] = new SelectList(_context.Users, "Id", "Name", transaction.staffID);
             ViewData["toolID"] = new SelectList(_context.Tool, "id", "name", transaction.toolID);
             ViewData["userID"] = new SelectList(_context.Users, "Id", "Name", transaction.userID);
+            ViewData["status"] = new SelectList(
+                new List<SelectListItem>
+                {
+                    new SelectListItem { Text = "Book", Value = ((int)Status.Book).ToString()},
+                    new SelectListItem { Text = "Borrow", Value = ((int)Status.Borrow).ToString()},
+                    new SelectListItem { Text = "Cancel", Value = ((int)Status.Cancel).ToString()},
+                    new SelectListItem { Text = "Return", Value = ((int)Status.Return).ToString()},
+                }, "Value" , "Text", transaction.status);
             return View(transaction);
         }
 
@@ -103,6 +137,7 @@ namespace LabManage.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "ManageLab")]
         public async Task<IActionResult> Edit(int id, [Bind("id,userID,staffID,toolID,itemID,start,end,status")] Transaction transaction)
         {
             if (id != transaction.id)
@@ -110,7 +145,12 @@ namespace LabManage.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            ModelState.Clear();
+
+            var currentUser = await _userManager.GetUserAsync(User);
+            transaction.staffID = currentUser.Id;
+
+            if (TryValidateModel(transaction, nameof(transaction)))
             {
                 try
                 {
@@ -134,39 +174,147 @@ namespace LabManage.Controllers
             ViewData["staffID"] = new SelectList(_context.Users, "Id", "Name", transaction.staffID);
             ViewData["toolID"] = new SelectList(_context.Tool, "id", "name", transaction.toolID);
             ViewData["userID"] = new SelectList(_context.Users, "Id", "Name", transaction.userID);
+            ViewData["status"] = new SelectList(
+                new List<SelectListItem>
+                {
+                    new SelectListItem { Text = "Book", Value = ((int)Status.Book).ToString()},
+                    new SelectListItem { Text = "Borrow", Value = ((int)Status.Borrow).ToString()},
+                    new SelectListItem { Text = "Cancel", Value = ((int)Status.Cancel).ToString()},
+                    new SelectListItem { Text = "Return", Value = ((int)Status.Return).ToString()},
+                }, "Value" , "Text", transaction.status);
             return View(transaction);
         }
 
-        // GET: Transactions/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        // GET: Transactions/Give/5
+        [Authorize(Policy = "ManageLab")]
+        public async Task<IActionResult> Give(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var transaction = await _context.Transaction
-                .Include(t => t.item)
-                .Include(t => t.staff)
-                .Include(t => t.tool)
-                .Include(t => t.user)
-                .FirstOrDefaultAsync(m => m.id == id);
+            var transaction = await _context.Transaction.FindAsync(id);
             if (transaction == null)
             {
                 return NotFound();
             }
 
-            return View(transaction);
+            ModelState.Clear();
+
+            var currentUser = await _userManager.GetUserAsync(User);
+            transaction.staffID = currentUser.Id;
+            transaction.status = Status.Borrow;
+
+            if (TryValidateModel(transaction, nameof(transaction)))
+            {
+                try
+                {
+                    _context.Update(transaction);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!TransactionExists(transaction.id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            
+            return RedirectToAction(nameof(Index));
         }
 
-        // POST: Transactions/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        // GET: Transactions/Grab/5
+        [Authorize(Policy = "ManageLab")]
+        public async Task<IActionResult> Grab(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
             var transaction = await _context.Transaction.FindAsync(id);
-            _context.Transaction.Remove(transaction);
-            await _context.SaveChangesAsync();
+            if (transaction == null)
+            {
+                return NotFound();
+            }
+
+            ModelState.Clear();
+
+            var currentUser = await _userManager.GetUserAsync(User);
+            transaction.staffID = currentUser.Id;
+            transaction.status = Status.Return;
+
+            if (TryValidateModel(transaction, nameof(transaction)))
+            {
+                try
+                {
+                    _context.Update(transaction);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!TransactionExists(transaction.id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            
+            return RedirectToAction(nameof(Index));
+        }
+
+        // GET: Transactions/Cancel/5
+        public async Task<IActionResult> Cancel(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var transaction = await _context.Transaction.FindAsync(id);
+            if (transaction == null)
+            {
+                return NotFound();
+            }
+
+            ModelState.Clear();
+
+            var currentUser = await _userManager.GetUserAsync(User);
+            transaction.status = Status.Cancel;
+
+            if (TryValidateModel(transaction, nameof(transaction)))
+            {
+                try
+                {
+                    _context.Update(transaction);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!TransactionExists(transaction.id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            
             return RedirectToAction(nameof(Index));
         }
 
