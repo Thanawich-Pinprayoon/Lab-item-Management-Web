@@ -3,12 +3,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Lab Item Management</title>
+    <title>@ViewData["Title"] - LabManage</title>
     @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
     @* <link rel="stylesheet" href="~/css/site.css" /> *@
     <link rel="stylesheet" href="~/css/style.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">  
+    <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree&family=Pattaya&display=swap" rel="stylesheet">
 
     @RenderSection("Styles", required: false)
 </head>
@@ -16,31 +17,30 @@
     <header>
         <nav>
             <div class="navbar">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Lab Item Management</a>
-                @* <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button> *@
+                <div class="left-nav">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">LabManage</a>
+                    <div class="nav-list">
+                        <ul>
+                            <li>
+                                <a asp-area="" asp-controller="SelectLab" asp-action="Index">Home</a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="Transaction" asp-action="Index">Item</a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="BlackList" asp-action="Index">Blacklist</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
                 <div class="nav-list">
-                    <ul>
-                        <li>
-                            <a asp-area="" asp-controller="SelectLab" asp-action="Index">Home</a>
-                        </li>
-                        <li>
-                            <a asp-area="" asp-controller="Colab" asp-action="Index">Co-Lab</a>
-                        </li>
-                         <li>
-                            <a asp-area="" asp-controller="BlackList" asp-action="Index">Blacklist</a>
-                        </li>
-                        <li>
-                            <a asp-area="" asp-controller="Home" asp-action="Profile">
-                                <div class="profile-icon"> 
-                                    <img src="~/img/profile.jpg" >
-                                </div> 
-                            </a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
+                    <a asp-area="" asp-controller="Home" asp-action="Profile">
+                        <div class="profile-icon"> 
+                            <img src="~/img/profile.jpg" >
+                        </div> 
+                    </a><partial name="_LoginPartial" />
+                </div>
+                    
                 </div>
                 
             </div>
