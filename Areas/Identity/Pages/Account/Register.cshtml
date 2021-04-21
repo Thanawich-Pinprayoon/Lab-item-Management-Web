@@ -5,7 +5,36 @@
     ViewData["Title"] = "Register";
 }
 
-<h1>@ViewData["Title"]</h1>
+<link rel="stylesheet" href="~/css/Register.css" />
+<div class="container-re">
+        <div class="container1">
+            <div class="title"><h1>@ViewData["Title"]</h1></div>
+            
+            <br>
+            <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                
+                <p class="header">Fullname</p>
+                <input asp-for="Input.Name" class="input-text" type="text"></input>
+
+                <p class="header">Username</p>
+                <input asp-for="Input.Username" class="input-text" type="text"></input>
+
+                <p class="header spacetop">Password</p>
+                <input asp-for="Input.Password" class="input-text" type="password" id="myInput"></input>
+
+                <p class="header spacetop">Confirm Password</p>
+                <input asp-for="Input.ConfirmPassword" asp-for="Input.Password" class="input-text" type="password" id="myInput"></input>
+
+                <br><br>
+
+                <br><br>
+                <button class="button-sign" type="submit" >Register</button>
+            </form>
+        </div>
+    </div>
+</div>
+ @* <h1>@ViewData["Title"]</h1>
 
 <div class="row">
     <div class="col-md-4">
@@ -67,7 +96,7 @@
             }
         </section>
     </div>
-</div>
+</div>  *@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
