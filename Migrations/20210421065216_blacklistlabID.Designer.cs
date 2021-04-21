@@ -3,14 +3,16 @@ using System;
 using Lab_item_Management_Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Lab_item_Management_Web.Migrations
 {
     [DbContext(typeof(LabItemManagementContext))]
-    partial class LabItemManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20210421065216_blacklistlabID")]
+    partial class blacklistlabID
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

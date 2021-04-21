@@ -13,6 +13,7 @@ namespace Lab_item_Management_Web.Data
         public DbSet<User> User { get; set; }
         public DbSet<Lab> Lab { get; set; }
         public DbSet<Tool> Tool { get; set; }
+        public DbSet<Blacklist> Blacklist { get; set; }
     }
 }
 //ตัวกลาง

@@ -3,14 +3,16 @@ using System;
 using Lab_item_Management_Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Lab_item_Management_Web.Migrations
 {
     [DbContext(typeof(LabItemManagementContext))]
-    partial class LabItemManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20210421064256_blacklist")]
+    partial class blacklist
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,8 +27,8 @@ namespace Lab_item_Management_Web.Migrations
                     b.Property<DateTime?>("addDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("labId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("labName")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("reason")
                         .HasColumnType("TEXT");
