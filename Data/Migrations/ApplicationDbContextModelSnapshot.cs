@@ -110,6 +110,9 @@ namespace LabManage.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("amount")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("description")
                         .HasColumnType("TEXT");
 

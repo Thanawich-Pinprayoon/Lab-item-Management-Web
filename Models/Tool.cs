@@ -23,5 +23,7 @@ namespace LabManage.Models
         public int labID { get; set; }
         [ForeignKey("labID")]
         public Lab lab { get; set; }
+
+        public int amount {get;set;}
     }
 }

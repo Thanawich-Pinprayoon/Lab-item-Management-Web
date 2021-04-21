@@ -61,7 +61,7 @@ namespace Lab_item_Management_Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,name,description,pic,labID")] Tool tool)
+        public async Task<IActionResult> Create([Bind("id,name,description,pic,labID,amount")] Tool tool)
         {
             if (ModelState.IsValid)
             {
@@ -95,7 +95,7 @@ namespace Lab_item_Management_Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,name,description,pic,labID")] Tool tool)
+        public async Task<IActionResult> Edit(int id, [Bind("id,name,description,pic,labID,amount")] Tool tool)
         {
             if (id != tool.id)
             {
