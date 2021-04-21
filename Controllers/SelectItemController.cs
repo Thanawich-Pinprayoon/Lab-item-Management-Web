@@ -6,72 +6,173 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using LabManage.Models;
-// using Microsoft.EntityFrameworkCore;
-// using LabManage.Data;
+using Microsoft.EntityFrameworkCore;
+using LabManage.Data;
 
-// namespace LabManage.Controllers
-// {
-//     public class SelectItemController : Controller
-//     {
-//         private readonly ApplicationDbContext _context;
+namespace LabManage.Controllers
+{
+    public class SelectItemController : Controller
+    {
+        private readonly ApplicationDbContext _context;
 
-//         public SelectItemController(ApplicationDbContext context)
-//         {
-//             _context = context;
-//         }
+        public SelectItemController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
 
-//         // public IActionResult Index()
-//         // {
-//         //     return View();
-//         // }
+        // public IActionResult Index()
+        // {
+        //     return View();
+        // }
 
-//         public async Task<IActionResult> Index(int? id)
-//         {
-//             if (id == null)
-//             {
-//                 return NotFound();
-//             }
+        public async Task<IActionResult> Index(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-//             var lab = await _context.Lab
-//                 .FirstOrDefaultAsync(m => m.Id == id);
-//             if (lab == null)
-//             {
-//                 return NotFound();
-//             }
+            var lab = await _context.Lab
+                .FirstOrDefaultAsync(m => m.id == id);
+            if (lab == null)
+            {
+                return NotFound();
+            }
 
-//             // var labs = await _context.Lab.ToListAsync();
-//             var labs = await _context.Lab.Where(m=>m.id == id ).ToListAsync();
-//             // var tools = await _context.Tool.ToListAsync();
-//             var tools = await _context.Tool.Where(m=>m.labId == id ).ToListAsync();
+            // var labs = await _context.Lab.ToListAsync();
+            var labs = await _context.Lab.FindAsync(id);
+            // var tools = await _context.Tool.ToListAsync();
+            var tools = await _context.Tool.FindAsync(id);
 
-//             List<dynamic> result = new List<dynamic>();
-//             result.Add(new 
-//             {
-//                 Id = labs.ElementAt(0).Id,
-//                 Name = labs.ElementAt(0).Name,
-//                 Description = labs.ElementAt(0).Description,
-//                 Picture = labs.ElementAt(0).Picture,
-//                 ToolName = tools.ElementAt(0).Name,
-//                 Amount = tools.ElementAt(0).ItemAmount,
-//                 ItemDesc = tools.ElementAt(0).Description,
-//             });
+            dynamic result = new {
+                Id = labs.id,
+                Name = labs.name,
+                Description = labs.description,
+                Picture = labs.pic,
+                ToolId= tools.id,
+                ToolName = tools.name,
+                ToolLabId= tools.labID,
+                Amount = tools.amount,
+                ToolPicture = tools.pic,
+                ItemDesc = tools.description,
+            };
         
+            ViewBag.item = result;
 
-//             ViewBag.item = result;
+            return View();
+        }
 
-//             return View(lab);
-//         }
+        
+        // GET: User/Edit/5
+        public async Task<IActionResult> EditLab(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-//         //  public async Task<IActionResult> Index()
-//         // {
-           
-//         //     return View();
-//         // }
+            var lab = await _context.Lab.FindAsync(id);
+            if (lab == null)
+            {
+                return NotFound();
+            }
+            return View(lab);
+        }
+
+        // POST: User/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditLab(int id, [Bind("id,name,description,pic")] Lab lab)
+        {
+            if (id != lab.id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(lab);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!LabExists(lab.id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return Redirect($"/SelectItem/Index/{lab.id}");
+            }
+            return View(lab);
+        }
+
+          // GET: User/Edit/5
+        public async Task<IActionResult> EditTool(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var tool = await _context.Tool.FindAsync(id);
+            if (tool == null)
+            {
+                return NotFound();
+            }
+            return View(tool);
+        }
+
+        // POST: User/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditTool(int id, [Bind("id,name,description,pic,amount")] Tool tool)
+        {
+            if (id != tool.id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(tool);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!LabExists(tool.id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return Redirect($"/SelectItem/Index/{tool.id}");
+            }
+            return View(tool);
+        }
+        private bool ToolExists(int id)
+        {
+            return _context.Lab.Any(e => e.id == id);
+        }
+        private bool LabExists(int id)
+        {
+            return _context.Lab.Any(e => e.id == id);
+        }
 
 
-//         // public IActionResult Privacy()
-//         // {
-//         //     return View();
-//         // }
-//     }
-// }
+    }
+}

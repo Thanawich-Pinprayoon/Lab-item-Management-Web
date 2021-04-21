@@ -1,0 +1,85 @@
+@model LabManage.Models.Lab 
+@functions{
+    public dynamic GetObjectValue(object o, string propertyName)
+    {
+        return o.GetType().GetProperty(propertyName).GetValue(o, null);
+    }
+}
+
+
+
+<link rel="stylesheet" href="~/css/select-item.css">
+<link rel="stylesheet" href="~/css/style.css">
+<script defer src="~/js/select-item.js"></script>
+@* @foreach (var item in ViewBag.item)
+{ *@
+   <div class="content">
+    <div class="section">
+        <p>@GetObjectValue(ViewBag.item,"Name")</p>
+    </div>
+    <hr>
+    <div class="layout">
+        <div class="lab">
+            <img class="lab-img" src="@GetObjectValue(ViewBag.item,"Picture")" />
+            <div class="lab-text">
+                <div class="lab-container">
+                    <div class="lab-name" id="lab-name" value="">@GetObjectValue(ViewBag.item,"Name")</div>
+                        <a asp-action="EditLab" asp-route-id="@GetObjectValue(ViewBag.item,"Id")">
+                            <button class="edit-btn">Edit</button>
+                        </a>
+                </div>
+                <br><br />
+                <div class="lab-description" id="lab-description" value="">@GetObjectValue(ViewBag.item,"Description")</div>
+            </div>
+        </div>
+        <div class="item-list">
+            <div class="item-list-card">
+                <div class="itemlist-top">
+                    <div class="list-text">รายการอุปกรณ์</div>
+                        <a asp-action="EditTool" asp-route-id="@GetObjectValue(ViewBag.item,"ToolId")">
+                            <button class="edit-btn">Edit</button>
+                        </a>
+                </div>
+                <div class="item-main">
+                    <img class="item-img" src="@GetObjectValue(ViewBag.item,"ToolPicture")">
+                    <div class="item-text">
+                        <div class="item-name">@GetObjectValue(ViewBag.item,"ToolName")</div>
+                        <div class="item-number">5/ @GetObjectValue(ViewBag.item,"Amount") left</div>
+                        <div class="item-description"> @GetObjectValue(ViewBag.item,"ItemDesc")</div>
+                    </div>
+                </div>
+                <hr style="border-color:gray">
+                @* <div class="cards-list" id="card-list"></div> *@
+                <br/>
+                <p class="list-text">กรุณาเลือกเวลา</p>
+                <div class="date-container">
+                    <div class="start-date-container">
+                        <p>วันที่ยืม:</p>
+                        <input type="date" id="Start-date" />
+                    </div>
+                    <div class="end-date-container">
+                        <p>วันที่คืน:</p>
+                        <input type="date" id="end-date" />
+                    </div>
+                </div>
+
+            </div> 
+            <div style="    
+                display: flex ;
+                justify-content: flex-end;
+                margin-right: 20px"
+            >
+                <button class="confirm-btn" asp-controller="Home" asp-action="Index">Book</button>
+            </div>
+            
+        </div>
+
+    </div>
+</div> 
+@* } *@
+
+@* <!-- ----------------------- card-1 ----------------------->
+                        <div class="item-card">
+                        <div class="item-name">ชื่ออุปกรณ์</div>
+                        <button class="book-btn">Book</button>
+                        </div> *@
