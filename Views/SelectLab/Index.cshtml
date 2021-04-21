@@ -20,7 +20,6 @@
         margin: 2px;
     }
 
-
     .warpper {
         display: flex;
 
@@ -108,7 +107,7 @@
         {
             <a asp-controller="SelectItem" asp-action="Index" asp-route-id="@GetObjectValue(lab,"Id")">
                 <div class=box>
-                    <img class="lab-img" src="@GetObjectValue(lab,"Picture")"/>
+                    <img  src=@GetObjectValue(lab,"Picture") class="lab-img"/>
                     <div class="title">@GetObjectValue(lab,"Name") </div>
                     <div class="item">
                         <div class="item-name">@GetObjectValue(lab,"ToolName")</div>
