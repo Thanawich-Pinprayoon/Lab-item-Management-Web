@@ -20,7 +20,7 @@ namespace Lab_item_Management_Web.Controllers
         }
 
         public IActionResult Login(){
-            HttpContext.Session.SetString("username","Ming.abc");
+            HttpContext.Session.SetString("username","Ming");
             return Redirect("/SelectLab");
 
         }

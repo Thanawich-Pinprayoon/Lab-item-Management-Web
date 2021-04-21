@@ -20,7 +20,6 @@
         margin: 2px;
     }
 
-
     .warpper {
         display: flex;
 
@@ -100,21 +99,21 @@
         <div>Lab Rooms</div>
     </div>
     <hr />
-    <div class="warpper">
-        @foreach (var lab in ViewBag.labTool)
-        {
-            <a asp-controller="SelectItem" asp-action="Index" asp-route-id="@GetObjectValue(lab,"Id")">
-                <div class=box>
-                    <img class="lab-img" src=@GetObjectValue(lab,"Picture")>
-                    <div class="title">@GetObjectValue(lab,"Name") </div>
-                    <div class="item">
-                        <div class="item-name">@GetObjectValue(lab,"ToolName")</div>
-                        <div class="item-left">5 / @GetObjectValue(lab,"Amount") available</div>
+        <div class="warpper">
+            @foreach (var lab in ViewBag.labTool)
+            {
+                <a asp-controller="SelectItem" asp-action="Index" asp-route-id="@GetObjectValue(lab,"Id")">
+                    <div class=box>
+                        <img class="lab-img" src=@GetObjectValue(lab,"Picture")>
+                        <div class="title">@GetObjectValue(lab,"Name") </div>
+                        <div class="item">
+                            <div class="item-name">@GetObjectValue(lab,"ToolName")</div>
+                            <div class="item-left">5 / @GetObjectValue(lab,"Amount") available</div>
+                        </div>
+
                     </div>
+                </a>
 
-                </div>
-            </a>
-
-        }
+            }
     </div>
 </div>
