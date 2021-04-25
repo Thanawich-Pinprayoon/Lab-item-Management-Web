@@ -1,4 +1,5 @@
-@model LabManage.Models.Lab 
+@model LabManage.Models.Transaction
+
 @functions{
     public dynamic GetObjectValue(object o, string propertyName)
     {
@@ -8,9 +9,11 @@
 
 
 
+
+
 <link rel="stylesheet" href="~/css/select-item.css">
 <link rel="stylesheet" href="~/css/style.css">
-<script defer src="~/js/select-item.js"></script>
+@* <script defer src="~/js/todayDate.js"></script> *@
 @* @foreach (var item in ViewBag.item)
 { *@
    <div class="content">
@@ -51,8 +54,29 @@
                 <hr style="border-color:gray">
                 @* <div class="cards-list" id="card-list"></div> *@
                 <br/>
-                <p class="list-text">กรุณาเลือกเวลา</p>
-                <div class="date-container">
+                <form asp-action="CreateTransaction">
+                    <p class="list-text">กรุณาเลือกเวลา</p><br/>
+                    <div asp-validation-summary="ModelOnly"></div>
+                    <input type="hidden" asp-for="toolID" value="@GetObjectValue(ViewBag.item,"ToolId")"/>
+                    <div class="form-group">
+                        <label>วันที่ยืม</label>
+                        <input required asp-for="start" class="form-control" id="minStart" min=""/>
+                        <span asp-validation-for="start"></span>
+                    </div><br/>
+                    <div class="form-group">
+                         <label>วันที่คืน</label>
+                        <input required asp-for="end" class="form-control" id="minEnd" min="" />
+                        <span asp-validation-for="end" ></span>
+                    </div><br/>
+                    <div class="form-group" style="    
+                        display: flex ;
+                        justify-content: flex-end;
+                        margin-right: 20px;">
+                        <input type="submit" value="Book" class="confirm-btn" onclick="window.alert("complete!!")" />
+                    </div>
+                </form>
+               
+                @* <div class="date-container">
                     <div class="start-date-container">
                         <p>วันที่ยืม:</p>
                         <input type="date" id="Start-date" />
@@ -61,21 +85,54 @@
                         <p>วันที่คืน:</p>
                         <input type="date" id="end-date" />
                     </div>
-                </div>
+                </div> *@
 
             </div> 
-            <div style="    
+            @* <div style="    
                 display: flex ;
                 justify-content: flex-end;
                 margin-right: 20px"
             >
                 <button class="confirm-btn" asp-controller="Home" asp-action="Index">Book</button>
             </div>
-            
+             *@
         </div>
 
     </div>
 </div> 
+<script>
+    function todayDate() {
+        var today = new Date(); // get the current date
+        var dd = today.getDate(); //get the day from today.
+        var mm = today.getMonth()+1; //get the month from today +1 because january is 0!
+        var yyyy = today.getFullYear(); //get the year from today
+
+        var hh = today.getHours();
+        var min = today.getMinutes();
+
+        //if day is below 10, add a zero before (ex: 9 -> 09)
+        if(dd<10) {
+            dd='0'+dd
+        }
+
+        //like the day, do the same to month (3->03)
+        if(mm<10) {
+            mm='0'+mm
+        }
+        if(hh<10) {
+            hh='0'+hh
+        }
+        if(min<10) {
+            min='0'+min
+        }
+
+        //finally join yyyy mm and dd with a "-" between then
+        return yyyy+'-'+mm+'-'+dd+'T'+hh+':'+min;
+    }
+
+    document.getElementById("minStart").min = todayDate();
+    document.getElementById("minEnd").min = todayDate();
+</script>
 @* } *@
 
 @* <!-- ----------------------- card-1 ----------------------->

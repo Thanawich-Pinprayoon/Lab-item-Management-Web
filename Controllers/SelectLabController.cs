@@ -9,6 +9,10 @@ using LabManage.Models;
 using Microsoft.EntityFrameworkCore;
 using LabManage.Data;
 
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
+
 namespace LabManage.Controllers
 {
     public class SelectLabController : Controller
@@ -31,7 +35,7 @@ namespace LabManage.Controllers
         // {
         //     return View();
         // }
-
+        [Authorize(Policy = "ManageLab")]
         public async Task<IActionResult> Index()
         {
             var labs = await _context.Lab.ToListAsync();

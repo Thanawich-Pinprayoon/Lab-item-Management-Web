@@ -9,22 +9,28 @@ using LabManage.Models;
 using Microsoft.EntityFrameworkCore;
 using LabManage.Data;
 
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
+
 namespace LabManage.Controllers
 {
     public class SelectItemController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<Users> _userManager;
 
-        public SelectItemController(ApplicationDbContext context)
+        public SelectItemController(ApplicationDbContext context, UserManager<Users> userManager)
         {
             _context = context;
+             _userManager = userManager;
         }
 
         // public IActionResult Index()
         // {
         //     return View();
         // }
-
+    
         public async Task<IActionResult> Index(int? id)
         {
             if (id == null)
@@ -56,6 +62,8 @@ namespace LabManage.Controllers
                 ToolPicture = tools.pic,
                 ItemDesc = tools.description,
             };
+
+            
         
             ViewBag.item = result;
 
@@ -163,6 +171,29 @@ namespace LabManage.Controllers
                 return Redirect($"/SelectItem/Index/{tool.id}");
             }
             return View(tool);
+        }
+
+        // POST: Transactions/CreateNew
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateTransaction( [Bind("toolID,start,end")] Transaction transaction)
+        {
+            ModelState.Clear();
+
+            var currentUser = await _userManager.GetUserAsync(User);
+            transaction.userID = currentUser.Id;
+            transaction.status = Status.Book;
+
+            if (TryValidateModel(transaction, nameof(transaction)))
+            {
+                _context.Add(transaction);
+                await _context.SaveChangesAsync();
+                return Redirect($"/SelectItem/Index/{transaction.toolID}");
+            }
+            
+            return View(transaction);
         }
         private bool ToolExists(int id)
         {
