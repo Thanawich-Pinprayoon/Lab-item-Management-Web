@@ -42,6 +42,8 @@ namespace LabManage.Controllers
             // var labs = await _context.Lab.Where(m=>m.Id == 1 ).ToListAsync(); Filter เอาแต่ Lab 1
             var tools = await _context.Tool.ToListAsync();
 
+            var trans = await _context.Transaction.ToListAsync();
+
             List<dynamic> result = new List<dynamic>();
 
             for (var i = 0; i < labs.Count(); i++)
@@ -54,6 +56,7 @@ namespace LabManage.Controllers
                     Picture = labs.ElementAt(i).pic,
                     ToolName = tools.ElementAt(i).name,
                     Amount = tools.ElementAt(i).amount
+                   
                 });
             }
 

@@ -139,6 +139,9 @@ namespace LabManage.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<DateTime>("date")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("end")
                         .HasColumnType("TEXT");
 

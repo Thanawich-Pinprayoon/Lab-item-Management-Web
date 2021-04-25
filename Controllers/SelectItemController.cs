@@ -49,6 +49,19 @@ namespace LabManage.Controllers
             var labs = await _context.Lab.FindAsync(id);
             // var tools = await _context.Tool.ToListAsync();
             var tools = await _context.Tool.FindAsync(id);
+            // var trans = await _context.Transaction.ToListAsync();
+            var trans = await _context.Transaction.Where(m=>m.toolID == id&&m.status == Status.Book ).ToListAsync();
+            
+            var count = new int[] {0,0,0,0,0,0,0};
+            foreach(var item in trans){
+                for (int i =0 ; i<7 ; i++){
+                    if(item.date == DateTime.Today.AddDays(i)){
+                        count[i]++;
+                    }
+
+                }
+                
+            }
 
             dynamic result = new {
                 Id = labs.id,
@@ -60,12 +73,11 @@ namespace LabManage.Controllers
                 ToolLabId= tools.labID,
                 Amount = tools.amount,
                 ToolPicture = tools.pic,
-                ItemDesc = tools.description,
+                ItemDesc = tools.description
             };
 
-            
-        
             ViewBag.item = result;
+            ViewBag.count = count;
 
             return View();
         }
@@ -178,7 +190,7 @@ namespace LabManage.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateTransaction( [Bind("toolID,start,end")] Transaction transaction)
+        public async Task<IActionResult> CreateTransaction( [Bind("toolID,date")] Transaction transaction)
         {
             ModelState.Clear();
 

@@ -19,6 +19,8 @@
    <div class="content">
     <div class="section">
         <p>@GetObjectValue(ViewBag.item,"Name")</p>
+        @* <p>@ViewBag.count[3]</p> *@
+
     </div>
     <hr>
     <div class="layout">
@@ -47,92 +49,54 @@
                     <img class="item-img" src="@GetObjectValue(ViewBag.item,"ToolPicture")">
                     <div class="item-text">
                         <div class="item-name">@GetObjectValue(ViewBag.item,"ToolName")</div>
-                        <div class="item-number">5/ @GetObjectValue(ViewBag.item,"Amount") left</div>
+                        <div class="item-number">@GetObjectValue(ViewBag.item,"Amount") items</div>
                         <div class="item-description"> @GetObjectValue(ViewBag.item,"ItemDesc")</div>
                     </div>
                 </div>
                 <hr style="border-color:gray">
                 @* <div class="cards-list" id="card-list"></div> *@
                 <br/>
-                <form asp-action="CreateTransaction">
-                    <p class="list-text">กรุณาเลือกเวลา</p><br/>
-                    <div asp-validation-summary="ModelOnly"></div>
-                    <input type="hidden" asp-for="toolID" value="@GetObjectValue(ViewBag.item,"ToolId")"/>
-                    <div class="form-group">
-                        <label>วันที่ยืม</label>
-                        <input required asp-for="start" class="form-control" id="minStart" min=""/>
-                        <span asp-validation-for="start"></span>
-                    </div><br/>
-                    <div class="form-group">
-                         <label>วันที่คืน</label>
-                        <input required asp-for="end" class="form-control" id="minEnd" min="" />
-                        <span asp-validation-for="end" ></span>
-                    </div><br/>
-                    <div class="form-group" style="    
-                        display: flex ;
-                        justify-content: flex-end;
-                        margin-right: 20px;">
-                        <input type="submit" value="Book" class="confirm-btn" onclick="window.alert("complete!!")" />
-                    </div>
-                </form>
-               
-                @* <div class="date-container">
-                    <div class="start-date-container">
-                        <p>วันที่ยืม:</p>
-                        <input type="date" id="Start-date" />
-                    </div>
-                    <div class="end-date-container">
-                        <p>วันที่คืน:</p>
-                        <input type="date" id="end-date" />
-                    </div>
-                </div> *@
-
-            </div> 
-            @* <div style="    
-                display: flex ;
-                justify-content: flex-end;
-                margin-right: 20px"
-            >
-                <button class="confirm-btn" asp-controller="Home" asp-action="Index">Book</button>
+                <p class="list-text">กรุณาเลือกวันที่ที่ต้องการจะจอง</p><br/>
+                <div class="choose-time">
+                     @for (int i = 0; i < 7; i++)
+                    {   
+                        <form asp-action="CreateTransaction">
+                            <div asp-validation-summary="ModelOnly"></div>
+                            <input type="hidden" asp-for="toolID" value="@GetObjectValue(ViewBag.item,"ToolId")"/>
+                            <div class="select-time">
+                                <div>
+                                    @DateTime.Today.AddDays(i).ToShortDateString()
+                                    &nbsp;
+                                    @ViewBag.count[i] 
+                                    @if(ViewBag.count[i]<=1) {
+                                        @:item already reserved
+                                    }else{
+                                        @:items already reserved
+                                    }
+                                    
+                                    
+                                </div>
+                                <div>
+                                    <input type="hidden" asp-for="date" value="@DateTime.Today.AddDays(i).ToShortDateString()"/>
+                                    @if(ViewBag.count[i]<GetObjectValue(ViewBag.item,"Amount")){
+                                        <input type="submit" value="Book" class="confirm-btn" />
+                                    }else{
+                                        <input disabled type="submit" value="Full" class="cancel-btn" />
+                                    }
+                                </div>
+                            </div>
+                            <hr style="border-color:gray"/>
+                        </form>
+                    }
             </div>
-             *@
+            </div> 
+
         </div>
 
     </div>
 </div> 
-<script>
-    function todayDate() {
-        var today = new Date(); // get the current date
-        var dd = today.getDate(); //get the day from today.
-        var mm = today.getMonth()+1; //get the month from today +1 because january is 0!
-        var yyyy = today.getFullYear(); //get the year from today
 
-        var hh = today.getHours();
-        var min = today.getMinutes();
 
-        //if day is below 10, add a zero before (ex: 9 -> 09)
-        if(dd<10) {
-            dd='0'+dd
-        }
-
-        //like the day, do the same to month (3->03)
-        if(mm<10) {
-            mm='0'+mm
-        }
-        if(hh<10) {
-            hh='0'+hh
-        }
-        if(min<10) {
-            min='0'+min
-        }
-
-        //finally join yyyy mm and dd with a "-" between then
-        return yyyy+'-'+mm+'-'+dd+'T'+hh+':'+min;
-    }
-
-    document.getElementById("minStart").min = todayDate();
-    document.getElementById("minEnd").min = todayDate();
-</script>
 @* } *@
 
 @* <!-- ----------------------- card-1 ----------------------->

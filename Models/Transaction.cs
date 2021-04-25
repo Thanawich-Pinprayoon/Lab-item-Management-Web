@@ -36,13 +36,19 @@ namespace LabManage.Models
 
         [Required]
         [Display(Name = "Borrow start")]
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
         public DateTime start { get; set; }
 
         [Required]
         [Display(Name = "Borrow end")]
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
         public DateTime end { get; set; }
+
+        [Required]
+        [Display(Name = "date")]
+        [DataType(DataType.Date)]
+        public DateTime date { get; set; }
+        
         
         [Required]
         [Display(Name = "Status")]
