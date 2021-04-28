@@ -198,3 +198,9 @@ label img{
 .spacetop{
     margin-top: 15px;
 }
+
+.validate li{
+    list-style-type: none;
+    font-size: 16;
+    color:#f35757;
+}

@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+@using Microsoft.AspNetCore.Identity
+@using LabManage.Models
+@inject SignInManager<Users> SignInManager
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -20,25 +25,30 @@
                 <div class="left-nav">
                     <a class="navbar-brand">LabManage</a>
                     <div class="nav-list">
-                        <ul>
-                            <li>
-                                <a asp-area="" asp-controller="SelectLab" asp-action="Index">Home</a>
-                            </li>
-                            <li>
-                                <a asp-area="" asp-controller="Transactions" asp-action="Index">Item</a>
-                            </li>
-                            <li>
-                                <a asp-area="" asp-controller="BlackList" asp-action="Index">Blacklist</a>
-                            </li>
-                        </ul>
+                        @if (SignInManager.IsSignedIn(User))
+                        {  
+                            <ul>
+                                <li>
+                                    <a asp-area="" asp-controller="SelectLab" asp-action="Index">Home</a>
+                                </li>
+                                <li>
+                                    <a asp-area="" asp-controller="Transactions" asp-action="Index">Item</a>
+                                </li>
+                                <li>
+                                    <a asp-area="" asp-controller="Colab" asp-action="Index">Co-Lab</a>
+                                </li>
+                                @if ((await AuthorizationService.AuthorizeAsync(User, "ManageLab")).Succeeded)
+                                {       
+                                    <li>
+                                        <a asp-area="" asp-controller="BlackLists" asp-action="Index">Blacklist</a>
+                                    </li>
+                                }
+                            </ul>
+                        }    
                     </div>
                 </div>
                 <div class="nav-list">
-                    <a asp-area="" asp-controller="Home" asp-action="Profile">
-                        <div class="profile-icon"> 
-                            <img src="~/img/profile.jpg" >
-                        </div> 
-                    </a><partial name="_LoginPartial" />
+                    <partial name="_LoginPartial" />
                 </div>
                     
                 </div>

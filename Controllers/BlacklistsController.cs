@@ -22,10 +22,10 @@ namespace LabManage.Controllers
         }
 
         // GET: Blacklists
-        [AllowAnonymous]
+       
         public async Task<IActionResult> Index()
         {
-            var blacklist = _context.Blacklist.Include(b => b.lab).Include(b => b.staff).Include(b => b.user);
+            var blacklist = _context.Blacklist.Include(b => b.user);
             return View(await blacklist.ToListAsync());
         }
 
@@ -39,8 +39,6 @@ namespace LabManage.Controllers
             }
 
             var blacklist = await _context.Blacklist
-                .Include(b => b.lab)
-                .Include(b => b.staff)
                 .Include(b => b.user)
                 .FirstOrDefaultAsync(m => m.userID == id);
             if (blacklist == null)
@@ -54,8 +52,6 @@ namespace LabManage.Controllers
         // GET: Blacklists/Create
         public IActionResult Create()
         {
-            ViewData["labID"] = new SelectList(_context.Lab, "id", "name");
-            ViewData["staffID"] = new SelectList(_context.Users, "Id", "Name");
             ViewData["userID"] = new SelectList(_context.Users, "Id", "Name");
             return View();
         }
@@ -65,7 +61,7 @@ namespace LabManage.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,userID,staffID,labID,reason,date")] Blacklist blacklist)
+        public async Task<IActionResult> Create([Bind("userID,reason")] Blacklist blacklist)
         {
             if (ModelState.IsValid)
             {
@@ -73,8 +69,6 @@ namespace LabManage.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["labID"] = new SelectList(_context.Lab, "id", "name", blacklist.labID);
-            ViewData["staffID"] = new SelectList(_context.Users, "Id", "Name", blacklist.staffID);
             ViewData["userID"] = new SelectList(_context.Users, "Id", "Name", blacklist.userID);
             return View(blacklist);
         }
@@ -92,8 +86,7 @@ namespace LabManage.Controllers
             {
                 return NotFound();
             }
-            ViewData["labID"] = new SelectList(_context.Lab, "id", "name", blacklist.labID);
-            ViewData["staffID"] = new SelectList(_context.Users, "Id", "Name", blacklist.staffID);
+
             ViewData["userID"] = new SelectList(_context.Users, "Id", "Name", blacklist.userID);
             return View(blacklist);
         }
@@ -130,14 +123,12 @@ namespace LabManage.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["labID"] = new SelectList(_context.Lab, "id", "name", blacklist.labID);
-            ViewData["staffID"] = new SelectList(_context.Users, "Id", "Name", blacklist.staffID);
             ViewData["userID"] = new SelectList(_context.Users, "Id", "Name", blacklist.userID);
             return View(blacklist);
         }
 
         // GET: Blacklists/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int id)
         {
             if (id == null)
             {
@@ -145,10 +136,8 @@ namespace LabManage.Controllers
             }
 
             var blacklist = await _context.Blacklist
-                .Include(b => b.lab)
-                .Include(b => b.staff)
                 .Include(b => b.user)
-                .FirstOrDefaultAsync(m => m.userID == id);
+                .FirstOrDefaultAsync(m => m.id == id);
             if (blacklist == null)
             {
                 return NotFound();
@@ -160,7 +149,7 @@ namespace LabManage.Controllers
         // POST: Blacklists/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var blacklist = await _context.Blacklist.FindAsync(id);
             _context.Blacklist.Remove(blacklist);

@@ -11,12 +11,12 @@
     <h4>Blacklist</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        @* <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.id)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.id)
-        </dd>
+        </dd> *@
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.user)
         </dt>
@@ -24,35 +24,15 @@
             @Html.DisplayFor(model => model.user.Name)
         </dd class>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.staff)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.staff.Name)
-        </dd class>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.lab)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.lab.name)
-        </dd class>
-        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.reason)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.reason)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.date)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.date)
-        </dd>
     </dl>
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="userID" />
-        <input type="hidden" asp-for="staffID" />
-        <input type="hidden" asp-for="labID" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-action="Index">Back to List</a>
     </form>

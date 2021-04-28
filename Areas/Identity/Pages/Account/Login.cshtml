@@ -55,6 +55,7 @@
             
             <br>
             <form id="account" method="post">
+                
                 <p class="header">Username</p>
                 <input asp-for="Input.Username" class="input-text" type="text"></input>
 
@@ -72,8 +73,7 @@
                     }
                 </script>
                 <input asp-for="Input.Password" class="input-text" type="password" id="myInput"></input>
-                <input  type="checkbox" id="showPassword" onclick="showPassword()">
-                <label for="showPassword"><img id="eye" src="~/img/invisible.png" alt="" width="16"></label>
+
               
 
                 <br><br>
@@ -84,7 +84,8 @@
                     </label>
                     <p class="t1">จดจำผู้ใช้งาน</p>
                 </div>
-
+                <br>
+                <div asp-validation-summary="All" class="validate"></div>
                 <br><br>
                 <button class="button-log" type="submit" >Login</button>
             </form>

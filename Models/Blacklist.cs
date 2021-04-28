@@ -11,31 +11,13 @@ namespace LabManage.Models
         [Required]
         [Display(Name = "User")]
         public string userID { get; set; }
-        [Required]
+    
         [ForeignKey("userID")]
         public virtual Users user { get; set; } 
 
         [Required]
-        [Display(Name = "Blacklist By")]
-        public string staffID { get; set; }
-        [Required]
-        [ForeignKey("staffID")]
-        public virtual Users staff { get; set; }
-
-        [Required]
-        [Display(Name = "Blacklist From Lab")]
-        public int labID { get; set; }
-        [Required]
-        [ForeignKey("labID")]
-        public Lab lab { get; set; }
-
-        [Required]
-        [Display(Name = "Blacklist Reason")]
+        [Display(Name = "Reason")]
         public string reason { get; set; }
 
-        [Required]
-        [Display(Name = "Blacklist At")]
-        [DataType(DataType.DateTime)]
-        public DateTime date { get; set; }
     }
 }

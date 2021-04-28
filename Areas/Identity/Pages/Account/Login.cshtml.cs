@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using LabManage.Models;
+using LabManage.Data;
 
 namespace LabManage.Areas.Identity.Pages.Account
 {
@@ -21,14 +22,17 @@ namespace LabManage.Areas.Identity.Pages.Account
         private readonly UserManager<Users> _userManager;
         private readonly SignInManager<Users> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly ApplicationDbContext _context;
 
         public LoginModel(SignInManager<Users> signInManager, 
             ILogger<LoginModel> logger,
-            UserManager<Users> userManager)
+            UserManager<Users> userManager,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+             _context = context;
         }
 
         [BindProperty]
@@ -86,10 +90,19 @@ namespace LabManage.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    if (_context.Blacklist.Where(m=>m.user.UserName == Input.Username).Count()==0)
+                    {
+                        return LocalRedirect(returnUrl);
+                    }else{
+                        await _signInManager.SignOutAsync();
+                        ModelState.AddModelError(string.Empty, "You have Banned from LabManage, Please contact to Administrator.");
+                        
+                        return Page();
+                    }
+                   
                 }
                 if (result.RequiresTwoFactor)
-                {
+                {   
                     return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
                 }
                 if (result.IsLockedOut)

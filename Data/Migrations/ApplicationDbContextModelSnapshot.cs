@@ -18,30 +18,21 @@ namespace LabManage.Data.Migrations
 
             modelBuilder.Entity("LabManage.Models.Blacklist", b =>
                 {
-                    b.Property<string>("userID")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("staffID")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("labID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("date")
-                        .HasColumnType("TEXT");
-
                     b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("reason")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("userID", "staffID", "labID");
+                    b.Property<string>("userID")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
-                    b.HasIndex("labID");
+                    b.HasKey("id");
 
-                    b.HasIndex("staffID");
+                    b.HasIndex("userID");
 
                     b.ToTable("Blacklist");
                 });
@@ -382,27 +373,11 @@ namespace LabManage.Data.Migrations
 
             modelBuilder.Entity("LabManage.Models.Blacklist", b =>
                 {
-                    b.HasOne("LabManage.Models.Lab", "lab")
-                        .WithMany()
-                        .HasForeignKey("labID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("LabManage.Models.Users", "staff")
-                        .WithMany()
-                        .HasForeignKey("staffID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("LabManage.Models.Users", "user")
                         .WithMany()
                         .HasForeignKey("userID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("lab");
-
-                    b.Navigation("staff");
 
                     b.Navigation("user");
                 });
