@@ -39,7 +39,7 @@ namespace LabManage.Controllers
         public async Task<IActionResult> Index()
         {
             var labs = await _context.Lab.ToListAsync();
-            // var labs = await _context.Lab.Where(m=>m.Id == 1 ).ToListAsync(); Filter เอาแต่ Lab 1
+
             var tools = await _context.Tool.ToListAsync();
 
             var trans = await _context.Transaction.ToListAsync();
@@ -64,27 +64,68 @@ namespace LabManage.Controllers
             return View();
         }
 
-            // GET: User/Create
-            public IActionResult Create()
-            {
-                return View();
-            }
+        // GET: User/Create
+        public IActionResult Create()
+        {
+            return View();
+        }
 
-            // POST: User/Create
-            // To protect from overposting attacks, enable the specific properties you want to bind to.
-            // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-            [HttpPost]
-            [ValidateAntiForgeryToken]
-            public async Task<IActionResult> Create([Bind("id,name,description,pic")] Lab lab)
+        // POST: User/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("id,name,description,pic")] Lab lab)
+        {
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    _context.Add(lab);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
-                }
-                return View(lab);
+                _context.Add(lab);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
+            return View(lab);
+        }
+
+        public async Task<string> Api(){
+            var labs = await _context.Lab.ToListAsync();
+            var tools = await _context.Tool.ToListAsync();
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject(new
+            {
+                lab1=new{
+                    labName = labs.ElementAt(0).name,
+                    itemName = tools.ElementAt(0).name,
+                    labImage = labs.ElementAt(0).pic,
+                    link = ""
+                },
+                lab2=new{
+                    labName = labs.ElementAt(1).name,
+                    itemName = tools.ElementAt(1).name,
+                    labImage = labs.ElementAt(1).pic,
+                    link = ""
+                },
+                lab3=new{
+                    labName = labs.ElementAt(2).name,
+                    itemName = tools.ElementAt(2).name,
+                    labImage = labs.ElementAt(2).pic,
+                    link = ""
+                },
+                lab4=new{
+                    labName = labs.ElementAt(3).name,
+                    itemName = tools.ElementAt(3).name,
+                    labImage = labs.ElementAt(3).pic,
+                    link = ""
+                },
+                lab5=new{
+                    labName = labs.ElementAt(4).name,
+                    itemName = tools.ElementAt(4).name,
+                    labImage = labs.ElementAt(4).pic,
+                    link = ""
+                },
+                
+            }
+            );
+            return json;
+        }
 
 
         }
