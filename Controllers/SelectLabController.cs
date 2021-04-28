@@ -35,7 +35,7 @@ namespace LabManage.Controllers
         // {
         //     return View();
         // }
-        [Authorize(Policy = "ManageLab")]
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var labs = await _context.Lab.ToListAsync();
