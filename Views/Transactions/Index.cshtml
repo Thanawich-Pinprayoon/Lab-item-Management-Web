@@ -9,29 +9,37 @@
 @{
     ViewData["Title"] = "Index";
 }
+<link rel="stylesheet" href="~/css/style.css">
 <style>
     .content {
-        height: 75vh;
-        margin-top: 30px;
+        height: 80vh;
+        /* background-color: yellowgreen; */
         display: flex;
         flex-direction: column;
-        justify-content: space-evenly;
+        justify-content: center;
+
     }
+
     .section {
-    font-size: 28px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 28px;
     }
+
     .d1{
-        position: absolute;
-        width: 80%;
-        height: 80%;
+        position: flex;
+        width: 100%;
+        height: 80vh;
         background: #FFDFC8;
-        margin: 10px;
-        border-radius: 10px;
-        box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
-        padding : 30px;
+        @* border-radius: 10px; *@
+        @* box-shadow: 0px 4px 4px rgb(0 0 0 / 25%); *@
+        @* padding : 30px; *@
         display: flex;
         flex-direction: column;
+        overflow-y: scroll;
+        
     }
+    .d1 thead th { position: sticky; top: 0; z-index: 1; }
     .layout {
         height: 75vh;
         margin-top: 30px;
@@ -39,36 +47,61 @@
         flex-direction: row;
         justify-content: space-evenly;
         min-width: 1080px;
+        
+        
     }
     h1{
             font-size: 28px;
     }
-    table{
-        
-        border: 2px solid gray;
-        padding-left: 20px;
+    table, td, th {
+        padding: 8px;
     }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        }
     th{
-        border-radius: 10px;
-        border: 2px solid gray;
-        text-align: center;
-        font-size: 25px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        color: white;
+        background-color: #FF7D7D;
     }
+  
+    tr:nth-child(even){background-color: #fdfdfd ;}
     td{
-        border-radius: 10px;
-        border: 2px solid gray;
-        text-align: center;
-        text-decoration-line: none;
-        font-size: 20px;
+        padding: 10px 10;
+
     }
+    tbody{
+        
+        
+    }
+    .btn{
+        width: 100px;
+        height: 50px; 
+        font-size: 16px;
+        border-radius: 5px;
+        background-color: #FB9B9B;
+        border: none;
+        color: #fdfdfd;
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+        text-decoration: none;
+        padding: 5px;
+
+    }
+
+
     
     
-    
+
 </style>
 <div class="content">
     <div class="section">
-        <p>Transcation History</p>
+        <p>Transcation</p>
     </div>
+    <hr />
     <div class="layout">
          <div class="d1">
             <table class="table">
@@ -107,16 +140,13 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.status)
                             </td>
-                            @if (item.status == LabManage.Models.Status.Book && item.userID == User.FindFirst(ClaimTypes.NameIdentifier).Value)
-                                {
-                                    <td>
-                                        @if (item.status == LabManage.Models.Status.Book && item.userID == User.FindFirst(ClaimTypes.NameIdentifier).Value)
-                                            {   
-                                            @:
-                                            <a asp-action="Cancel" asp-route-id="@item.id">Cancel</a>
-                                            }
-                                    </td>
-                                }
+                            <td>
+                                @if (item.status == LabManage.Models.Status.Book && item.userID == User.FindFirst(ClaimTypes.NameIdentifier).Value)
+                                    {   
+                                    <a class="btn" asp-action="Cancel" asp-route-id="@item.id">ยกเลิกการจอง</a>
+                                    }
+                            </td>
+                                
                         </tr>
                 }
                 </tbody>
