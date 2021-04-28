@@ -9,93 +9,118 @@
 @{
     ViewData["Title"] = "Index";
 }
-
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.user)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.staff)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.tool)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.toolID)
-            </th>
-            @* <th>
-                @Html.DisplayNameFor(model => model.start)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.end)
-            </th> *@
-             <th>
-                @Html.DisplayNameFor(model => model.date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.status)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.user.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.staff.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.tool.name)
-            </td>
-            @* <td>
-                @Html.DisplayFor(modelItem => item.item.id)
-            </td> *@
-            <td>
-                @Html.DisplayFor(modelItem => item.toolID)
-            </td>
-            @* <td>
-                @Html.DisplayFor(modelItem => item.start)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.end)
-            </td> *@
-             <td>
-                @Html.DisplayFor(modelItem => item.date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.status)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a>
-@if ((await AuthorizationService.AuthorizeAsync(User, "ManageLab")).Succeeded)
-{
-    if (item.status == LabManage.Models.Status.Book) {
-        @:|
-        <a asp-action="Give" asp-route-id="@item.id">Give</a>
+<style>
+    .content {
+        height: 75vh;
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
     }
-    if (item.status == LabManage.Models.Status.Borrow) {
-        @:|
-        <a asp-action="Grab" asp-route-id="@item.id">Grab</a>
+    .section {
+    font-size: 28px;
     }
-}
-@if (item.status == LabManage.Models.Status.Book && item.userID == User.FindFirst(ClaimTypes.NameIdentifier).Value)
-{
-    @:|
-    <a asp-action="Cancel" asp-route-id="@item.id">Cancel</a>
-}
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    .d1{
+        position: absolute;
+        width: 80%;
+        height: 80%;
+        background: #FFDFC8;
+        margin: 10px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+        padding : 30px;
+        display: flex;
+        flex-direction: column;
+    }
+    .layout {
+        height: 75vh;
+        margin-top: 30px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        min-width: 1080px;
+    }
+    h1{
+            font-size: 28px;
+    }
+    table{
+        
+        border: 2px solid gray;
+        padding-left: 20px;
+    }
+    th{
+        border-radius: 10px;
+        border: 2px solid gray;
+        text-align: center;
+        font-size: 25px;
+    }
+    td{
+        border-radius: 10px;
+        border: 2px solid gray;
+        text-align: center;
+        text-decoration-line: none;
+        font-size: 20px;
+    }
+    
+    
+    
+</style>
+<div class="content">
+    <div class="section">
+        <p>Transcation History</p>
+    </div>
+    <div class="layout">
+         <div class="d1">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.user)
+                        </th>
+                        
+                        <th>
+                            @Html.DisplayNameFor(model => model.tool)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.date)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.status)
+                        </th>
+                        <th>
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model) {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.user.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tool.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.status)
+                            </td>
+                            @if (item.status == LabManage.Models.Status.Book && item.userID == User.FindFirst(ClaimTypes.NameIdentifier).Value)
+                                {
+                                    <td>
+                                        @if (item.status == LabManage.Models.Status.Book && item.userID == User.FindFirst(ClaimTypes.NameIdentifier).Value)
+                                            {   
+                                            @:
+                                            <a asp-action="Cancel" asp-route-id="@item.id">Cancel</a>
+                                            }
+                                    </td>
+                                }
+                        </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
