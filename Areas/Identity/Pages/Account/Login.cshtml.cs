@@ -95,7 +95,8 @@ namespace LabManage.Areas.Identity.Pages.Account
                         return LocalRedirect(returnUrl);
                     }else{
                         await _signInManager.SignOutAsync();
-                        ModelState.AddModelError(string.Empty, "You have Banned from LabManage, Please contact to Administrator.");
+                        ModelState.AddModelError(string.Empty, "You have Banned from LabManage,.");
+                        ModelState.AddModelError(string.Empty, " Please contact to Administrator.");
                         
                         return Page();
                     }

@@ -35,7 +35,7 @@
                                     <a asp-area="" asp-controller="Transactions" asp-action="Index">Transactions</a>
                                 </li>
                                 <li>
-                                    <a asp-area="" asp-controller="Colab" asp-action="Index">Co-Lab</a>
+                                    <a asp-area="" asp-controller="SelectLab" asp-action="CoLab">Co-Lab</a>
                                 </li>
                                 @if ((await AuthorizationService.AuthorizeAsync(User, "ManageLab")).Succeeded)
                                 {       

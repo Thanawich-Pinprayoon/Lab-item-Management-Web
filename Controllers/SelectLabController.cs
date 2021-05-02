@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Http;
 
+using System.Net.Http;
+
 namespace LabManage.Controllers
 {
     public class SelectLabController : Controller
@@ -61,6 +63,36 @@ namespace LabManage.Controllers
             }
 
             ViewBag.labTool= result;
+            return View();
+        }
+
+        [Authorize]
+        public async Task<IActionResult> CoLab()
+        {
+            string baseUrl = "https://dnzstudio.herokuapp.com/lab/getdata";
+            var json = "";
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    using (HttpResponseMessage res = await client.GetAsync(baseUrl))
+                    {
+                        using (HttpContent content = res.Content)
+                        {
+                            var data = await content.ReadAsStringAsync();
+                            if (data == null) json = "[]";
+                            json = data;
+                        }
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                json = "[]";
+            }
+            var colab = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Api>>(json);
+            ViewBag.item = colab ;
             return View();
         }
 

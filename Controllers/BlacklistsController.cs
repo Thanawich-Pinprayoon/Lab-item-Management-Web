@@ -130,10 +130,10 @@ namespace LabManage.Controllers
         // GET: Blacklists/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            // if (id == null)
+            // {
+            //     return NotFound();
+            // }
 
             var blacklist = await _context.Blacklist
                 .Include(b => b.user)

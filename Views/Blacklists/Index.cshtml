@@ -2,81 +2,20 @@
 @{
     ViewData["Title"] = "Black List";
 }
-<h1>@ViewData["Title"]</h1>
-
-<script>
-    function showBlPopup() {
-        document.getElementById('bl-popup').style.visibility = 'visible';
-    }
-    function hideBlPopup() {
-        document.getElementById('bl-popup').style.visibility = 'hidden';
-    }
-    function showFull(bl) {
-        alert('showing Full detail')
-        document.getElementById('full-userID').innerHTML = bl.getUserID();
-        document.getElementById('full-username').innerHTML = bl.getUserName();
-        document.getElementById('full-addDate').innerHTML = bl.getAddDate();
-        document.getElementById('full-reason').innerHTML = bl.getReason();
-        document.getElementById('full-staffID').innerHTML = bl.getStaffID();
-        document.getElementById('full-detail').style.visibility = 'visible'
-
-    }
-    function hideFull() {
-        document.getElementById('full-detail').style.visibility = 'hidden';
-    }
-
-    function sortList(opt) {
-        var list, i, switching, b, shouldSwitch;
-        list = document.getElementById("blacklist");
-        switching = true;
-        /* Make a loop that will continue until
-        no switching has been done: */
-        while (switching) {
-            // Start by saying: no switching is done:
-            switching = false;
-            b = list.getElementsByTagName("LI");
-            // Loop through all list items:
-            for (i = 0; i < (b.length - 1); i++) {
-                // Start by saying there should be no switching:
-                shouldSwitch = false;
-                /* Check if the next item should
-                switch place with the current item: */
-                if (b[i].getElementsByClassName(opt)[0].innerHTML.toLowerCase() > b[i + 1].getElementsByClassName(opt)[0].innerHTML.toLowerCase()) {
-                    /* If next item is alphabetically lower than current item,
-                    mark as a switch and break the loop: */
-                    shouldSwitch = true;
-                    break;
-                }
-            }
-            if (shouldSwitch) {
-                /* If a switch has been marked, make the switch
-                and mark the switch as done: */
-                b[i].parentNode.insertBefore(b[i + 1], b[i]);
-                switching = true;
-            }
-        }
-    }
-
-</script>
 
 <div class="content">
-    <div class="main">
-        <p class="main-txt">Blacklist</p>
-        <hr>
+    <div class="section">
+        <p>Blacklist</p>
+    </div>
+    <hr />
         <div class="info-box">
             <div class="top-right">
                 <a asp-action="Create">
                     <button  class="add-blacklist-btn">Add Blacklist</button>
                 </a>
-                @* <div class="sort-box">
-                    <p class="sort-text">Sort by</p>
-                    <select onchange="sortList(this.value)" class="sort-by-select" name="sort-by" id="sort-by">
-                        <option value="username">User name</option>
-                        <option value="OnDate">date of add</option>
-                    </select>
-                </div> *@
+
             </div>
-            <hr style="margin: 0 10px;">
+
             <div class="blacklist-container">
                 <table class="table">
                     <thead>
@@ -106,7 +45,7 @@
 
                             <td>
 
-                                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                                <a asp-action="Delete" class="btn" asp-route-id="@item.id">Delete</a>
                             </td>
                         </tr>
                 }
@@ -129,7 +68,7 @@
                 </ul> *@
 
             </div>
-            <div id="bl-popup">
+            @* <div id="bl-popup">
                 <h2 class="popup-head">Add to blacklist</h2>
                 <hr style="margin: 10px;" />
                 <input type="text" name="username" id="bl-add-username" value="username" class="bl-inp-username" />
@@ -154,10 +93,10 @@
                         <input type="submit" value="Create" class="btn btn-primary" />
                     </div>
                 } *@
-                <button onclick="hideBlPopup()" class="bl-add-cancel">Cancel</button>
+                @* <button onclick="hideBlPopup()" class="bl-add-cancel">Cancel</button>
                 <button onclick="hideBlPopup()" class="bl-add-confirm">Confirm</button>
-            </div>
-            <div id="full-detail">
+            </div> *@
+            @* <div id="full-detail">
                 <h2 class="popup-head">Blacklist user</h2>
                 <hr style="margin: 10px;" />
                 <p id="full-userID"></p>
@@ -165,12 +104,76 @@
                 <p id="full-addDate"></p>
                 <p id="full-reason"></p>
                 <p id="full-staffID"></p>
-            </div>
+            </div> *@
         </div>
     </div>
 </div>
 
 <style>
+
+    <link rel="stylesheet" href="~/css/style.css">
+    .content {
+        height: 80vh;
+        /* background-color: yellowgreen; */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+    }
+
+    .section {
+        display: flex;
+        justify-content: space-between;
+        font-size: 28px;
+    }
+
+    .d1{
+        position: flex;
+        width: 100%;
+        height: 80vh;
+        background: #FFDFC8;
+        @* border-radius: 10px; *@
+        @* box-shadow: 0px 4px 4px rgb(0 0 0 / 25%); *@
+        @* padding : 30px; *@
+        display: flex;
+        flex-direction: column;
+        overflow-y: scroll;
+        
+    }
+    .d1 thead th { position: sticky; top: 0; z-index: 1; }
+    .layout {
+        height: 75vh;
+        margin-top: 30px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        min-width: 1080px;
+        
+    }
+    h1{
+            font-size: 28px;
+    }
+    table, td, th {
+        padding: 8px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        }
+    th{
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        color: white;
+        background-color: #FF7D7D;
+    }
+  
+    tr:nth-child(even){background-color: #fdfdfd ;}
+    td{
+        padding: 10px 10;
+
+    }
     /* .header .header-text {
     position: absolute;
     width: 417px;
@@ -278,17 +281,18 @@
     }
 
     .add-blacklist-btn {
-        /* position: absolute;
-    margin-top: 10px;
-    right: 22%;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal; */
-        font-size: 18px;
+
         width: 150px;
-        height: 30px;
-        background-color: #f5af5f;
-        color: #000000;
+        height: 30px; 
+        font-size: 16px;
+        border-radius: 5px;
+        background-color: #FB9B9B;
+        border: none;
+        color: #fdfdfd;
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+        text-decoration: none;
+        padding: 5px;
+
     }
 
     .sort-box {
@@ -332,12 +336,11 @@
   } */
 
     .blacklist-container {
-        background-color: rgb(167, 173, 255);
+        @* background-color: rgb(167, 173, 255); *@
         /*purple*/
         width: 95%;
         height: 85%;
         margin: auto;
-        padding: 5px;
         overflow: auto;
 
     }
@@ -466,4 +469,3 @@
         border-radius: 10px;
         background-color: #f5af5f;
     }
-</style>
