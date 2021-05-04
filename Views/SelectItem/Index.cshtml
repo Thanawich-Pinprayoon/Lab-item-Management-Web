@@ -75,7 +75,7 @@
                     @for (int i = 0; i < 7; i++)
 
                     {
-                        <form asp-action="CreateTransaction">
+                        <form asp-action="CreateTransaction" onsubmit="showConfirm()">
                             <div asp-validation-summary="ModelOnly"></div>
                             <input type="hidden" asp-for="toolID" value="@GetObjectValue(ViewBag.item,"ToolId")" />
                             <div class="select-time">
@@ -100,7 +100,7 @@
                                     value="@DateTime.Today.AddDays(i).ToShortDateString()" />
                                     @if (ViewBag.count[i] < GetObjectValue(ViewBag.item, "Amount"))
                                     {
-                                        <input type="submit" value="Book" class="confirm-btn" onclick="showConfirm()"/>
+                                        <input type="submit" value="Book" class="confirm-btn"/>
 
                                     }
                                     else
@@ -122,3 +122,11 @@
     </div>
 </div>
 
+@* Modal *@
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Some text in the Modal..</p>
+  </div>
+</div>
