@@ -19,7 +19,7 @@
 
 <link rel="stylesheet" href="~/css/select-item.css">
 <link rel="stylesheet" href="~/css/style.css">
-@* <script defer src="~/js/todayDate.js"></script> *@
+<script defer src="~/js/showConfirmPopup.js"></script> 
 @* @foreach (var item in ViewBag.item)
     { *@
 <div class="content">
@@ -100,7 +100,7 @@
                                     value="@DateTime.Today.AddDays(i).ToShortDateString()" />
                                     @if (ViewBag.count[i] < GetObjectValue(ViewBag.item, "Amount"))
                                     {
-                                        <input type="submit" value="Book" class="confirm-btn" />
+                                        <input type="submit" value="Book" class="confirm-btn" onclick="showConfirm()"/>
 
                                     }
                                     else
@@ -122,11 +122,3 @@
     </div>
 </div>
 
-
-@* } *@
-
-@* <!-- ----------------------- card-1 ----------------------->
-    <div class="item-card">
-    <div class="item-name">ชื่ออุปกรณ์</div>
-    <button class="book-btn">Book</button>
-    </div> *@
