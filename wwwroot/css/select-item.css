@@ -236,17 +236,20 @@
 }
 
 .modal-content{
-    background-color: #fefefe;
+    color: white;
+    background-color: #34D399;
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 50%;
+    display: flex;
+    align-items: center;
 }
 
 /* The Close Button */
 .close{
-    color: #aaaaaa;
-    float: right;
+    color: #fdfdfd;
+    margin-left:auto ;
     font-size: 28px;
     font-weight: bold;
 }

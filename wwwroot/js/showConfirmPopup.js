@@ -6,9 +6,9 @@ var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = async function() {
-  await fetch("https://localhost:5001/SelectItem/CloseModal");
   modal.style.display = "none";
-  
+  await fetch("https://localhost:5001/SelectItem/CloseModal");
+ 
 
 }
 
@@ -16,5 +16,6 @@ span.onclick = async function() {
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
+    await fetch("https://localhost:5001/SelectItem/CloseModal");
   }
 }
