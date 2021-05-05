@@ -13,6 +13,7 @@ using LabManage.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Http;
 
 namespace LabManage
 {
@@ -33,7 +34,8 @@ namespace LabManage
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<Users>(options => {
+            services.AddDefaultIdentity<Users>(options =>
+            {
                 options.Password.RequireDigit = false;
                 options.Password.RequiredUniqueChars = 0;
                 options.Password.RequireLowercase = false;
@@ -50,8 +52,19 @@ namespace LabManage
             {
                 options.AddPolicy("ManageLab", policy =>
                     policy.RequireAssertion(context =>
-                        context.User.HasClaim(c => c.Type == "ManageLab" )
+                        context.User.HasClaim(c => c.Type == "ManageLab")
                 ));
+            });
+
+             //session
+            services.Configure<CookiePolicyOptions>(options => { 
+                options.CheckConsentNeeded = context => false; 
+                options.MinimumSameSitePolicy = SameSiteMode.None; 
+            }); 
+            services.AddDistributedMemoryCache(); 
+            services.AddSession(options => { 
+                options.IdleTimeout = TimeSpan.FromDays(1);
+                options.Cookie.HttpOnly = true; 
             });
         }
 
@@ -76,6 +89,8 @@ namespace LabManage
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

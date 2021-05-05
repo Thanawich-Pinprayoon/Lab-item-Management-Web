@@ -2,6 +2,8 @@
 @using Microsoft.AspNetCore.Authorization
 @inject IAuthorizationService AuthorizationService
 
+@using Microsoft.AspNetCore.Http
+
 @functions{
 
     public dynamic GetObjectValue(object o, string propertyName)
@@ -121,12 +123,12 @@
 
     </div>
 </div>
-
-@* Modal *@
-<div id="myModal" class="modal">
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>Some text in the Modal..</p>
-  </div>
-</div>
+@if(Context.Session.GetInt32("isShowModal")==1){
+   <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Some text in the Modal..</p>
+        </div>
+    </div> 
+}

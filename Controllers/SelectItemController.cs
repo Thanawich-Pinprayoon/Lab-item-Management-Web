@@ -201,12 +201,19 @@ namespace LabManage.Controllers
             if (TryValidateModel(transaction, nameof(transaction)))
             {
                 _context.Add(transaction);
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync(); 
+                HttpContext.Session.SetInt32("isShowModal",1);
                 return Redirect($"/SelectItem/Index/{transaction.toolID}");
             }
-            
+            //show modal
+           
             return View(transaction);
         }
+
+        public string CloseModal(){
+            HttpContext.Session.SetInt32("isShowModal", 0);
+            return "closed";
+        } 
         private bool ToolExists(int id)
         {
             return _context.Lab.Any(e => e.id == id);
