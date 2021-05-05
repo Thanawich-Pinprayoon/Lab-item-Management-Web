@@ -46,9 +46,5 @@ namespace Lab_item_Management_Web.Controllers
 
         // GET: api/ItemsAPI/5
 
-        private bool ItemExists(int id)
-        {
-            return _context.Item.Any(e => e.id == id);
-        }
     }
 }

@@ -54,59 +54,8 @@
                     </tbody>
                 </table>
 
-
-
-                @* <ul id="blacklist">
-                    @foreach (var bl in Model)
-                    {
-                        <li>
-                            <div class="bl-user-box" onclick=showFull(@bl)>
-                                <p onclick=showFull(@bl) class="username"> @ ouoam</p>
-                                <p onclick=showFull(@bl) class="OnDate">@bl.addDate</p>
-                                <button class="bl-delete">X</button>
-                            </div>
-                        </li>
-                    }
-                </ul> *@
-
             </div>
-            @* <div id="bl-popup">
-                <h2 class="popup-head">Add to blacklist</h2>
-                <hr style="margin: 10px;" />
-                <input type="text" name="username" id="bl-add-username" value="username" class="bl-inp-username" />
-                @* @using (Html.BeginForm("addBlacklist", "BlackList", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                {
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.userID, "User ID")
-                        @Html.TextBoxFor(model => model.userID, new { @class = "form-control", placeholder =
-                    "กรุณาใส่ User ID" })
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.reason, "เหตุผลของในแบน")
-                        <div class='input-group date' id='dtReleaseDate'>
-                            @Html.TextBoxFor(model => model.reason, new { @class = "form-control", placeholder =
-                        "กรุณาใส่เหตุผล" })
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
-                    </div>
-                    <div class=form-group>
-                        <input type="submit" value="Create" class="btn btn-primary" />
-                    </div>
-                } *@
-                @* <button onclick="hideBlPopup()" class="bl-add-cancel">Cancel</button>
-                <button onclick="hideBlPopup()" class="bl-add-confirm">Confirm</button>
-            </div> *@
-            @* <div id="full-detail">
-                <h2 class="popup-head">Blacklist user</h2>
-                <hr style="margin: 10px;" />
-                <p id="full-userID"></p>
-                <p id="full-username"></p>
-                <p id="full-addDate"></p>
-                <p id="full-reason"></p>
-                <p id="full-staffID"></p>
-            </div> *@
+            
         </div>
     </div>
 </div>
@@ -134,9 +83,6 @@
         width: 100%;
         height: 80vh;
         background: #FFDFC8;
-        @* border-radius: 10px; *@
-        @* box-shadow: 0px 4px 4px rgb(0 0 0 / 25%); *@
-        @* padding : 30px; *@
         display: flex;
         flex-direction: column;
         overflow-y: scroll;
@@ -215,37 +161,13 @@
     }
 
     .sort-box p {
-        /* position: absolute;
-    margin-top: 15px;
-    right: 15%;
-
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal; */
         margin: 0 20px;
         font-size: 18px;
     }
 
     .sort-by-select {
-        /* position: absolute;
-    margin-top: 13px;
-    right: 5%;
-    width: 115px;
-
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal; */
         font-size: 18px;
     }
-
-    /* .line-head {
-    position: absolute;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-top: 45px;
-    width: 90%;
-    border: 1px solid #292929;
-  } */
 
     .blacklist-container {
 
@@ -264,10 +186,8 @@
     }
 
     #blacklist li {
-        /*display:inline-block;*/
         margin: 3px;
         flex: 0 1 calc(20% - 6px);
-        /*red*/
     }
 
     .bl-user-box {
@@ -280,9 +200,6 @@
 
     .username {
         position: relative;
-        /* font-family: Roboto;
-    font-style: normal;
-    font-weight: normal; */
         font-size: 18px;
         margin-left: 10%;
         padding: 3% 0;

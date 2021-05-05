@@ -44,7 +44,7 @@ namespace LabManage.Controllers
                 transaction = transaction.Where(t => t.userID == currentUser.Id);
             }
 
-            transaction = transaction.Include(t => t.item).Include(t => t.staff).Include(t => t.tool).Include(t => t.user);
+            transaction = transaction.Include(t => t.staff).Include(t => t.tool).Include(t => t.user);
             
             return View(await transaction.ToListAsync());
         }
@@ -58,7 +58,6 @@ namespace LabManage.Controllers
             }
 
             var transaction = await _context.Transaction
-                .Include(t => t.item)
                 .Include(t => t.staff)
                 .Include(t => t.tool)
                 .Include(t => t.user)
@@ -117,7 +116,6 @@ namespace LabManage.Controllers
                 return NotFound();
             }
             var currentUser = await _userManager.GetUserAsync(User);
-            ViewData["itemID"] = new SelectList(_context.Item, "id", "id", transaction.itemID);
             ViewData["staffID"] = new SelectList(_context.Users, "Id", "Name", transaction.staffID);
             ViewData["toolID"] = new SelectList(_context.Tool, "id", "name", transaction.toolID);
             ViewData["userID"] = new SelectList(_context.Users, "Id", "Name", transaction.userID);
@@ -170,7 +168,6 @@ namespace LabManage.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["itemID"] = new SelectList(_context.Item, "id", "id", transaction.itemID);
             ViewData["staffID"] = new SelectList(_context.Users, "Id", "Name", transaction.staffID);
             ViewData["toolID"] = new SelectList(_context.Tool, "id", "name", transaction.toolID);
             ViewData["userID"] = new SelectList(_context.Users, "Id", "Name", transaction.userID);

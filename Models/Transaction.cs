@@ -29,11 +29,6 @@ namespace LabManage.Models
         [ForeignKey("toolID")]
         public virtual Tool tool { get; set; }
 
-        [Display(Name = "Item")]
-        public int? itemID { get; set; }
-        [ForeignKey("itemID")]
-        public virtual Item item { get; set; }
-
         [Required]
         [Display(Name = "Borrow start")]
         [DataType(DataType.Date)]
