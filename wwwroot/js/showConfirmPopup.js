@@ -13,7 +13,7 @@ span.onclick = async function () {
 }
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
+window.onclick = async function (event) {
   if (event.target == modal) {
     modal.style.display = "none";
     await fetch("https://localhost:5001/SelectItem/CloseModal");
