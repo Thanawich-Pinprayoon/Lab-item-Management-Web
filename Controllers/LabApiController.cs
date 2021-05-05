@@ -36,7 +36,7 @@ namespace Lab_item_Management_Web.Controllers
                 api.labName = labs[i].name;
                 api.labImage = labs[i].pic;
                 api.itemAmount = tools[i].amount;
-                api.link = String.Format("http://lab-m.herokuapp.com/SelectItem/Index/{}",i+1);
+                api.link = String.Format("http://lab-m.herokuapp.com/SelectItem/Index/{0}",i+1);
                 labApi[i] = api;
 
             }

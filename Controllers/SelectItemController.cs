@@ -30,7 +30,7 @@ namespace LabManage.Controllers
         // {
         //     return View();
         // }
-    
+        [Authorize]
         public async Task<IActionResult> Index(int? id)
         {
             if (id == null)
