@@ -13,11 +13,9 @@ namespace LabManage.Data
             : base(options) 
         { 
         } 
-        public DbSet<Lab> Lab { get; set; }  
-        public DbSet<Tool> Tool { get; set; }  
-        public DbSet<Transaction> Transaction { get; set; }  
-        public DbSet<Blacklist> Blacklist { get; set; }  
-  
-
+        public DbSet<Lab> Lab { get; set; }
+        public DbSet<Tool> Tool { get; set; }
+        public DbSet<Transaction> Transaction { get; set; }
+        public DbSet<Blacklist> Blacklist { get; set; }
     } 
 } 

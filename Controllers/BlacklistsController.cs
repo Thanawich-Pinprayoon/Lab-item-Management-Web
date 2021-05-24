@@ -29,26 +29,6 @@ namespace LabManage.Controllers
             return View(await blacklist.ToListAsync());
         }
 
-        // GET: Blacklists/Details/5
-        [AllowAnonymous]
-        public async Task<IActionResult> Details(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var blacklist = await _context.Blacklist
-                .Include(b => b.user)
-                .FirstOrDefaultAsync(m => m.userID == id);
-            if (blacklist == null)
-            {
-                return NotFound();
-            }
-
-            return View(blacklist);
-        }
-
         // GET: Blacklists/Create
         public IActionResult Create()
         {
@@ -67,60 +47,6 @@ namespace LabManage.Controllers
             {
                 _context.Add(blacklist);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["userID"] = new SelectList(_context.Users, "Id", "Name", blacklist.userID);
-            return View(blacklist);
-        }
-
-        // GET: Blacklists/Edit/5
-        public async Task<IActionResult> Edit(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var blacklist = await _context.Blacklist.FindAsync(id);
-            if (blacklist == null)
-            {
-                return NotFound();
-            }
-
-            ViewData["userID"] = new SelectList(_context.Users, "Id", "Name", blacklist.userID);
-            return View(blacklist);
-        }
-
-        // POST: Blacklists/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("id,userID,staffID,labID,reason,date")] Blacklist blacklist)
-        {
-            if (id != blacklist.userID)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(blacklist);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!BlacklistExists(blacklist.userID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
                 return RedirectToAction(nameof(Index));
             }
             ViewData["userID"] = new SelectList(_context.Users, "Id", "Name", blacklist.userID);
