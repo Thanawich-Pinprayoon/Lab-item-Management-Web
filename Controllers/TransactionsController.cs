@@ -39,7 +39,7 @@ namespace LabManage.Controllers
 
             if (_httpContextAccessor.HttpContext.User.HasClaim(c => c.Type == "ManageLab")) {
                 var c = _httpContextAccessor.HttpContext.User.Claims.First(c => c.Type == "ManageLab");
-                transaction = transaction.Where(t => (t.tool.labID == Int32.Parse(c.Value)) || (t.userID == currentUser.Id));
+               // transaction = transaction.Where(t => (t.tool.labID == Int32.Parse(c.Value)) || (t.userID == currentUser.Id));
             } else {
                 transaction = transaction.Where(t => t.userID == currentUser.Id);
             }

@@ -26,20 +26,23 @@
         font-size: 28px;
     }
 
-    .d1{
+    .d1 {
         position: flex;
         width: 100%;
         height: 80vh;
         background: #FFDFC8;
-        @* border-radius: 10px; *@
-        @* box-shadow: 0px 4px 4px rgb(0 0 0 / 25%); *@
-        @* padding : 30px; *@
-        display: flex;
+    @*border-radius:10px;*@@*box-shadow:0px4px4pxrgb(000/25%);*@@*padding:30px;*@display: flex;
         flex-direction: column;
         overflow-y: scroll;
-        
+
     }
-    .d1 thead th { position: sticky; top: 0; z-index: 1; }
+
+    .d1 thead th {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
     .layout {
         height: 75vh;
         margin-top: 30px;
@@ -47,40 +50,47 @@
         flex-direction: row;
         justify-content: space-evenly;
         min-width: 1080px;
-        
-        
+
+
     }
-    h1{
-            font-size: 28px;
+
+    h1 {
+        font-size: 28px;
     }
-    table, td, th {
+
+    table,
+    td,
+    th {
         padding: 8px;
     }
 
     table {
         width: 100%;
         border-collapse: collapse;
-        }
-    th{
+    }
+
+    th {
         padding-top: 12px;
         padding-bottom: 12px;
         text-align: left;
         color: white;
         background-color: #FF7D7D;
     }
-  
-    tr:nth-child(even){background-color: #fdfdfd ;}
-    td{
+
+    tr:nth-child(even) {
+        background-color: #fdfdfd;
+    }
+
+    td {
         padding: 10px 10;
 
     }
-    tbody{
-        
-        
-    }
-    .btn{
+
+    tbody {}
+
+    .btn {
         width: 100px;
-        height: 50px; 
+        height: 50px;
         font-size: 16px;
         border-radius: 5px;
         background-color: #FB9B9B;
@@ -91,11 +101,6 @@
         padding: 5px;
 
     }
-
-
-    
-    
-
 </style>
 <div class="content">
     <div class="section">
@@ -103,14 +108,14 @@
     </div>
     <hr />
     <div class="layout">
-         <div class="d1">
+        <div class="d1">
             <table class="table">
                 <thead>
                     <tr>
                         <th>
                             @Html.DisplayNameFor(model => model.user)
                         </th>
-                        
+
                         <th>
                             @Html.DisplayNameFor(model => model.tool)
                         </th>
@@ -126,7 +131,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model) {
+                    @foreach (var item in Model)
+                    {
                         <tr>
                             <td>
                                 @Html.DisplayFor(modelItem => item.user.Name)
@@ -141,14 +147,17 @@
                                 @Html.DisplayFor(modelItem => item.status)
                             </td>
                             <td>
-                                @if (item.status == LabManage.Models.Status.Book && item.userID == User.FindFirst(ClaimTypes.NameIdentifier).Value)
-                                    {   
+                                @if ((item.status == LabManage.Models.Status.Book && item.userID ==
+                               User.FindFirst(ClaimTypes.NameIdentifier).Value) ||
+                               (await AuthorizationService.AuthorizeAsync(User, "ManageLab")).Succeeded)
+                                {
                                     <a class="btn" asp-action="Cancel" asp-route-id="@item.id">ยกเลิกการจอง</a>
-                                    }
+                                }
+
                             </td>
-                                
+
                         </tr>
-                }
+                    }
                 </tbody>
             </table>
         </div>
