@@ -16,16 +16,8 @@ namespace LabManage.Data
         public DbSet<Lab> Lab { get; set; }  
         public DbSet<Tool> Tool { get; set; }  
         public DbSet<Transaction> Transaction { get; set; }  
-        public DbSet<Timeslot> Timeslot { get; set; }  
         public DbSet<Blacklist> Blacklist { get; set; }  
   
-        protected override void OnModelCreating(ModelBuilder modelBuilder)  
-        {  
-            base.OnModelCreating(modelBuilder); 
-             
-            modelBuilder.Entity<Timeslot>()
-                .HasKey(t => new {t.start, t.end, t.toolID});
 
-        }  
     } 
 } 
