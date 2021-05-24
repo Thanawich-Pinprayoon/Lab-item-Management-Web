@@ -21,7 +21,7 @@ namespace Lab_item_Management_Web.Controllers
             _context = context;
         }
 
-        // GET: api/ItemsAPI
+        // GET: api/LabApi
         [HttpGet]
         public async Task<ActionResult<IList<Api>>> GetItem()
         {
@@ -38,13 +38,9 @@ namespace Lab_item_Management_Web.Controllers
                 api.itemAmount = tools[i].amount;
                 api.link = String.Format("http://{0}/SelectItem/Index/{1}",Request.Host,i+1);
                 labApi[i] = api;
-
             }
             
             return labApi.ToList();
         }
-
-        // GET: api/ItemsAPI/5
-
     }
 }

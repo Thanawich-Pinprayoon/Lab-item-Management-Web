@@ -18,26 +18,11 @@ namespace LabManage.Models
         [ForeignKey("userID")]
         public virtual Users user { get; set; } 
 
-        [Display(Name = "Give by staff")]
-        public string staffID { get; set; }
-        [ForeignKey("staffID")]
-        public virtual Users staff { get; set; }
-
         [Required]
         [Display(Name = "Tool")]
         public int toolID { get; set; }
         [ForeignKey("toolID")]
         public virtual Tool tool { get; set; }
-
-        [Required]
-        [Display(Name = "Borrow start")]
-        [DataType(DataType.Date)]
-        public DateTime start { get; set; }
-
-        [Required]
-        [Display(Name = "Borrow end")]
-        [DataType(DataType.Date)]
-        public DateTime end { get; set; }
 
         [Required]
         [Display(Name = "date")]

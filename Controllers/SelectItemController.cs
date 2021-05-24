@@ -26,10 +26,6 @@ namespace LabManage.Controllers
              _userManager = userManager;
         }
 
-        // public IActionResult Index()
-        // {
-        //     return View();
-        // }
         [Authorize]
         public async Task<IActionResult> Index(int? id)
         {
