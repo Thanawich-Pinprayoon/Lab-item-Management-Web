@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Lab_item_Management_Web
+namespace LabManage
 {
     public class Program
     {
@@ -19,7 +19,7 @@ namespace Lab_item_Management_Web
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
-                {
+                {      
                     webBuilder.UseStartup<Startup>();
                 });
     }

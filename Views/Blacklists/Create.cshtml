@@ -1,0 +1,86 @@
+@model LabManage.Models.Blacklist
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<style>
+    .content {
+        height: 80vh;
+        /* background-color: yellowgreen; */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+    }
+    .section {
+        display: flex;
+        justify-content: space-between;
+        font-size: 28px;
+    }
+    .layout{
+        height: 75vh;
+        /* background-color: yellowgreen; */
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        min-width: 1080px;
+    }
+    .form-group{
+        display: flex;
+        flex-direction: column;
+        font-size: 18px;
+        margin: 10px 0;
+    }
+    .form-control{
+        width: 300px;
+        height: 20px;
+    }.form-control-L{
+        width: 300px;
+        height: 100px;
+
+    }
+    .btn{
+        width: 100px;
+        height: 30px; 
+        font-size: 16px;
+        border-radius: 5px;
+        background-color: #FB9B9B;
+        border: none;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        margin: 20px 0 ;
+    }
+</style>
+
+<div class="content">
+    <div class="section">
+        <p>Add Blacklist</p>
+    </div>
+    <hr>
+    <div class="layout">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="userID" class="control-label"></label>
+                <select asp-for="userID" class ="form-control" asp-items="ViewBag.userID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="reason" class="control-label"></label>
+                <textarea asp-for="reason" class="form-control-L"></textarea>
+                <span asp-validation-for="reason" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@* <div>
+    <a asp-action="Index">Back to List</a>
+</div> *@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

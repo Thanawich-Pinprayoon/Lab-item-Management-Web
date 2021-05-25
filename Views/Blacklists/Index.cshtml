@@ -1,0 +1,300 @@
+@model IEnumerable<LabManage.Models.Blacklist>
+@{
+    ViewData["Title"] = "Black List";
+}
+
+<div class="content">
+    <div class="section">
+        <p>Blacklist</p>
+    </div>
+    <hr />
+        <div class="info-box">
+            <div class="top-right">
+                <a asp-action="Create">
+                    <button  class="add-blacklist-btn">Add Blacklist</button>
+                </a>
+
+            </div>
+
+            <div class="blacklist-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.user.UserName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.user.Name)
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.reason)
+                            </th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                @foreach (var item in Model) {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.user.UserName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.user.Name)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.reason)
+                            </td>
+                            <td>
+                                <a asp-action="Delete" asp-route-id="@item.id"><button class="add-blacklist-btn">Remove </button></a>
+                            </td>
+                        </tr>
+                }
+                    </tbody>
+                </table>
+
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="~/css/style.css">
+<style>
+    .content {
+        height: 80vh;
+        /* background-color: yellowgreen; */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+    }
+
+    .section {
+        display: flex;
+        justify-content: space-between;
+        font-size: 28px;
+    }
+    
+
+    .d1{
+        position: flex;
+        width: 100%;
+        height: 80vh;
+        background: #FFDFC8;
+        display: flex;
+        flex-direction: column;
+        overflow-y: scroll;
+        
+    }
+    .d1 thead th { position: sticky; top: 0; z-index: 1; }
+    .layout {
+        height: 75vh;
+        margin-top: 30px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        min-width: 1080px;
+        
+    }
+    h1{
+            font-size: 28px;
+    }
+    table, td, th {
+        padding: 8px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        }
+    th{
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        color: white;
+        background-color: #FF7D7D;
+    }
+  
+    tr:nth-child(even){background-color: #fdfdfd ;}
+    td{
+        padding: 10px 10;
+
+    }
+
+    .info-box {
+        width: 100%;
+        height: 75vh;
+        display: flex;
+        flex-direction: column;
+        margin-top: 30px;
+
+    }
+
+    .top-right {
+        display: flex;
+        justify-content: flex-end;
+        margin: 10px;
+    }
+
+    .add-blacklist-btn {
+
+        min-width: 100px;
+        height: 30px; 
+        font-size: 16px;
+        border-radius: 5px;
+        background-color: #FB9B9B;
+        border: none;
+        color: #fdfdfd;
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+        text-decoration: none;
+        padding: 5px;
+
+    }
+
+    .sort-box {
+        display: flex;
+        flex-direction: row;
+        margin: 0 50px;
+
+    }
+
+    .sort-box p {
+        margin: 0 20px;
+        font-size: 18px;
+    }
+
+    .sort-by-select {
+        font-size: 18px;
+    }
+
+    .blacklist-container {
+
+        width: 100%;
+        height: 100%;
+        margin: auto;
+        overflow: auto;
+        background: #ffdfc8;
+
+    }
+
+    #blacklist {
+        display: flex;
+        flex-flow: row wrap;
+        list-style-type: none;
+    }
+
+    #blacklist li {
+        margin: 3px;
+        flex: 0 1 calc(20% - 6px);
+    }
+
+    .bl-user-box {
+        position: relative;
+        background-color: rgb(172, 172, 172);
+        margin-left: 1%;
+        border-radius: 10px;
+
+    }
+
+    .username {
+        position: relative;
+        font-size: 18px;
+        margin-left: 10%;
+        padding: 3% 0;
+    }
+
+    .OnDate {
+        /* visibility:hidden;*/
+        position: relative;
+        font-size: 10px;
+        /*margin-right: 10%; */
+        padding: 0 40%;
+        width: 100%;
+    }
+
+    .bl-delete {
+        position: absolute;
+        right: 5%;
+        top: 15%;
+        width: 10%;
+        border-radius: 50%;
+        background-color: rgb(253, 100, 100);
+        color: #fbfbfb;
+        outline: none;
+        user-select: none;
+    }
+
+    #bl-popup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        /* margin-top: -360px;
+    margin-left: -640px; */
+        width: 480px;
+        height: 270px;
+        background-color: rgb(204, 204, 204);
+        visibility: hidden;
+        border-radius: 10px;
+
+    }
+
+    .popup-head {
+        font-size: 24px;
+        margin: 10px;
+
+    }
+
+    .bl-inp-username {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40%;
+
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+    }
+
+    .bl-add-confirm {
+        position: absolute;
+        bottom: 5%;
+        right: 5%;
+        width: 20%;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        background-color: rgb(51, 133, 55);
+        color: #fbfbfb;
+    }
+
+    .bl-add-cancel {
+        position: absolute;
+        bottom: 5%;
+        right: 30%;
+        width: 20%;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        background-color: rgb(148, 74, 74);
+        color: #fbfbfb;
+    }
+
+    #full-detail {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 480px;
+        height: 270px;
+        background-color: rgb(204, 204, 204);
+        visibility: hidden;
+        border-radius: 10px;
+        background-color: #f5af5f;
+    }

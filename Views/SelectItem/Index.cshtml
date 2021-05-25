@@ -1,0 +1,129 @@
+@model LabManage.Models.Transaction
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+
+@using Microsoft.AspNetCore.Http
+
+@functions{
+
+    public dynamic GetObjectValue(object o, string propertyName)
+
+    {
+
+        return o.GetType().GetProperty(propertyName).GetValue(o, null);
+
+    }
+}
+
+
+<link rel="stylesheet" href="~/css/select-item.css">
+<link rel="stylesheet" href="~/css/style.css">
+<script defer src="~/js/showConfirmPopup.js"></script> 
+@* @foreach (var item in ViewBag.item)
+    { *@
+<div class="content">
+    <div class="section">
+        <p>@GetObjectValue(ViewBag.item,"Name")</p>
+    </div>
+    <hr>
+    <div class="layout">
+        <div class="lab">
+            <img class="lab-img" src="@GetObjectValue(ViewBag.item,"Picture")" />
+            <div class="lab-text">
+                <div class="lab-container">
+                    <div class="lab-name" id="lab-name" value="">@GetObjectValue(ViewBag.item,"Name")</div>
+                    @if ((await AuthorizationService.AuthorizeAsync(User, "ManageLab")).Succeeded)
+                    {
+                        <a asp-action="EditLab" asp-route-id="@GetObjectValue(ViewBag.item,"Id")">
+                            <button class="edit-btn">Edit</button>
+                        </a>
+                    }
+                   
+                </div>
+                <br><br />
+                <div class="lab-description" id="lab-description" value="">@GetObjectValue(ViewBag.item,"Description")
+                </div>
+            </div>
+        </div>
+        <div class="item-list">
+            <div class="item-list-card">
+                <div class="itemlist-top">
+                    <div class="list-text">รายการอุปกรณ์</div>
+                    @if ((await AuthorizationService.AuthorizeAsync(User, "ManageLab")).Succeeded)
+                    {
+                        <a asp-action="EditTool" asp-route-id="@GetObjectValue(ViewBag.item,"ToolId")">
+                            <button class="edit-btn">Edit</button>
+                        </a>
+                    } 
+                </div>
+                <div class="item-main">
+                    <img class="item-img" src="@GetObjectValue(ViewBag.item,"ToolPicture")">
+                    <div class="item-text">
+                        <div class="item-name">@GetObjectValue(ViewBag.item,"ToolName")</div>
+                        <div class="item-number">@GetObjectValue(ViewBag.item,"Amount") items</div>
+                        <div class="item-description"> @GetObjectValue(ViewBag.item,"ItemDesc")</div>
+                    </div>
+                </div>
+                <hr style="border-color:gray">
+                @* <div class="cards-list" id="card-list"></div> *@
+                <br />
+                <p class="list-text">กรุณาเลือกวันที่ที่ต้องการจะจอง</p><br />
+                <div class="choose-time">
+                    @for (int i = 0; i < 7; i++)
+
+                    {
+                        <form asp-action="CreateTransaction" onsubmit="showConfirm()">
+                            <div asp-validation-summary="ModelOnly"></div>
+                            <input type="hidden" asp-for="toolID" value="@GetObjectValue(ViewBag.item,"ToolId")" />
+                            <div class="select-time">
+                                <div>
+                                    @DateTime.Today.AddDays(i).ToShortDateString()
+                                    &nbsp;
+                                    @ViewBag.count[i]
+                                    @if (ViewBag.count[i] <= 1)
+                                    {
+                                        @:item already reserved
+                                    }
+
+                                    else
+                                    {
+                                        @:items already reserved
+                                    }
+
+
+                                </div>
+                                <div>
+                                    <input type="hidden" asp-for="date"
+                                    value="@DateTime.Today.AddDays(i).ToShortDateString()" />
+                                    @if (ViewBag.count[i] < GetObjectValue(ViewBag.item, "Amount"))
+                                    {
+                                        <input type="submit" value="Book" class="confirm-btn"/>
+
+                                    }
+                                    else
+                                    {
+                                        <input disabled type="submit" value="Full" class="cancel-btn" />
+
+                                    }
+                                </div>
+                            </div>
+                            <hr style="border-color:gray" />
+                        </form>
+
+                    }
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+@if(Context.Session.GetInt32("isShowModal")==1){
+   <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content"> 
+            <p>ยินดีด้วย!! คุณจองอุปกรณ์สำเร็จ </p>
+            <span class="close">&times;</span>
+        </div>
+    </div> 
+}
