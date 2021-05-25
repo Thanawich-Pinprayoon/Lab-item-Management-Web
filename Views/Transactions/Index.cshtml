@@ -147,9 +147,9 @@
                                 @Html.DisplayFor(modelItem => item.status)
                             </td>
                             <td>
-                                @if ((item.status == LabManage.Models.Status.Book && item.userID ==
-                               User.FindFirst(ClaimTypes.NameIdentifier).Value) ||
-                               (await AuthorizationService.AuthorizeAsync(User, "ManageLab")).Succeeded)
+                                @if (item.status == LabManage.Models.Status.Book &&
+                                (( item.userID == User.FindFirst(ClaimTypes.NameIdentifier).Value) ||
+                                (await AuthorizationService.AuthorizeAsync(User, "ManageLab")).Succeeded))
                                 {
                                     <a class="btn" asp-action="Cancel" asp-route-id="@item.id">ยกเลิกการจอง</a>
                                 }
